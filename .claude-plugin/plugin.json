@@ -1,0 +1,9 @@
+{
+  "name": "specify-sde",
+  "version": "0.1.0",
+  "description": "Modular Software Development Engineering toolkit for Claude Code — specs-driven, skills-based, composable engineering workflows.",
+  "author": {
+    "name": "odenirdev",
+    "email": ""
+  }
+}
