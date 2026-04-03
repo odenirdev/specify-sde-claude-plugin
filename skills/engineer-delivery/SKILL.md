@@ -22,15 +22,15 @@ Use this skill when the user wants to:
 ## Inputs
 
 - Feature slug (e.g., `user-auth`) or direct path to `tasks.md`
-- `./specify/specs/[slug]/tasks.md` must already exist
-- `./specify/specs/[slug]/spec.md` should exist as reference
+- `./.specify/specs/[slug]/tasks.md` must already exist
+- `./.specify/specs/[slug]/spec.md` should exist as reference
 
 ## Responsibilities
 
 ### 1. Locate the Task Plan
 
-- If the user provides a slug, read `./specify/specs/[slug]/tasks.md`
-- If the slug is not provided, check `./specify/specs/` for the most recent spec with a `tasks.md`
+- If the user provides a slug, read `./.specify/specs/[slug]/tasks.md`
+- If the slug is not provided, check `./.specify/specs/` for the most recent spec with a `tasks.md`
 - If `tasks.md` is not found, stop and instruct the user to run `engineer-define` first
 
 ### 2. Parse Phases and Tasks
@@ -70,7 +70,7 @@ After each task completes:
 
 ### 5. Write Delivery Report
 
-After all phases complete, write `./specify/specs/[slug]/delivery.md` with a summary of what was implemented.
+After all phases complete, write `./.specify/specs/[slug]/delivery.md` with a summary of what was implemented.
 
 ## Output Format
 
@@ -128,7 +128,7 @@ Run `engineer-iteration` to review and refine the delivery.
 ## Output Location
 
 - Progress: inline during execution
-- Delivery report: `./specify/specs/[slug]/delivery.md`
+- Delivery report: `./.specify/specs/[slug]/delivery.md`
 
 ## Quality Bar
 
@@ -163,7 +163,7 @@ Delivery is complete when:
 User: "run engineer-delivery for user-notifications"
 
 Actions:
-1. Read `./specify/specs/user-notifications/tasks.md` — 3 phases, 9 tasks
+1. Read `./.specify/specs/user-notifications/tasks.md` — 3 phases, 9 tasks
 2. Phase 1 (Core backend):
    - Dispatch task "Create Notification domain entity" to `backend-architect`
    - Dispatch task "Create NotificationService use case" to `backend-architect`
@@ -174,5 +174,5 @@ Actions:
 4. Phase 3 (Tests):
    - Dispatch "Write unit tests for NotificationService" inline
    - Verify tests pass with `Bash`
-5. Write `./specify/specs/user-notifications/delivery.md`
+5. Write `./.specify/specs/user-notifications/delivery.md`
 6. Report: "3 phases complete. 9/9 tasks done. Next: engineer-iteration"

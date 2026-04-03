@@ -10,7 +10,7 @@ updated_at: 2026-04-03T00:00:00Z
 
 ## System Overview
 
-`specify-sde` is a Claude Code plugin composed entirely of Markdown files. There is no runtime, no build system, and no compiled output. Claude loads skills on trigger, agents compose skills into specialized roles, and knowledge files inform engineering decisions for specific stacks. The plugin operates on the consuming project's `./specify/` directory as its working area.
+`specify-sde` is a Claude Code plugin composed entirely of Markdown files. There is no runtime, no build system, and no compiled output. Claude loads skills on trigger, agents compose skills into specialized roles, and knowledge files inform engineering decisions for specific stacks. The plugin operates on the consuming project's `./.specify/` directory as its working area.
 
 ---
 
@@ -23,7 +23,7 @@ specify-sde/
   skills/<name>/SKILL.md   ─── Reusable capabilities
   │  Loaded by Claude when trigger phrases are matched.
   │  Each skill defines: objective, phases, output location, quality bar.
-  │  Output → consuming project's ./specify/specs/<slug>/<type>.md
+  │  Output → consuming project's ./.specify/specs/<slug>/<type>.md
   
   agents/<name>.md         ─── Specialized roles
   │  Each agent composes one or more skills.
@@ -48,7 +48,7 @@ specify-sde/
 
 ### Skills (`skills/*/SKILL.md`)
 - **Responsibility**: Define a reusable engineering capability with explicit inputs, phases, and output format.
-- **Interfaces**: Triggered by Claude via natural language; writes output to `./specify/specs/<slug>/` in consuming project.
+- **Interfaces**: Triggered by Claude via natural language; writes output to `./.specify/specs/<slug>/` in consuming project.
 - **Dependencies**: May reference knowledge files and invoke subagents.
 - **Location**: [skills/](../../skills/)
 
@@ -65,7 +65,7 @@ specify-sde/
 - **Location**: [knowledge/](../../knowledge/)
 
 ### Docs Sync (`skills/docs-sync/`)
-- **Responsibility**: Detect consuming project's stack, activate matching knowledge and agents, and synchronize `./specify/docs/` with current specs and code.
+- **Responsibility**: Detect consuming project's stack, activate matching knowledge and agents, and synchronize `./.specify/docs/` with current specs and code.
 - **Interfaces**: Accepts scope arguments: `init`, `index`, `architecture`, `integrations`, `all`.
 - **Dependencies**: References stack-signals, knowledge-map, agent-map, and templates from its `references/` directory.
 - **Location**: [skills/docs-sync/](../../skills/docs-sync/)
@@ -78,8 +78,8 @@ specify-sde/
 |---|---|---|
 | Agent | Skill | Agent declares which skills it composes in "Skills Used" section |
 | Skill | Knowledge | Skill declares files to load in "Knowledge to Consult" section |
-| docs-sync | templates | Reads templates from `references/`, fills with codebase data, writes to `./specify/docs/` |
-| Any skill | `./specify/specs/` | Skills write output with `updated_at` frontmatter; overwrite if exists |
+| docs-sync | templates | Reads templates from `references/`, fills with codebase data, writes to `./.specify/docs/` |
+| Any skill | `./.specify/specs/` | Skills write output with `updated_at` frontmatter; overwrite if exists |
 
 ---
 

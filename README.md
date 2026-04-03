@@ -16,7 +16,7 @@ It is not a rigid framework. It is a composable toolkit. Use the pieces that are
 
 ```
 Specs  ──────────────────────────────────────▶  Source of truth
-  │                                              (./specify/specs)
+  │                                              (./.specify/specs)
   │
   ├── Skills ──────────────────────────────────▶  Reusable capabilities
   │     │                                         (define, review, debug, plan)
@@ -28,7 +28,7 @@ Specs  ────────────────────────�
   │     (TypeScript, Go, NestJS, Prisma, ...)     for engineering decisions
   │
   └── Docs ─────────────────────────────────────▶  Derived documentation
-        (./specify/docs)                           maintained by docs-sync
+        (./.specify/docs)                           maintained by docs-sync
 ```
 
 | Layer | Purpose |
@@ -38,7 +38,7 @@ Specs  ────────────────────────�
 | **Skills** | Reusable engineering capabilities — loaded into any conversation. |
 | **Agents** | Specialized roles that compose skills for specific job types. |
 | **Knowledge** | Stack-aware engineering references — practices, patterns, anti-patterns. |
-| **Templates** | Starting structures for `./specify/docs` and project conventions. |
+| **Templates** | Starting structures for `./.specify/docs` and project conventions. |
 
 ---
 
@@ -78,7 +78,7 @@ specify-sde/
     engineer-review/          # Code and diff review
     engineer-debug/           # Root cause analysis and debugging strategy
     engineer-tradeoff/        # Option comparison and recommendation
-    docs-sync/                # Sync ./specify/docs from specs and code
+    docs-sync/                # Sync ./.specify/docs from specs and code
 
   agents/
     reviewer.md               # Senior reviewer — production risk, architecture
@@ -88,34 +88,14 @@ specify-sde/
     docs-maintainer.md        # Documentation engineer — accuracy and currency
 
   templates/
-    specify-docs-index-template.md      # Template for ./specify/docs/index.md
+    specify-docs-index-template.md      # Template for ./.specify/docs/index.md
     specify-architecture-template.md    # Template for architecture.md
     specify-integrations-template.md    # Template for integrations.md
     specify-operations-template.md      # Template for operations.md
     project-conventions-template.md     # Template for project conventions
 ```
 
----
-
-## Specify Workflow Integration
-
-### `./specify/specs`
-
-The primary working area for engineering. Skills read and write here:
-
-- `engineer-discovery` produces `prd.md` from requirements interviews
-- `engineer-define` orchestrates the full define phase (spec + tasks)
-- `engineer-define-spec` produces `spec.md` from `prd.md`
-- `engineer-define-tasks` produces `tasks.md` from `spec.md`
-- `engineer-delivery` executes the task plan via subagents
-
-Nothing in this plugin enforces a rigid schema. The specs directory contains what your team puts there: requirements, definitions, decision records, task lists.
-
-### `./specify/docs`
-
-Derived documentation. The `docs-sync` skill and `docs-maintainer` agent update this directory based on what exists in specs and code — never from speculation.
-
-Key file: `./specify/docs/index.md` — the documentation entry point. See [specify-docs-index-template.md](./templates/specify-docs-index-template.md) for the expected structure.
+> Full documentation is maintained in [./.specify/docs/index.md](./.specify/docs/index.md) — architecture, stack, operations, and decision records.
 
 ---
 
@@ -131,7 +111,7 @@ Key file: `./specify/docs/index.md` — the documentation entry point. See [spec
 | `engineer-review` | Review code, diff, or module | Structured review: critical issues, improvements, strengths |
 | `engineer-debug` | Investigate a bug or failure | Root cause hypotheses, debugging steps, evidence to collect |
 | `engineer-tradeoff` | Compare implementation options | Comparison matrix, pros/cons, recommendation |
-| `docs-sync` | Update ./specify/docs | Sync report: updated, verified, gaps found |
+| `docs-sync` | Update ./.specify/docs | Sync report: updated, verified, gaps found |
 
 ---
 
@@ -193,44 +173,15 @@ claude plugin uninstall specify-sde@local && claude plugin install specify-sde@l
 
 ## Extending
 
-### Adding Knowledge Files
+Authoring rules for skills, agents, knowledge files, and templates are documented in [CLAUDE.md](./CLAUDE.md).
 
-Add a file to the relevant `knowledge/` subdirectory:
-
-```
-knowledge/
-  frameworks/your-framework.md
-  libs/your-library.md
-```
-
-Structure: best practices → anti-patterns → review criteria → trade-offs → implementation notes.
-
-### Adding a Skill
-
-Create a directory under `skills/` with a `SKILL.md`:
-
-```
-skills/your-skill/
-  SKILL.md
-```
-
-Include: objective, responsibilities, when to use, inputs, outputs, quality bar, knowledge to consult, guardrails.
-
-### Adding an Agent
-
-Create a file under `agents/`:
-
-```
-agents/your-agent.md
-```
-
-Include: role, mission, when to use with examples, skills used, knowledge to prioritize, constraints, output style.
+After adding or modifying content, run `docs-sync` to update [./.specify/docs/](./.specify/docs/).
 
 ---
 
 ## Core Principles
 
-1. **Specs are the source of truth** — read `./specify/specs` before acting
+1. **Specs are the source of truth** — read `./.specify/specs` before acting
 2. **Docs are derived** — never invented from memory or speculation
 3. **Skills are reusable** — compose them for any task
 4. **Agents are roles** — specialized for specific job types

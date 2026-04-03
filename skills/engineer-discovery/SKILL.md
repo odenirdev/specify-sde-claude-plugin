@@ -22,15 +22,15 @@ Use this skill when the user wants to:
 ## Inputs
 
 - Feature name or rough description provided by the user
-- (Optional) Existing context in `./specify/specs/` — read to detect related features and avoid duplication
+- (Optional) Existing context in `./.specify/specs/` — read to detect related features and avoid duplication
 
 ## Responsibilities
 
 ### 1. Scan Existing Context
 
 Before starting the interview:
-- Check `./specify/specs/` for existing features that may overlap
-- Read `./specify/docs/` if present for project conventions and architectural constraints
+- Check `./.specify/specs/` for existing features that may overlap
+- Read `./.specify/docs/` if present for project conventions and architectural constraints
 - Note any existing patterns or constraints to surface during the interview
 
 ### 2. Conduct the Interview
@@ -53,7 +53,7 @@ From the feature name, derive a kebab-case slug (e.g., `user-auth`, `payment-flo
 
 ### 4. Write prd.md
 
-Write `./specify/specs/[slug]/prd.md` using the output format below. If the directory does not exist, create it. If the file already exists, overwrite it and refresh `updated_at`.
+Write `./.specify/specs/[slug]/prd.md` using the output format below. If the directory does not exist, create it. If the file already exists, overwrite it and refresh `updated_at`.
 
 ## Output Format
 
@@ -99,7 +99,7 @@ updated_at: YYYY-MM-DDTHH:MM:SSZ
 
 ## Output Location
 
-Write to: `./specify/specs/[feature-slug]/prd.md`
+Write to: `./.specify/specs/[feature-slug]/prd.md`
 
 The file must include the `updated_at` frontmatter. If the file already exists, overwrite and refresh `updated_at`.
 
@@ -129,7 +129,7 @@ A PRD is complete when:
 User: "I want to add user notifications to our app"
 
 Actions:
-1. Check `./specify/specs/` — no existing notification feature found
+1. Check `./.specify/specs/` — no existing notification feature found
 2. Ask: "What problem are we solving?" → "Users miss important events because there's no alert system"
 3. Ask: "What's the goal?" → "Reduce missed events by 80% within 30 days of launch"
 4. Ask: "Who are the users?" → "All authenticated users; admin can configure notification types"
@@ -138,4 +138,4 @@ Actions:
 7. Ask: "Out of scope?" → "SMS notifications, notification scheduling"
 8. Ask: "Acceptance criteria?" → "User receives in-app notification within 5s of a new message; unread count badge updates"
 9. Derive slug: `user-notifications`
-10. Write `./specify/specs/user-notifications/prd.md`
+10. Write `./.specify/specs/user-notifications/prd.md`

@@ -32,7 +32,7 @@ See [architecture.md](./architecture.md) for full plugin structure and component
 - **engineer-review**: Structured code and diff review
 - **engineer-debug**: Root cause analysis and debugging strategy
 - **engineer-tradeoff**: Option comparison with recommendation
-- **docs-sync**: Synchronize `./specify/docs` from specs and code
+- **docs-sync**: Synchronize `./.specify/docs` from specs and code
 
 ---
 
@@ -40,11 +40,11 @@ See [architecture.md](./architecture.md) for full plugin structure and component
 
 Key concepts in this plugin's model:
 
-- **Spec**: Source of truth for a feature — problem, approach, constraints, tasks. Lives in `./specify/specs/<slug>/`.
+- **Spec**: Source of truth for a feature — problem, approach, constraints, tasks. Lives in `./.specify/specs/<slug>/`.
 - **Skill**: A reusable Claude capability loaded from `skills/<name>/SKILL.md` on trigger. Produces a defined output.
 - **Agent**: A specialized role that composes one or more skills. Declared in `agents/<name>.md`.
 - **Knowledge**: Stack-aware engineering reference for a technology or practice. Lives in `knowledge/`.
-- **Docs**: Derived documentation in `./specify/docs/`. Never invented — always derived from specs or code.
+- **Docs**: Derived documentation in `./.specify/docs/`. Never invented — always derived from specs or code.
 
 ---
 

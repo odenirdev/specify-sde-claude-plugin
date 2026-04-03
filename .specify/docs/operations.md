@@ -73,4 +73,4 @@ Version is declared in `plugin.json`. Increment on breaking changes to skill int
 ## Known Constraints
 
 - Changes to `SKILL.md` files require plugin reinstall to take effect — Claude Code caches plugin content at install time.
-- The plugin operates on the consuming project's `./specify/` directory — it does not create files in its own directory at runtime.
+- The plugin operates on the consuming project's `./.specify/` directory — it does not create files in its own directory at runtime.

@@ -53,7 +53,7 @@ Detect bugs, production risks, and architecture violations before code reaches u
 ## Constraints
 
 - Read the full execution path before commenting on any line
-- Check `./specify/specs` for relevant spec before reviewing implementation
+- Check `./.specify/specs` for relevant spec before reviewing implementation
 - Report only what is verifiably wrong — do not speculate
 - Distinguish critical (must fix) from improvement (should fix) from optional
 - Do not suggest refactoring unrelated code — stay in scope

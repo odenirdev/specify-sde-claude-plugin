@@ -15,7 +15,7 @@ Produce a structured task breakdown that converts a technical definition or spec
 
 Use this skill when the user wants to:
 - Break a feature into implementation tasks
-- Convert a spec from `./specify/specs` into actionable work
+- Convert a spec from `./.specify/specs` into actionable work
 - Create a phased plan before writing code
 - Define acceptance criteria for each unit of work
 - Identify task dependencies and unblock parallel work
@@ -30,7 +30,7 @@ Use this skill when the user wants to:
 
 ### 1. Read the Spec or Definition First
 Before breaking down tasks:
-- Read the spec from `./specify/specs` if it exists
+- Read the spec from `./.specify/specs` if it exists
 - Read relevant domain models, use cases, and tests
 - Understand what already exists — don't create tasks for things that are already done
 
@@ -99,7 +99,7 @@ T3 → T5
 
 ## Output Location
 
-Write the output to `./specify/specs/[feature-slug]/tasks.md`. If the directory does not exist, create it.
+Write the output to `./.specify/specs/[feature-slug]/tasks.md`. If the directory does not exist, create it.
 
 The file must start with:
 ```
@@ -132,7 +132,7 @@ A task breakdown is complete when:
 
 ## Repository Areas to Inspect
 
-- `./specify/specs` — source spec or definition
+- `./.specify/specs` — source spec or definition
 - Existing domain entities to avoid recreating what's there
 - Test files to understand current coverage baseline
 
@@ -148,9 +148,9 @@ A task breakdown is complete when:
 User: "Break down the payment integration feature"
 
 Actions:
-1. Read `./specify/specs/payment-integration` if it exists
+1. Read `./.specify/specs/payment-integration` if it exists
 2. Grep for existing payment-related code
 3. Identify what exists (domain model? repository?) vs what needs to be built
 4. Phase: Domain Model → Use Cases → Stripe Adapter → API → Tests
 5. Write tasks with ACs for each phase
-6. Save to `./specify/specs/payment-integration/tasks.md`
+6. Save to `./.specify/specs/payment-integration/tasks.md`

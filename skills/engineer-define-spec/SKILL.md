@@ -23,14 +23,14 @@ Use this skill when the user wants to:
 ## Inputs
 
 - Problem description, feature request, or user story
-- (Optional) Existing specs in `./specify/specs`
+- (Optional) Existing specs in `./.specify/specs`
 - (Optional) Architectural constraints or system context
 
 ## Responsibilities
 
 ### 1. Read the Context First
 Before defining anything:
-- Check `./specify/specs` for any related specs
+- Check `./.specify/specs` for any related specs
 - Grep the codebase for related modules, entities, and patterns
 - Identify existing conventions to follow or constraints to respect
 
@@ -93,7 +93,7 @@ Be honest about:
 
 ## Output Location
 
-Write the output to `./specify/specs/[feature-slug]/definition.md`. If the directory does not exist, create it.
+Write the output to `./.specify/specs/[feature-slug]/definition.md`. If the directory does not exist, create it.
 
 The file must start with:
 ```
@@ -127,7 +127,7 @@ A definition is complete when:
 
 ## Repository Areas to Inspect
 
-- `./specify/specs` — existing specs for related features
+- `./.specify/specs` — existing specs for related features
 - Domain entities and use cases related to the feature
 - Schema/migrations if persistence is involved
 - API contracts if integration is involved
@@ -144,7 +144,7 @@ A definition is complete when:
 User: "I need to add multi-tenancy to the existing user module"
 
 Actions:
-1. Read `./specify/specs` for user-related specs
+1. Read `./.specify/specs` for user-related specs
 2. Grep for User entity, UserRepository, and UserController
 3. Identify what changes to the schema, queries, and auth are required
 4. Frame the scope: tenant isolation model (row-level vs schema-per-tenant)

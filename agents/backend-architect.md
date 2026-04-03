@@ -55,7 +55,7 @@ Translate requirements into concrete backend designs. Produce architecture propo
 
 ## Constraints
 
-- Read `./specify/specs` and `./specify/docs` before designing anything new
+- Read `./.specify/specs` and `./.specify/docs` before designing anything new
 - Grep the codebase for existing patterns before proposing new ones
 - Do not introduce patterns (CQRS, event sourcing) without justification
 - Do not over-engineer — propose the minimal architecture that meets requirements

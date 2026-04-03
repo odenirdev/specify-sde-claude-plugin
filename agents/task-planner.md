@@ -29,7 +29,7 @@ Convert technical definitions and specs into concrete, executable tasks. Each ta
 <context>User has a feature definition or spec and needs tasks to implement it</context>
 </example>
 <example>
-<user.prompt>Create a task plan for the order management spec in ./specify/specs</user.prompt>
+<user.prompt>Create a task plan for the order management spec in ./.specify/specs</user.prompt>
 <context>Spec exists in the specs directory — user wants implementation tasks</context>
 </example>
 <example>
@@ -50,11 +50,11 @@ Convert technical definitions and specs into concrete, executable tasks. Each ta
 
 ## Constraints
 
-- Read `./specify/specs` for the target spec before writing tasks
+- Read `./.specify/specs` for the target spec before writing tasks
 - Grep the codebase for what already exists — never create tasks for done work
 - Tasks must have acceptance criteria — reject vague tasks
 - Respect hexagonal architecture ordering: domain model before use cases before adapters
-- Save task output to `./specify/specs/[feature-name]/tasks.md` when directory exists
+- Save task output to `./.specify/specs/[feature-name]/tasks.md` when directory exists
 
 ## Output Style
 

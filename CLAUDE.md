@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+For full project documentation, see [./.specify/docs/index.md](./.specify/docs/index.md).
+
 ---
 
 ## What This Repository Is
@@ -17,7 +19,7 @@ plugin.json                  — Plugin manifest (name, version, description)
 skills/<name>/SKILL.md       — Reusable engineering capabilities (loaded by Claude on trigger)
 agents/<name>.md             — Specialized roles that compose skills
 knowledge/<category>/<name>.md  — Stack-aware engineering references
-templates/<name>.md          — Starting structures for ./specify/docs and project conventions
+templates/<name>.md          — Starting structures for ./.specify/docs and project conventions
 ```
 
 ---
@@ -40,7 +42,7 @@ Skill body structure (in order):
 2. **When to Use** — concrete scenarios
 3. **Inputs** — what it expects
 4. **Responsibilities** — numbered phases, each with explicit sub-steps
-5. **Output Location** — where to write (`./specify/specs/<slug>/<type>.md`) with `updated_at` frontmatter
+5. **Output Location** — where to write (`./.specify/specs/<slug>/<type>.md`) with `updated_at` frontmatter
 6. **Output Format** — exact markdown structure the skill must produce
 7. **Quality Bar** — checklist for "done"
 8. **Knowledge to Consult** — paths to `knowledge/` files
@@ -94,19 +96,21 @@ No generic filler. Every line must be actionable.
 
 Skills operate on two directories in the **consuming project** (not this repo):
 
-- `./specify/specs/` — source of truth; skills read from and write to `<slug>/<type>.md`
-- `./specify/docs/` — derived documentation; `docs-sync` maintains it
+- `./.specify/specs/` — source of truth; skills read from and write to `<slug>/<type>.md`
+- `./.specify/docs/` — derived documentation; `docs-sync` maintains it
 
-The `docs-sync` skill has a special responsibility: detect the consuming project's stack (via `package.json`, `go.mod`, etc.), load matching knowledge files, and write `./specify/docs/stack.md` with the active agents and knowledge.
+The `docs-sync` skill detects the consuming project's stack (via `package.json`, `go.mod`, etc.), loads matching knowledge files, and writes `./.specify/docs/stack.md` with the active agents and knowledge.
 
 ---
 
 ## Adding Content
 
-**New knowledge file**: add to the matching `knowledge/` subdirectory. Follow the five-section structure above. Reference it in any skill or agent where it is relevant under "Knowledge to Consult" / "Knowledge to Prioritize".
+**New knowledge file**: add to `knowledge/` subdirectory. Follow the five-section structure in Authoring Rules. Reference it in relevant skills/agents under "Knowledge to Consult" / "Knowledge to Prioritize".
 
 **New skill**: create `skills/<name>/SKILL.md`. Add it to the relevant agent's "Skills Used" section if applicable.
 
-**New agent**: create `agents/<name>.md`. Ensure the `<examples>` block has at least 2 concrete entries — vague examples produce poor triggering.
+**New agent**: create `agents/<name>.md`. Include at least 2 concrete `<example>` entries — vague examples produce poor triggering.
 
 **New template**: add to `templates/`. Reference it in `docs-sync` skill under the `init` scope.
+
+After adding content, run `docs-sync` to keep `./.specify/docs/` up to date.

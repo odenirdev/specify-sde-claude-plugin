@@ -21,13 +21,13 @@ Use this skill when the user wants to:
 ## Inputs
 
 - Feature slug (e.g., `user-auth`) or direct path to `prd.md`
-- `./specify/specs/[slug]/prd.md` must already exist
+- `./.specify/specs/[slug]/prd.md` must already exist
 
 ## Responsibilities
 
 ### 1. Locate the PRD
 
-- If the user provides a slug, check `./specify/specs/[slug]/prd.md`
+- If the user provides a slug, check `./.specify/specs/[slug]/prd.md`
 - If the user provides a path, verify the file exists
 - If `prd.md` is not found, stop and instruct the user to run `engineer-discovery` first
 
@@ -35,7 +35,7 @@ Use this skill when the user wants to:
 
 Run the `engineer-define-spec` skill with the `prd.md` as input:
 - Read `prd.md` to extract problem, objectives, functional requirements, and acceptance criteria
-- Produce `./specify/specs/[slug]/spec.md` following the spec output format
+- Produce `./.specify/specs/[slug]/spec.md` following the spec output format
 - Do not proceed to the next step until `spec.md` is written
 
 ### 3. Invoke engineer-define-tasks
@@ -43,7 +43,7 @@ Run the `engineer-define-spec` skill with the `prd.md` as input:
 Run the `engineer-define-tasks` skill with the `spec.md` as input:
 - Read the freshly written `spec.md`
 - Break scope into phased, executable tasks with acceptance criteria and dependencies
-- Produce `./specify/specs/[slug]/tasks.md`
+- Produce `./.specify/specs/[slug]/tasks.md`
 
 ### 4. Report Completion
 
@@ -60,8 +60,8 @@ No standalone output artifact. Reports completion inline:
 ```
 ## Define Phase Complete: [feature-slug]
 
-- spec.md written → ./specify/specs/[slug]/spec.md
-- tasks.md written → ./specify/specs/[slug]/tasks.md
+- spec.md written → ./.specify/specs/[slug]/spec.md
+- tasks.md written → ./.specify/specs/[slug]/tasks.md
 
 [N] phases · [M] tasks total
 
@@ -71,8 +71,8 @@ Next: run engineer-delivery to begin implementation.
 ## Output Location
 
 Delegates to sub-skills:
-- `./specify/specs/[slug]/spec.md` (written by `engineer-define-spec`)
-- `./specify/specs/[slug]/tasks.md` (written by `engineer-define-tasks`)
+- `./.specify/specs/[slug]/spec.md` (written by `engineer-define-spec`)
+- `./.specify/specs/[slug]/tasks.md` (written by `engineer-define-tasks`)
 
 ## Quality Bar
 
@@ -104,7 +104,7 @@ The define phase is complete when:
 User: "run engineer:define for user-auth"
 
 Actions:
-1. Check `./specify/specs/user-auth/prd.md` — found
+1. Check `./.specify/specs/user-auth/prd.md` — found
 2. Run `engineer-define-spec`: read prd.md → write spec.md with scope, approach, constraints, acceptance criteria
 3. Run `engineer-define-tasks`: read spec.md → write tasks.md with Phase 1 (core), Phase 2 (edge cases), Phase 3 (tests)
 4. Report: "spec.md + tasks.md written. 3 phases, 11 tasks. Next: engineer-delivery"

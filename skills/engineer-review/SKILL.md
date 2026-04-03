@@ -23,7 +23,7 @@ Use this skill when the user asks to:
 ## Inputs
 
 - Code snippet, file path, or diff
-- (Optional) Spec or acceptance criteria from `./specify/specs`
+- (Optional) Spec or acceptance criteria from `./.specify/specs`
 - (Optional) Target context: production deploy, architecture review, security audit
 
 ## Responsibilities
@@ -42,7 +42,7 @@ Look for:
 - Infinite loops, missing termination conditions
 
 ### 3. Evaluate Architecture Alignment
-Check against `./specify/specs` if available:
+Check against `./.specify/specs` if available:
 - Does the implementation match the spec?
 - Does it follow the dependency flow: domain ← usecases ← adapters?
 - Does it introduce coupling that violates clean/hexagonal architecture?
@@ -105,7 +105,7 @@ A review is complete when:
 
 ## Repository Areas to Inspect
 
-- `./specify/specs` — check if implementation matches spec
+- `./.specify/specs` — check if implementation matches spec
 - Test files adjacent to reviewed code
 - Interfaces/ports the code depends on
 - Migration files if database changes are involved
@@ -123,7 +123,7 @@ User: "Review this diff — I'm adding a new payment endpoint"
 
 Actions:
 1. Read the diff and full file context
-2. Check `./specify/specs` for payment spec if it exists
+2. Check `./.specify/specs` for payment spec if it exists
 3. Verify error handling for external payment call
 4. Check that domain errors are not leaking HTTP details
 5. Verify idempotency handling if payment can be retried

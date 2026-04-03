@@ -15,7 +15,7 @@ Documentation must be derived from two sources of truth: specs and code. Documen
 | Architecture decisions (ADRs) | Boilerplate descriptions |
 | Domain concepts new engineers won't know | Framework conventions |
 
-## `./specify/docs` Structure
+## `./.specify/docs` Structure
 
 ```
 docs/

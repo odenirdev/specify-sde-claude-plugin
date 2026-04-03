@@ -25,7 +25,7 @@ Use this skill when the user wants to:
 - Description of the decision to make
 - Options to compare (or ask to identify them)
 - (Optional) Constraints: performance, team experience, timeline, existing system
-- (Optional) Relevant spec from `./specify/specs`
+- (Optional) Relevant spec from `./.specify/specs`
 
 ## Responsibilities
 
@@ -103,7 +103,7 @@ Because: [2–3 sentences explaining why this is the better choice given the con
 
 ## Output Location
 
-Write the output to `./specify/specs/[feature-slug]/tradeoff.md`. If the directory does not exist, create it.
+Write the output to `./.specify/specs/[feature-slug]/tradeoff.md`. If the directory does not exist, create it.
 
 The file must start with:
 ```
@@ -135,8 +135,8 @@ A trade-off analysis is complete when:
 
 ## Repository Areas to Inspect
 
-- `./specify/specs` — constraints and requirements that affect the decision
-- `./specify/docs` — existing architectural decisions (ADRs) to maintain consistency
+- `./.specify/specs` — constraints and requirements that affect the decision
+- `./.specify/docs` — existing architectural decisions (ADRs) to maintain consistency
 - Existing patterns in the codebase for the technology being evaluated
 
 ## Guardrails
@@ -151,7 +151,7 @@ A trade-off analysis is complete when:
 User: "Should we use REST or GraphQL for the new partner API?"
 
 Actions:
-1. Read `./specify/specs` for partner API requirements
+1. Read `./.specify/specs` for partner API requirements
 2. Identify constraints: team experience, client types, data complexity
 3. Evaluate REST: simple, cacheable, well-understood, less flexible
 4. Evaluate GraphQL: flexible queries, more complex infra, N+1 risk

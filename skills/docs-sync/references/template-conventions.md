@@ -73,7 +73,7 @@ src/
 
 ## Code Review Checklist
 
-- [ ] Implementation matches spec (check `./specify/specs`)
+- [ ] Implementation matches spec (check `./.specify/specs`)
 - [ ] No business logic in controllers
 - [ ] Domain errors defined and mapped at boundary
 - [ ] External calls have timeout and error handling

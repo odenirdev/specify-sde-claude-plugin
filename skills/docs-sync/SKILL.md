@@ -1,6 +1,6 @@
 ---
 name: docs-sync
-description: Detects the project stack, loads relevant knowledge and agents, then synchronizes ./specify/docs with current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
+description: Detects the project stack, loads relevant knowledge and agents, then synchronizes ./.specify/docs with current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
 argument-hint: "[scope: init, index, architecture, integrations, or all]"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 ---
@@ -9,7 +9,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 
 ## Objective
 
-Detect the project stack, activate the appropriate knowledge and agents for that stack, then update `./specify/docs` to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
+Detect the project stack, activate the appropriate knowledge and agents for that stack, then update `./.specify/docs` to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
 
 ---
 
@@ -17,7 +17,7 @@ Detect the project stack, activate the appropriate knowledge and agents for that
 
 Read `references/stack-signals.md` for the full list of files to inspect and dependency signals to match.
 
-Persist the detected stack to `./specify/docs/stack.md` (create or overwrite):
+Persist the detected stack to `./.specify/docs/stack.md` (create or overwrite):
 
 ```markdown
 ---
@@ -45,7 +45,7 @@ updated_at: YYYY-MM-DDTHH:MM:SSZ
 - [List from knowledge mapping below]
 ```
 
-After writing `stack.md`, if `./specify/docs/index.md` exists, ensure it has a `[stack.md](stack.md)` entry in the `## Derived Documentation` section. Add if missing — do not duplicate if already present.
+After writing `stack.md`, if `./.specify/docs/index.md` exists, ensure it has a `[stack.md](stack.md)` entry in the `## Derived Documentation` section. Add if missing — do not duplicate if already present.
 
 ---
 
@@ -61,7 +61,7 @@ Load all matching knowledge files. These inform how you interpret the codebase a
 
 Read `references/agent-map.md` for the full stack-to-agent mapping.
 
-Write the relevant agents to `./specify/docs/stack.md` under `## Active Agents`. Also write or update the `## Engineering Agents` section in `./specify/docs/index.md`:
+Write the relevant agents to `./.specify/docs/stack.md` under `## Active Agents`. Also write or update the `## Engineering Agents` section in `./.specify/docs/index.md`:
 
 ```markdown
 ## Engineering Agents
@@ -85,33 +85,33 @@ Include only agents relevant to the detected stack.
 
 ### `init`
 
-Create `./specify/docs/` if it doesn't exist.
+Create `./.specify/docs/` if it doesn't exist.
 
 Read `references/templates.md` for the full template-to-target mapping and per-template notes.
 
-Fill each template with real data extracted from the codebase and `./specify/specs`. Do not leave template placeholders — remove sections that have no data yet.
+Fill each template with real data extracted from the codebase and `./.specify/specs`. Do not leave template placeholders — remove sections that have no data yet.
 
-After filling templates, verify `./specify/docs/index.md` has `[stack.md](./stack.md)` in the `## Derived Documentation` section — add it if missing.
+After filling templates, verify `./.specify/docs/index.md` has `[stack.md](./stack.md)` in the `## Derived Documentation` section — add it if missing.
 
 ### `index`
 
-Update `./specify/docs/index.md`:
+Update `./.specify/docs/index.md`:
 - Project summary (grep README, main entry point, or ask)
 - Stack section (from detected stack)
 - Integrations list (grep for external service clients)
-- Main features (from `./specify/specs`)
+- Main features (from `./.specify/specs`)
 - Engineering Agents section (from Phase 2)
-- `## Derived Documentation` section: must contain one link per file present in `./specify/docs/` (e.g., `stack.md`, `architecture.md`, `integrations.md`, `operations.md`). Add missing links; do not remove existing ones unless the target file no longer exists.
+- `## Derived Documentation` section: must contain one link per file present in `./.specify/docs/` (e.g., `stack.md`, `architecture.md`, `integrations.md`, `operations.md`). Add missing links; do not remove existing ones unless the target file no longer exists.
 
 ### `architecture`
 
-Update `./specify/docs/architecture.md`:
+Update `./.specify/docs/architecture.md`:
 - Component map (from codebase structure)
 - New ADR if a decision was made
 
 ### `integrations`
 
-Update `./specify/docs/integrations.md`:
+Update `./.specify/docs/integrations.md`:
 - Add/update entries for detected integration clients (axios instances, SDK clients)
 - Remove decommissioned integrations
 
@@ -124,7 +124,7 @@ Run all scopes in order: stack detection → knowledge activation → agent mapp
 ## Sync Rules (all scopes)
 
 - Read the target doc before editing — never overwrite without reading
-- Verify every claim against `./specify/specs` or code before writing
+- Verify every claim against `./.specify/specs` or code before writing
 - Preserve existing correct structure — do not reorganize
 - Do not write speculative content — hypotheses go in `index.md` under "Hypotheses & Pending Items"
 - Minimal change: update only what has changed or is missing
@@ -161,9 +161,9 @@ Run all scopes in order: stack detection → knowledge activation → agent mapp
 ## Quality Bar
 
 A docs sync is complete when:
-- `./specify/docs/stack.md` exists and reflects current dependencies
-- `./specify/docs/index.md` has an accurate `## Engineering Agents` section
-- `./specify/docs/index.md` `## Derived Documentation` section links to every file present in `./specify/docs/` (including `stack.md` and `architecture.md`)
+- `./.specify/docs/stack.md` exists and reflects current dependencies
+- `./.specify/docs/index.md` has an accurate `## Engineering Agents` section
+- `./.specify/docs/index.md` `## Derived Documentation` section links to every file present in `./.specify/docs/` (including `stack.md` and `architecture.md`)
 - All updated content is traceable to specs or code
 - No speculative content was added
 - Gaps are reported, not silently skipped
@@ -187,31 +187,31 @@ A docs sync is complete when:
 <examples>
 <example>
 <user.prompt>Sync docs for this project</user.prompt>
-<context>TypeScript/NestJS project with Prisma and Axios. No ./specify/docs yet.</context>
+<context>TypeScript/NestJS project with Prisma and Axios. No ./.specify/docs yet.</context>
 <actions>
 1. Read `package.json` → detects TypeScript, NestJS, Prisma, Axios
 2. Read `references/stack-signals.md` → confirm dependency signals
-3. Write `./specify/docs/stack.md` with detected stack
+3. Write `./.specify/docs/stack.md` with detected stack
 4. Read `references/knowledge-map.md` → load typescript.md, nestjs.md, prisma.md, axios.md
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
-6. Update `./specify/docs/stack.md` with Active Agents list
-7. Update `./specify/docs/index.md` — stack section + `## Engineering Agents`
-8. Update `./specify/docs/integrations.md` — add detected Axios instances
+6. Update `./.specify/docs/stack.md` with Active Agents list
+7. Update `./.specify/docs/index.md` — stack section + `## Engineering Agents`
+8. Update `./.specify/docs/integrations.md` — add detected Axios instances
 9. Report: stack detected, 4 knowledge files loaded, 5 agents configured, 2 docs updated
 </actions>
 </example>
 <example>
 <user.prompt>Init docs for a new Go project</user.prompt>
-<context>Go backend with go.mod. No ./specify/docs directory.</context>
+<context>Go backend with go.mod. No ./.specify/docs directory.</context>
 <actions>
 1. Read `go.mod` → detects Go modules and module path
 2. Read `references/stack-signals.md` → confirm Go stack
-3. Write `./specify/docs/stack.md` with Go runtime
+3. Write `./.specify/docs/stack.md` with Go runtime
 4. Read `references/knowledge-map.md` → load go.md, hexagonal-architecture.md, error-handling.md, documentation-derivation.md
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
 6. Read `references/templates.md` → get template-to-target mapping
-7. Read each template, fill with real data, write to ./specify/docs/
-8. Create ./specify/docs/decisions/ directory
+7. Read each template, fill with real data, write to ./.specify/docs/
+8. Create ./.specify/docs/decisions/ directory
 9. Report: Go stack detected, 4 knowledge files loaded, 5 agents configured, 4 docs created
 </actions>
 </example>
