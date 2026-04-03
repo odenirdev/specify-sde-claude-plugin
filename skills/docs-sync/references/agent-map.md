@@ -5,6 +5,7 @@ Record the recommended agents in `./.specify/docs/stack.md` under `## Active Age
 | Stack Signal | Agent |
 |---|---|
 | NestJS / Express / Fastify / Go backend | `specify-sde:backend-architect` |
+| `@langchain/langgraph` / `@langchain/core` | `specify-sde:langgraph-architect` |
 | Any backend | `specify-sde:reviewer` |
 | Any | `specify-sde:debugger` |
 | Any | `specify-sde:task-planner` |

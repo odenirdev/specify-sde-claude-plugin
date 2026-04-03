@@ -12,6 +12,7 @@
 | `pyproject.toml` | Python (uv/poetry) |
 | `Cargo.toml` | Rust |
 | `turbo.json` | Turborepo (monorepo task runner) |
+| `serverless.yml` | Serverless Framework v3, AWS Lambda |
 | `pnpm-workspace.yaml` | pnpm workspaces — monorepo |
 | `package.json` field `"workspaces"` | npm/yarn workspaces — monorepo |
 
@@ -31,3 +32,9 @@ For Node.js projects, inspect `dependencies` and `devDependencies` in `package.j
 | `express` | Express |
 | `zod` | Zod validation |
 | `@tanstack/react-query` | TanStack Query |
+| `@langchain/langgraph` | LangGraph |
+| `@langchain/core` | LangChain Core |
+| `@langchain/groq` | ChatGroq / Groq |
+| `serverless` | Serverless Framework |
+| `serverless-offline` | Serverless Offline |
+| `serverless-esbuild` | esbuild bundler (Lambda) |

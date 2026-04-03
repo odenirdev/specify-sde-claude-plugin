@@ -17,6 +17,11 @@ Load all matching knowledge files before writing documentation. These inform how
 | ionicons | `knowledge/libs/ionicons.md` |
 | `turbo.json` / turbo | `knowledge/libs/turborepo.md` |
 | Any monorepo (`pnpm-workspace.yaml` / `workspaces` in `package.json`) | `knowledge/practices/monorepo.md` |
+| `@langchain/langgraph` | `knowledge/frameworks/langgraph.md` |
+| `@langchain/core` | `knowledge/libs/langchain-core.md` |
+| `@langchain/groq` | `knowledge/libs/langchain-groq.md` |
+| Serverless Framework (`serverless` dep or `serverless.yml`) | `knowledge/frameworks/serverless-framework.md` |
+| `serverless.yml` / AWS Lambda | `knowledge/platforms/aws-lambda.md` |
 | Any | `knowledge/practices/hexagonal-architecture.md` |
 | Any | `knowledge/utilities/error-handling.md` |
 | Any | `knowledge/practices/documentation-derivation.md` |
