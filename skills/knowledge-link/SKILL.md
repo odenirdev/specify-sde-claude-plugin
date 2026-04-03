@@ -32,6 +32,17 @@ Use this skill when the user wants to:
 
 ## Responsibilities
 
+### Phase 0 — Mode Detection
+
+Check if `plugin.json` exists in the current working directory.
+
+- **Plugin mode**: `plugin.json` found → proceed to Phase 1 (skill file audit).
+- **Project mode**: `plugin.json` not found → skip to Phase P1 (project Active Knowledge update).
+
+---
+
+### PLUGIN MODE
+
 ### Phase 1 — Collect Available Knowledge
 
 1. Glob all files matching `knowledge/**/*.md`.
@@ -106,25 +117,90 @@ After processing all target skills, output a summary table:
 
 ---
 
+### PROJECT MODE
+
+### Phase P1 — Stack Detection
+
+Inspect the project root for stack signals:
+
+| File | Signal |
+|---|---|
+| `package.json` | Read `dependencies` and `devDependencies` |
+| `go.mod` | Go project |
+| `requirements.txt` / `pyproject.toml` | Python project |
+| `pom.xml` / `build.gradle` | Java project |
+
+Extract detected technologies (languages, frameworks, libs).
+
+### Phase P2 — Load Knowledge Map
+
+Read `skills/docs-sync/references/knowledge-map.md` from the plugin directory (the directory where this skill's `SKILL.md` lives, two levels up from `skills/knowledge-link/`).
+
+Map each detected technology to its knowledge file using the table in `knowledge-map.md`. Always include files marked `Any`.
+
+### Phase P3 — Update Active Knowledge in stack.md
+
+1. Read `./.specify/docs/stack.md`. If the file does not exist, stop and report: "`./.specify/docs/stack.md` not found — run `docs-sync init` first."
+2. Locate the `## Active Knowledge` section.
+3. Replace its content with the matched knowledge file paths. Format:
+
+```markdown
+## Active Knowledge
+
+- knowledge/languages/typescript.md
+- knowledge/frameworks/react.md
+- knowledge/practices/hexagonal-architecture.md
+- knowledge/utilities/error-handling.md
+- knowledge/practices/documentation-derivation.md
+```
+
+4. Do NOT modify any other section of `stack.md`.
+5. Do NOT add paths for knowledge files not present in the plugin's `knowledge/` directory — verify each path exists before writing.
+
+### Phase P4 — Report
+
+Output a summary:
+
+```
+## Active Knowledge Updated
+
+Stack detected: TypeScript, React
+Knowledge files linked: 5
+File updated: ./.specify/docs/stack.md
+```
+
+---
+
 ## Output Location
 
-In-place edit of `skills/<name>/SKILL.md` — only the "Knowledge to Consult" section.
+- **Plugin mode**: in-place edit of `skills/<name>/SKILL.md` — only the `## Knowledge to Consult` section.
+- **Project mode**: in-place edit of `./.specify/docs/stack.md` — only the `## Active Knowledge` section.
 
 ---
 
 ## Quality Bar
 
+**Plugin mode:**
 - [ ] No knowledge file listed that does not exist at the path shown
 - [ ] Conditional references are marked `(load if detected in stack)`
 - [ ] Universal knowledge (practices, utilities) is always included for applicable skills
 - [ ] No other section of the skill file was modified
 - [ ] Paths use the form `knowledge/<category>/<name>.md` — no absolute paths
 
+**Project mode:**
+- [ ] Mode was correctly detected (no `plugin.json` in project root)
+- [ ] Stack was detected from actual project files — not assumed
+- [ ] Every listed knowledge path was verified to exist in the plugin before writing
+- [ ] Only `## Active Knowledge` was modified in `stack.md`
+- [ ] Paths use the form `knowledge/<category>/<name>.md` — no absolute paths
+
 ---
 
 ## Guardrails
 
-- Do NOT rewrite or refactor any other section of the skill file
+- Do NOT rewrite or refactor any other section of the skill file or `stack.md`
 - Do NOT add knowledge files that do not exist on disk
 - Do NOT remove a knowledge reference without a clear reason (e.g., file deleted or zero overlap)
 - Do NOT create new knowledge files — use the `knowledge-update` skill for that
+- In project mode, do NOT run the plugin-mode phases — they are mutually exclusive
+- In project mode, if `./.specify/docs/stack.md` is missing, stop and instruct the user to run `docs-sync init` first

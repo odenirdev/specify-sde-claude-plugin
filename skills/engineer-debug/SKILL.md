@@ -108,12 +108,19 @@ A debug analysis is complete when:
 - `knowledge/utilities/error-handling.md` — common error handling bugs and propagation
 - `knowledge/utilities/logging.md` — what to log for traceability and correlation
 - `knowledge/utilities/testing.md` — test isolation to understand expected behavior
+- `knowledge/practices/hexagonal-architecture.md` — layer boundaries to trace the execution path
+- `knowledge/practices/api-design.md` — expected API contract to identify deviations
 - `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
 - `knowledge/languages/go.md` — Go patterns (load if detected in stack)
 - `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
 - `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/frameworks/ionic-react.md` — Ionic lifecycle and routing bugs (load if detected in stack)
+- `knowledge/frameworks/capacitor.md` — Capacitor native bridge and plugin failures (load if detected in stack)
 - `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
 - `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `knowledge/libs/react-router-dom.md` — React Router v5 navigation bugs (load if detected in stack)
+- `knowledge/libs/vite.md` — Vite build and HMR issues (load if detected in stack)
+- `knowledge/libs/ionicons.md` — Ionicons rendering and tree-shaking bugs (load if detected in stack)
 
 ## Repository Areas to Inspect
 

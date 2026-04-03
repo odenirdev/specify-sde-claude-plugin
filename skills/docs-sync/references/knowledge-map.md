@@ -8,8 +8,13 @@ Load all matching knowledge files before writing documentation. These inform how
 | Go | `knowledge/languages/go.md` |
 | NestJS | `knowledge/frameworks/nestjs.md` |
 | React / Next.js | `knowledge/frameworks/react.md` |
+| Ionic / @ionic/react | `knowledge/frameworks/ionic-react.md` |
+| Capacitor / @capacitor | `knowledge/frameworks/capacitor.md` |
+| react-router-dom | `knowledge/libs/react-router-dom.md` |
 | Prisma | `knowledge/libs/prisma.md` |
 | Axios | `knowledge/libs/axios.md` |
+| Vite / vite.config | `knowledge/libs/vite.md` |
+| ionicons | `knowledge/libs/ionicons.md` |
 | Any | `knowledge/practices/hexagonal-architecture.md` |
 | Any | `knowledge/utilities/error-handling.md` |
 | Any | `knowledge/practices/documentation-derivation.md` |

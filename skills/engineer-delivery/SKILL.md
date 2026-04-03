@@ -141,14 +141,22 @@ Delivery is complete when:
 ## Knowledge to Consult
 
 - `knowledge/practices/task-breakdown.md` — task structure and acceptance criteria
+- `knowledge/practices/hexagonal-architecture.md` — layer boundaries for dispatching to correct subagents
+- `knowledge/practices/api-design.md` — API contract quality during delivery
 - `knowledge/utilities/error-handling.md` — error patterns in dispatched implementations
 - `knowledge/utilities/testing.md` — test coverage expectations per task
+- `knowledge/utilities/logging.md` — observability requirements per task
 - `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
 - `knowledge/languages/go.md` — Go patterns (load if detected in stack)
 - `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
 - `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/frameworks/ionic-react.md` — Ionic React delivery patterns (load if detected in stack)
+- `knowledge/frameworks/capacitor.md` — Capacitor native delivery tasks (load if detected in stack)
 - `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
 - `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `knowledge/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
+- `knowledge/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
+- `knowledge/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
 
 ## Guardrails
 

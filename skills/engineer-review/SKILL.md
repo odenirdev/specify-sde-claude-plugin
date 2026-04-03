@@ -100,8 +100,13 @@ A review is complete when:
 - `knowledge/languages/go.md` — Go patterns (load if detected in stack)
 - `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
 - `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/frameworks/ionic-react.md` — Ionic React patterns (load if detected in stack)
+- `knowledge/frameworks/capacitor.md` — Capacitor native bridge patterns (load if detected in stack)
 - `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
 - `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `knowledge/libs/react-router-dom.md` — React Router v5 patterns (load if detected in stack)
+- `knowledge/libs/vite.md` — Vite build tool patterns (load if detected in stack)
+- `knowledge/libs/ionicons.md` — Ionicons accessibility and tree-shaking (load if detected in stack)
 
 ## Repository Areas to Inspect
 

@@ -85,12 +85,20 @@ The define phase is complete when:
 
 - `knowledge/practices/hexagonal-architecture.md` — architecture decisions and layer boundaries
 - `knowledge/practices/task-breakdown.md` — task phasing and acceptance criteria
+- `knowledge/practices/api-design.md` — API contract decisions and REST conventions
+- `knowledge/utilities/error-handling.md` — error propagation and failure modes
+- `knowledge/utilities/testing.md` — test strategy and acceptance criteria
 - `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
 - `knowledge/languages/go.md` — Go patterns (load if detected in stack)
 - `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
 - `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/frameworks/ionic-react.md` — Ionic React component and routing patterns (load if detected in stack)
+- `knowledge/frameworks/capacitor.md` — Capacitor native integration patterns (load if detected in stack)
 - `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
 - `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `knowledge/libs/react-router-dom.md` — React Router v5 routing patterns (load if detected in stack)
+- `knowledge/libs/vite.md` — Vite build tool configuration (load if detected in stack)
+- `knowledge/libs/ionicons.md` — Ionicons integration constraints (load if detected in stack)
 
 ## Guardrails
 

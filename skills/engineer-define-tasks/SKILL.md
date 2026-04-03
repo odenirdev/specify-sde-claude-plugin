@@ -127,8 +127,15 @@ A task breakdown is complete when:
 - `knowledge/languages/go.md` — Go patterns (load if detected in stack)
 - `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
 - `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/frameworks/ionic-react.md` — Ionic React component tasks and lifecycle (load if detected in stack)
+- `knowledge/frameworks/capacitor.md` — Capacitor plugin and native tasks (load if detected in stack)
+- `knowledge/utilities/error-handling.md` — error handling tasks must be planned explicitly
+- `knowledge/practices/api-design.md` — API contract tasks and versioning considerations
 - `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
 - `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `knowledge/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
+- `knowledge/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
+- `knowledge/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
 
 ## Repository Areas to Inspect
 
