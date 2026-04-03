@@ -105,9 +105,15 @@ A debug analysis is complete when:
 
 ## Knowledge to Consult
 
-- `knowledge/utilities/error-handling.md` — common error handling bugs
-- `knowledge/utilities/logging.md` — what to log for traceability
-- Relevant framework knowledge for the stack
+- `knowledge/utilities/error-handling.md` — common error handling bugs and propagation
+- `knowledge/utilities/logging.md` — what to log for traceability and correlation
+- `knowledge/utilities/testing.md` — test isolation to understand expected behavior
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
 
 ## Repository Areas to Inspect
 

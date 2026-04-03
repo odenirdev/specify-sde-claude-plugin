@@ -124,9 +124,14 @@ A trade-off analysis is complete when:
 
 ## Knowledge to Consult
 
-- Relevant framework/library knowledge for the options being compared
-- `knowledge/practices/hexagonal-architecture.md` — for architectural decisions
-- `knowledge/practices/api-design.md` — for API design decisions
+- `knowledge/practices/hexagonal-architecture.md` — architectural decisions and boundaries
+- `knowledge/practices/api-design.md` — API design decisions and trade-offs
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
 
 ## Repository Areas to Inspect
 

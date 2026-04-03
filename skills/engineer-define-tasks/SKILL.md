@@ -120,8 +120,15 @@ A task breakdown is complete when:
 
 ## Knowledge to Consult
 
-- `knowledge/practices/task-breakdown.md` — task breakdown patterns
-- `knowledge/practices/hexagonal-architecture.md` — for ordering domain → app → infra
+- `knowledge/practices/task-breakdown.md` — task breakdown patterns and acceptance criteria
+- `knowledge/practices/hexagonal-architecture.md` — ordering domain → application → infrastructure phases
+- `knowledge/utilities/testing.md` — test task requirements and coverage expectations
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
 
 ## Repository Areas to Inspect
 

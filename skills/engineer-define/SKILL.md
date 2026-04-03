@@ -81,6 +81,17 @@ The define phase is complete when:
 - `tasks.md` exists with at least one phase and tasks that map to spec requirements
 - No open requirements from `prd.md` are left unaddressed
 
+## Knowledge to Consult
+
+- `knowledge/practices/hexagonal-architecture.md` — architecture decisions and layer boundaries
+- `knowledge/practices/task-breakdown.md` — task phasing and acceptance criteria
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+
 ## Guardrails
 
 - Do not skip `engineer-define-spec` — `tasks.md` depends on `spec.md`

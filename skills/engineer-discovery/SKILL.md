@@ -112,6 +112,11 @@ A PRD is complete when:
 - Acceptance criteria can be translated directly into tests
 - Out of scope is explicitly listed, not assumed
 
+## Knowledge to Consult
+
+- `knowledge/practices/documentation-derivation.md` — writing accurate, evidence-based content
+- `knowledge/practices/task-breakdown.md` — understanding what makes requirements actionable
+
 ## Guardrails
 
 - Do not skip the interview — do not invent requirements without asking

@@ -138,6 +138,18 @@ Delivery is complete when:
 - The delivery report lists files modified and criteria status
 - No task is silently skipped — deferred items are explicitly listed
 
+## Knowledge to Consult
+
+- `knowledge/practices/task-breakdown.md` — task structure and acceptance criteria
+- `knowledge/utilities/error-handling.md` — error patterns in dispatched implementations
+- `knowledge/utilities/testing.md` — test coverage expectations per task
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
+
 ## Guardrails
 
 - Do not start delivery if `tasks.md` is missing — run `engineer-define` first

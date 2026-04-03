@@ -114,10 +114,16 @@ A definition is complete when:
 
 ## Knowledge to Consult
 
-- `knowledge/practices/hexagonal-architecture.md` — for architecture decisions
-- `knowledge/practices/api-design.md` — if defining an API
-- `knowledge/practices/task-breakdown.md` — if immediately followed by task planning
-- Relevant framework knowledge for the stack
+- `knowledge/practices/hexagonal-architecture.md` — architecture decisions and layer boundaries
+- `knowledge/practices/api-design.md` — API contract decisions and REST conventions
+- `knowledge/practices/task-breakdown.md` — scoping tasks after definition
+- `knowledge/utilities/error-handling.md` — error propagation and failure modes
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
 
 ## Repository Areas to Inspect
 

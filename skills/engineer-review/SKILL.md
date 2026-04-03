@@ -91,11 +91,17 @@ A review is complete when:
 
 ## Knowledge to Consult
 
-- `knowledge/utilities/error-handling.md` — error handling patterns
-- `knowledge/utilities/testing.md` — test coverage expectations
-- `knowledge/practices/hexagonal-architecture.md` — architecture rules
-- `knowledge/practices/api-design.md` — API contract quality
-- Language/framework-specific knowledge for the stack in use
+- `knowledge/utilities/error-handling.md` — error handling patterns and anti-patterns
+- `knowledge/utilities/testing.md` — test coverage expectations and review criteria
+- `knowledge/utilities/logging.md` — observability and log quality
+- `knowledge/practices/hexagonal-architecture.md` — architecture rules and layer boundaries
+- `knowledge/practices/api-design.md` — API contract quality and REST conventions
+- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
+- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
+- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
 
 ## Repository Areas to Inspect
 
