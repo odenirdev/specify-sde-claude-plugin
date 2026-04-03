@@ -49,6 +49,36 @@ After writing `stack.md`, if `./.specify/docs/index.md` exists, ensure it has a 
 
 ---
 
+## Monorepo Mode (detect after Phase 0)
+
+**Detection**: monorepo mode is active if any of the following exist:
+- `turbo.json` at the repository root
+- `pnpm-workspace.yaml` at the repository root
+- `package.json` root contains a `"workspaces"` field
+
+When monorepo mode is active:
+
+1. **List packages**: read `pnpm-workspace.yaml` or `package.json#workspaces` to enumerate all package paths.
+2. **Apply `.specify` convention**:
+   - Specs live **only** at `./.specify/specs/` (monorepo root) — never inside packages.
+   - Root `./.specify/docs/` covers the monorepo as a whole (architecture, ADRs, cross-cutting concerns).
+   - For each package: write or update `./<package>/.specify/docs/` with package-specific documentation (stack, architecture, public API). Never create `./<package>/.specify/specs/`.
+3. **Report mode** in the output under `### Mode: Monorepo` with the list of detected packages.
+
+**Directory layout enforced:**
+```
+<root>/
+  .specify/
+    specs/          ← only location for all specs
+    docs/           ← monorepo-level docs
+  <package>/
+    .specify/
+      docs/         ← package-specific docs only
+      # NEVER specs/ here
+```
+
+---
+
 ## Phase 1 — Knowledge Activation
 
 Read `references/knowledge-map.md` for the full stack-to-knowledge-file mapping.
@@ -213,6 +243,24 @@ A docs sync is complete when:
 7. Read each template, fill with real data, write to ./.specify/docs/
 8. Create ./.specify/docs/decisions/ directory
 9. Report: Go stack detected, 4 knowledge files loaded, 5 agents configured, 4 docs created
+</actions>
+</example>
+<example>
+<user.prompt>Sync docs for this monorepo</user.prompt>
+<context>TypeScript monorepo with Turborepo and pnpm workspaces. Packages: apps/web (Next.js), apps/api (NestJS), packages/ui.</context>
+<actions>
+1. Read `turbo.json` and `pnpm-workspace.yaml` → monorepo mode active; packages: apps/web, apps/api, packages/ui
+2. Read `package.json` at root → detects TypeScript, turbo
+3. Read `references/stack-signals.md` → confirm Turborepo + monorepo + TypeScript signals
+4. Write `./.specify/docs/stack.md` with detected stack + "### Mode: Monorepo" section listing all packages
+5. Read `references/knowledge-map.md` → load turborepo.md, monorepo.md, typescript.md, hexagonal-architecture.md
+6. Read `references/agent-map.md` → map all relevant agents
+7. Update root `./.specify/docs/index.md` and `./.specify/docs/architecture.md` with monorepo-level data
+8. For apps/web: detect Next.js, write `apps/web/.specify/docs/stack.md` and `apps/web/.specify/docs/index.md` — no specs/ created
+9. For apps/api: detect NestJS + Prisma, write `apps/api/.specify/docs/stack.md` and `apps/api/.specify/docs/index.md` — no specs/ created
+10. For packages/ui: detect React, write `packages/ui/.specify/docs/stack.md` — no specs/ created
+11. Verify `.specify/specs/` exists only at root — warn if found inside any package
+12. Report: Monorepo mode, 3 packages documented, root + 3 package docs updated, 0 specs/ created in packages
 </actions>
 </example>
 </examples>

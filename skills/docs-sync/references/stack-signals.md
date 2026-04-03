@@ -11,6 +11,9 @@
 | `requirements.txt` | Python |
 | `pyproject.toml` | Python (uv/poetry) |
 | `Cargo.toml` | Rust |
+| `turbo.json` | Turborepo (monorepo task runner) |
+| `pnpm-workspace.yaml` | pnpm workspaces — monorepo |
+| `package.json` field `"workspaces"` | npm/yarn workspaces — monorepo |
 
 ## Node.js Dependency Signals
 

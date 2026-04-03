@@ -15,6 +15,8 @@ Load all matching knowledge files before writing documentation. These inform how
 | Axios | `knowledge/libs/axios.md` |
 | Vite / vite.config | `knowledge/libs/vite.md` |
 | ionicons | `knowledge/libs/ionicons.md` |
+| `turbo.json` / turbo | `knowledge/libs/turborepo.md` |
+| Any monorepo (`pnpm-workspace.yaml` / `workspaces` in `package.json`) | `knowledge/practices/monorepo.md` |
 | Any | `knowledge/practices/hexagonal-architecture.md` |
 | Any | `knowledge/utilities/error-handling.md` |
 | Any | `knowledge/practices/documentation-derivation.md` |
