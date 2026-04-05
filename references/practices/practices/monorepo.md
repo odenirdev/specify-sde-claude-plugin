@@ -62,6 +62,11 @@ This is the canonical layout for `specify-sde` specs and docs in a monorepo:
 - `.specify/docs/` exists at the root **and** inside each package that needs package-level documentation.
 - Package-level `.specify/docs/` documents only what is specific to that package: its stack, its architecture, its public API contract.
 - Root `.specify/docs/` documents the monorepo as a whole: overall architecture, cross-cutting concerns, ADRs, integrations.
+- `<root>/.specify/docs/stack.md` is the **source of truth** for active and disabled AI artifacts (`references`, `skills`, and `agents`) across the monorepo.
+- `~/.specify/stack.md` may provide **global user defaults**, but any declaration in the monorepo root overrides the global file.
+- Package-level `stack.md` files are **derived views** for package-specific context and must never override the root file.
+- Any automation that enables, disables, or lists AI artifacts must resolve and update the **root** `stack.md` first, even when a package `scope` is provided.
+- If a package `stack.md` disagrees with the root, the root wins and the package view should be treated as out of sync until regenerated.
 - **Never** create a `specs/` directory inside a package — it breaks the single source of truth principle and makes cross-package features impossible to track atomically.
 
 ---
@@ -75,6 +80,7 @@ This is the canonical layout for `specify-sde` specs and docs in a monorepo:
 | Relative imports across package boundaries (`../../packages/ui/src`) | Bypasses package isolation; breaks when packages move | Declare workspace dep and import by package name |
 | Shared mutable package with no versioning strategy | Breaking changes to shared package break all consumers silently | Use `workspace:*` and treat shared package changes as PRs that touch all affected packages |
 | Running specs for one package without referencing monorepo root | Feature context lost; no cross-package dependency visible | Always write specs at the root; use the `scope` field in spec frontmatter to indicate the affected package(s) |
+| Using a package `stack.md` to override root artifact state | Conflicting `references` / `skills` / `agents` state across the monorepo | Treat `<root>/.specify/docs/stack.md` as canonical and regenerate package views from it |
 | `docs-sync` run inside a package without monorepo awareness | Incorrect stack detection; docs duplicate instead of complement root docs | Always run `docs-sync` in monorepo mode from the root — it will write per-package docs automatically |
 
 ---
@@ -86,6 +92,7 @@ This is the canonical layout for `specify-sde` specs and docs in a monorepo:
 - [ ] Cross-package imports use workspace protocol (`@acme/ui`), not relative paths
 - [ ] Shared packages have namespaced `name` fields (`@acme/*`)
 - [ ] Root `turbo.json` declares all tasks with correct `dependsOn`
+- [ ] Root `.specify/docs/stack.md` is the source of truth for active/disabled `references`, `skills`, and `agents`
 - [ ] Root `.specify/docs/` covers architecture and cross-cutting concerns only
 - [ ] Package-level `.specify/docs/` covers only that package's internals
 
