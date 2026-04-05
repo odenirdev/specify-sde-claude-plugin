@@ -4,7 +4,7 @@ updated_at: 2026-04-05T00:00:00Z
 
 # specify-sde
 
-A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. This `index.md` file is the **primary engineering context** for how the toolkit works today: architecture, runtime layout, and the reading order for the shared core. It reflects repository facts and should be verified against specs and code whenever deeper evidence is needed.
+A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. This `index.md` file is the **primary engineering context** for how the toolkit works today: architecture, runtime layout, and the reading order for the shared core. It also acts as the source of truth for the derived repository entrypoints (`README.md` and `CLAUDE.md`). All statements here reflect repository facts and should be verified against specs and code whenever deeper evidence is needed.
 
 ---
 
@@ -15,6 +15,7 @@ Start here before editing adapters, skills, or repository-level documentation.
 - **Current architecture and operating model**: this file
 - **Rules and governance**: [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md)
 - **Quick orientation**: [`README.md`](../../README.md)
+- **Agent bridge**: [`CLAUDE.md`](../../CLAUDE.md)
 - **Shared reusable content**: `knowledge/` and `skills/`
 
 ---
@@ -40,6 +41,7 @@ See [architecture.md](./architecture.md) for the component map and runtime separ
 - **GitHub Copilot adapters**: workspace instructions, custom agents, and skill wrappers in `.github/`
 - **Claude compatibility layer**: existing `agents/*.md` and `plugin.json`
 - **Primary engineering context**: `./.specify/docs/index.md` provides the canonical architecture and operational entrypoint for both Claude and GitHub Copilot
+- **Derived entrypoints**: `docs-sync` can keep `README.md` and `CLAUDE.md` aligned without turning them into competing sources of truth
 - **Derived documentation**: `./.specify/docs` stays synchronized with the repository architecture and usage model
 
 ---
@@ -93,6 +95,20 @@ Primary agent roles configured for this toolkit:
 | [decisions/](./decisions/) | Architectural Decision Records (ADRs) |
 
 ---
+
+## Derived Entry Points
+
+| File | Role | Rule |
+|---|---|---|
+| [`README.md`](../../README.md) | Short human overview and getting started | Keep it concise and managed through the `docs-sync` block |
+| [`CLAUDE.md`](../../CLAUDE.md) | Minimal agent bridge | Keep it link-oriented and subordinate to `./.specify/docs` |
+
+## Architectural Decisions
+
+| ADR | Decision | Status |
+|---|---|---|
+| [ADR-001](./decisions/ADR-001-dual-runtime-customization.md) | Keep the shared core runtime-agnostic and expose thin adapters for GitHub Copilot and Claude Code | Accepted |
+| [ADR-002](./decisions/ADR-002-derived-entrypoints.md) | Keep `./.specify/docs` as the source of truth and derive `README.md` and `CLAUDE.md` entrypoints from it | Accepted |
 
 ## Hypotheses & Pending Items
 

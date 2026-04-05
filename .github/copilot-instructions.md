@@ -37,4 +37,4 @@ Treat the content as a layered system:
 - If you change shared rules, update this file first.
 - If you add or rename a skill, keep `skills/` and `.github/skills/` aligned.
 - If you add or change an agent, keep the Copilot adapter and the legacy adapter aligned.
-- If the architecture changes, update `README.md` and `./.specify/docs/` in the same change.
+- If the architecture or entrypoint convention changes, update `README.md`, `CLAUDE.md`, and `./.specify/docs/` in the same change.

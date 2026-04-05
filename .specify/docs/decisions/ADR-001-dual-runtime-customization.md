@@ -43,4 +43,4 @@ Global rules are centralized in `.github/copilot-instructions.md`, and runtime w
 ## Follow-up
 
 - validate the minimal GitHub Copilot flow in a real consuming workspace;
-- keep `README.md` and `./.specify/docs/` aligned whenever the adapter model changes.
+- keep `README.md`, `CLAUDE.md`, and `./.specify/docs/` aligned whenever the adapter model or entrypoint convention changes.

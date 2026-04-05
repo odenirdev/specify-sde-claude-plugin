@@ -82,8 +82,8 @@ specify-sde/
 - **Location**: [agents/](../../agents/), [plugin.json](../../plugin.json)
 
 ### Docs Sync (`skills/docs-sync/`)
-- **Responsibility**: Detect project structure, activate relevant knowledge, and keep `./.specify/docs/` aligned with real repository state.
-- **Interfaces**: `init`, `index`, `architecture`, `integrations`, `all` scopes.
+- **Responsibility**: Detect project structure, activate relevant knowledge, and keep `./.specify/docs/`, root `CLAUDE.md`, and the managed `README.md` block aligned with real repository state.
+- **Interfaces**: `init`, `index`, `architecture`, `integrations`, `claude`, `readme`, `all` scopes.
 - **Dependencies**: Uses stack maps, agent maps, and templates from `skills/docs-sync/references/`.
 - **Location**: [skills/docs-sync/](../../skills/docs-sync/)
 
@@ -97,6 +97,7 @@ specify-sde/
 | Copilot skill | Shared knowledge | Skill adapter links to the relevant knowledge files instead of embedding them |
 | Claude adapter | Shared core | Legacy adapters remain aligned with the same `knowledge/` and `skills/` source |
 | `docs-sync` | `./.specify/docs/` | Updates derived docs from real code/spec evidence only |
+| `docs-sync` | `README.md` / `CLAUDE.md` | Keeps the human and agent entrypoints aligned without creating a parallel source of truth |
 | Any workflow | `./.specify/specs/` | Writes artifacts with `updated_at` frontmatter in the consuming project |
 
 ---

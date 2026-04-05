@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file is the **Claude Code context bridge** for this repository. It routes Claude to the right source instead of duplicating engineering guidance.
+This file is the **Claude Code context bridge** for this repository. It stays intentionally minimal and routes Claude to the derived docs instead of duplicating engineering guidance.
 
 ## Context Order
 
@@ -9,6 +9,6 @@ This file is the **Claude Code context bridge** for this repository. It routes C
 3. **Quick orientation**: [`README.md`](./README.md) — repository overview and adapter layout.
 4. **Shared core**: [`knowledge/`](./knowledge/) and [`skills/`](./skills/) — reusable guidance and workflows.
 
-> Keep this file thin: prefer cross-references to the shared docs and instructions instead of copying rules here.
+> Keep this file thin: prefer cross-references to the shared docs and instructions instead of copying rules here. If this file and `./.specify/docs` ever disagree, `./.specify/docs` wins.
 
 ---

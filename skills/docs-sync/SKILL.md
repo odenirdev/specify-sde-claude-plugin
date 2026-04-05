@@ -1,7 +1,7 @@
 ---
 name: docs-sync
-description: Detects the project stack, loads relevant knowledge and agents, then synchronizes ./.specify/docs with current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
-argument-hint: "[scope: init, index, architecture, integrations, or all]"
+description: Detects the project stack, loads relevant knowledge and agents, then synchronizes `./.specify/docs`, `CLAUDE.md`, and managed `README.md` content with the current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
+argument-hint: "[scope: init, index, architecture, integrations, claude, readme, or all]"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 ---
 
@@ -9,7 +9,17 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 
 ## Objective
 
-Detect the project stack, activate the appropriate knowledge and agents for that stack, then update `./.specify/docs` to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
+Detect the project stack, activate the appropriate knowledge and agents for that stack, then update `./.specify/docs` and the project's derived entrypoints to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
+
+## Entry Point Convention
+
+`./.specify/docs` is the source of truth for engineering context. The other entrypoint files are derived from it and must stay intentionally thin:
+
+- `./.specify/docs/` — detailed engineering context, architecture, operations, and ADRs
+- `CLAUDE.md` — minimal bridge for agent runtimes and tools
+- `README.md` — short human overview, getting started, and links
+
+If `CLAUDE.md` or `README.md` disagree with `./.specify/docs`, `./.specify/docs` wins.
 
 ---
 
@@ -63,7 +73,8 @@ When monorepo mode is active:
    - Specs live **only** at `./.specify/specs/` (monorepo root) — never inside packages.
    - Root `./.specify/docs/` covers the monorepo as a whole (architecture, ADRs, cross-cutting concerns).
    - For each package: write or update `./<package>/.specify/docs/` with package-specific documentation (stack, architecture, public API). Never create `./<package>/.specify/specs/`.
-3. **Report mode** in the output under `### Mode: Monorepo` with the list of detected packages.
+   - Create or validate `./<package>/CLAUDE.md` **only** when `./<package>/.specify/docs/` already exists or is created during this sync. Do not create package `README.md` files unless the user explicitly asks for them.
+3. **Report mode** in the output under `### Mode: Monorepo` with the list of detected packages and which packages were eligible for package-level `CLAUDE.md` sync.
 
 **Directory layout enforced:**
 ```
@@ -121,6 +132,11 @@ Read `references/templates.md` for the full template-to-target mapping and per-t
 
 Fill each template with real data extracted from the codebase and `./.specify/specs`. Do not leave template placeholders — remove sections that have no data yet.
 
+During `init`, also:
+- create or normalize the root `CLAUDE.md` as a minimal bridge to the derived docs;
+- create `README.md` if it does not exist, or insert one managed block if it already exists without markers;
+- in monorepo mode, create package-level `CLAUDE.md` files only for packages with local `./.specify/docs/`.
+
 After filling templates, verify `./.specify/docs/index.md` has `[stack.md](./stack.md)` in the `## Derived Documentation` section — add it if missing.
 
 ### `index`
@@ -145,9 +161,37 @@ Update `./.specify/docs/integrations.md`:
 - Add/update entries for detected integration clients (axios instances, SDK clients)
 - Remove decommissioned integrations
 
+### `claude`
+
+Update or create the root `CLAUDE.md`:
+- Keep it minimal and link-oriented
+- Point first to `./.specify/docs/index.md`
+- Link to `.github/copilot-instructions.md` if present
+- Link to `README.md` for quick orientation
+- Never duplicate detailed rules, stack tables, or architecture prose
+
+In monorepo mode:
+- root `CLAUDE.md` points to the root docs;
+- each eligible package `CLAUDE.md` points first to `./.specify/docs/index.md` inside that package, then to the root docs if needed;
+- packages without local docs are skipped and reported.
+
+### `readme`
+
+Update or create the root `README.md`:
+- Only manage the content between `<!-- docs-sync:start -->` and `<!-- docs-sync:end -->`
+- If the markers do not exist, insert a single managed block and preserve all other content
+- If the file does not exist, create a concise README with a short intro and one managed block
+- Keep the managed block short and derived; it may include only:
+  - project overview,
+  - getting started,
+  - main commands or workflows,
+  - basic structure,
+  - links to `./.specify/docs/*`
+- Do not turn the README into full architecture docs; link outward instead.
+
 ### `all`
 
-Run all scopes in order: stack detection → knowledge activation → agent mapping → index → architecture → integrations.
+Run all scopes in order: stack detection → knowledge activation → agent mapping → index → architecture → integrations → claude → readme.
 
 ---
 
@@ -157,6 +201,9 @@ Run all scopes in order: stack detection → knowledge activation → agent mapp
 - Verify every claim against `./.specify/specs` or code before writing
 - Preserve existing correct structure — do not reorganize
 - Do not write speculative content — hypotheses go in `index.md` under "Hypotheses & Pending Items"
+- Treat `./.specify/docs` as the source of truth; `CLAUDE.md` and `README.md` are derived entrypoints only
+- In `README.md`, edit only the content inside `<!-- docs-sync:start -->` and `<!-- docs-sync:end -->`; preserve all manual content outside the block
+- Keep `CLAUDE.md` minimal and link-oriented — no duplicated rules, architecture walkthroughs, or stack tables
 - Minimal change: update only what has changed or is missing
 
 ---
@@ -194,6 +241,10 @@ A docs sync is complete when:
 - `./.specify/docs/stack.md` exists and reflects current dependencies
 - `./.specify/docs/index.md` has an accurate `## Engineering Agents` section
 - `./.specify/docs/index.md` `## Derived Documentation` section links to every file present in `./.specify/docs/` (including `stack.md` and `architecture.md`)
+- Root `CLAUDE.md` exists, stays minimal, and points to the derived docs
+- Root `README.md` contains a short managed block that points readers to `./.specify/docs`
+- In monorepo mode, only packages with local `./.specify/docs/` receive package-level `CLAUDE.md`
+- Manual README content outside the managed block is preserved
 - All updated content is traceable to specs or code
 - No speculative content was added
 - Gaps are reported, not silently skipped
@@ -226,8 +277,10 @@ A docs sync is complete when:
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
 6. Update `./.specify/docs/stack.md` with Active Agents list
 7. Update `./.specify/docs/index.md` — stack section + `## Engineering Agents`
-8. Update `./.specify/docs/integrations.md` — add detected Axios instances
-9. Report: stack detected, 4 knowledge files loaded, 5 agents configured, 2 docs updated
+8. Update root `CLAUDE.md` — point to `./.specify/docs/index.md`, governance, and `README.md`
+9. Insert or refresh the managed `README.md` block — overview, getting started, main commands, structure, docs links
+10. Update `./.specify/docs/integrations.md` — add detected Axios instances
+11. Report: stack detected, 4 knowledge files loaded, 5 agents configured, docs + entrypoints updated with manual README content preserved
 </actions>
 </example>
 <example>
@@ -240,9 +293,11 @@ A docs sync is complete when:
 4. Read `references/knowledge-map.md` → load go.md, hexagonal-architecture.md, error-handling.md, documentation-derivation.md
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
 6. Read `references/templates.md` → get template-to-target mapping
-7. Read each template, fill with real data, write to ./.specify/docs/
-8. Create ./.specify/docs/decisions/ directory
-9. Report: Go stack detected, 4 knowledge files loaded, 5 agents configured, 4 docs created
+7. Read each template, fill with real data, write to `./.specify/docs/`
+8. Create or normalize root `CLAUDE.md` as a minimal bridge to the derived docs
+9. Create `README.md` or insert the managed `docs-sync` block if the file already exists
+10. Create `./.specify/docs/decisions/` directory
+11. Report: Go stack detected, 4 knowledge files loaded, 5 agents configured, docs + entrypoints created with no duplicated architecture prose
 </actions>
 </example>
 <example>
@@ -256,11 +311,12 @@ A docs sync is complete when:
 5. Read `references/knowledge-map.md` → load turborepo.md, monorepo.md, typescript.md, hexagonal-architecture.md
 6. Read `references/agent-map.md` → map all relevant agents
 7. Update root `./.specify/docs/index.md` and `./.specify/docs/architecture.md` with monorepo-level data
-8. For apps/web: detect Next.js, write `apps/web/.specify/docs/stack.md` and `apps/web/.specify/docs/index.md` — no specs/ created
-9. For apps/api: detect NestJS + Prisma, write `apps/api/.specify/docs/stack.md` and `apps/api/.specify/docs/index.md` — no specs/ created
-10. For packages/ui: detect React, write `packages/ui/.specify/docs/stack.md` — no specs/ created
-11. Verify `.specify/specs/` exists only at root — warn if found inside any package
-12. Report: Monorepo mode, 3 packages documented, root + 3 package docs updated, 0 specs/ created in packages
+8. Update root `CLAUDE.md` and the managed root `README.md` block from the root docs
+9. For apps/web: detect Next.js, write `apps/web/.specify/docs/stack.md` and `apps/web/.specify/docs/index.md`, then create `apps/web/CLAUDE.md` because local docs exist
+10. For apps/api: detect NestJS + Prisma, write `apps/api/.specify/docs/stack.md` and `apps/api/.specify/docs/index.md`, then create `apps/api/CLAUDE.md`
+11. For packages/ui: detect React, write `packages/ui/.specify/docs/stack.md`; create `packages/ui/CLAUDE.md` only if local `./.specify/docs/` exists
+12. Verify `.specify/specs/` exists only at root and that manual README content outside the managed block remains unchanged
+13. Report: Monorepo mode, root entrypoints synced, eligible package bridges created, and 0 `specs/` directories created inside packages
 </actions>
 </example>
 </examples>

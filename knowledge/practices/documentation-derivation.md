@@ -15,6 +15,34 @@ Documentation must be derived from two sources of truth: specs and code. Documen
 | Architecture decisions (ADRs) | Boilerplate descriptions |
 | Domain concepts new engineers won't know | Framework conventions |
 
+## Entry-Point Convention
+
+`./.specify/docs` is the engineering source of truth. The repository may expose other entrypoints, but they are derived and must stay subordinate to the docs.
+
+| File | Role | Rule |
+|---|---|---|
+| `./.specify/docs/` | Canonical engineering context | Full detail lives here; verify facts against specs and code |
+| `CLAUDE.md` | Agent/tool bridge | Keep minimal and link-oriented; never become a second source of truth |
+| `README.md` | Human overview and getting started | Keep short, high-signal, and link back to `./.specify/docs/index.md` |
+
+If these files disagree, `./.specify/docs` wins.
+
+## Managed README Blocks
+
+When `docs-sync` updates `README.md`, it should only touch the managed block below:
+
+```markdown
+<!-- docs-sync:start -->
+...derived overview, getting started, commands, structure, links...
+<!-- docs-sync:end -->
+```
+
+Rules:
+- Preserve all manual content outside the block.
+- Keep the block short; link to detailed docs instead of duplicating them.
+- If the markers are missing, insert a single managed block rather than rewriting the whole file.
+- Never describe future plans as if they were implemented.
+
 ## `./.specify/docs` Structure
 
 ```
@@ -87,6 +115,8 @@ When updating docs, apply these rules:
 | Docs that describe the code line by line | Maintenance nightmare |
 | Missing ADRs | Future engineers repeat solved problems |
 | `index.md` not updated when features ship | Entry point becomes misleading |
+| `README.md` grows into a second architecture document | Drift and duplication with `./.specify/docs` |
+| `CLAUDE.md` becomes a second source of truth | Agents follow stale or conflicting guidance |
 | Docs that speculate about future plans | Treated as facts by future readers |
 
 ---
@@ -96,6 +126,8 @@ When updating docs, apply these rules:
 - [ ] All documented facts are traceable to a spec or code location
 - [ ] `index.md` reflects current state of the system
 - [ ] ADRs exist for non-obvious architectural decisions
+- [ ] `README.md` stays short and uses the managed block convention when docs-sync owns it
+- [ ] `CLAUDE.md` stays minimal and points back to `./.specify/docs`
 - [ ] No speculative content outside "Hypotheses" section
 - [ ] Links in docs point to valid, current resources
 - [ ] Outdated sections are either updated or removed
