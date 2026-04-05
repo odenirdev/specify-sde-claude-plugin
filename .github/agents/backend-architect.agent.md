@@ -25,11 +25,11 @@ Translate requirements into implementable backend designs with clear boundaries,
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)
 - [engineer-define workflow](../../skills/engineer-define/SKILL.md)
 - [engineer-tradeoff workflow](../../skills/engineer-tradeoff/SKILL.md)
-- [Hexagonal architecture knowledge](../../knowledge/practices/hexagonal-architecture.md)
-- [API design knowledge](../../knowledge/practices/api-design.md)
-- [NestJS knowledge](../../knowledge/frameworks/nestjs.md)
-- [Prisma knowledge](../../knowledge/libs/prisma.md)
-- [Error handling knowledge](../../knowledge/utilities/error-handling.md)
+- [Hexagonal architecture reference](../../references/practices/hexagonal-architecture.md)
+- [API design reference](../../references/practices/api-design.md)
+- [NestJS reference](../../references/frameworks/nestjs.md)
+- [Prisma reference](../../references/libs/prisma.md)
+- [Error handling reference](../../references/utilities/error-handling.md)
 
 ## Constraints
 

@@ -19,11 +19,11 @@ GitHub Copilot adapter for [`../../../skills/engineer-delivery/SKILL.md`](../../
 
 1. Read the target `tasks.md` and confirm dependency order.
 2. Execute one task at a time, verifying each outcome before moving on.
-3. Prefer existing specialists and shared knowledge instead of ad-hoc instructions.
+3. Prefer existing specialists and shared references instead of ad-hoc instructions.
 4. Record completion or remaining blockers in the delivery output.
 
 ## References
 
 - [Source workflow](../../../skills/engineer-delivery/SKILL.md)
-- [Task breakdown knowledge](../../../knowledge/practices/task-breakdown.md)
-- [Testing knowledge](../../../knowledge/utilities/testing.md)
+- [Task breakdown reference](../../../references/practices/task-breakdown.md)
+- [Testing reference](../../../references/utilities/testing.md)

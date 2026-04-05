@@ -24,8 +24,8 @@ Identify root causes through hypothesis-driven investigation. Avoid guesswork an
 - [Legacy debugger adapter](../../agents/debugger.md)
 - [engineer-debug workflow](../../skills/engineer-debug/SKILL.md)
 - [engineer-review workflow](../../skills/engineer-review/SKILL.md)
-- [Error handling knowledge](../../knowledge/utilities/error-handling.md)
-- [Logging knowledge](../../knowledge/utilities/logging.md)
+- [Error handling reference](../../references/utilities/error-handling.md)
+- [Logging reference](../../references/utilities/logging.md)
 
 ## Constraints
 

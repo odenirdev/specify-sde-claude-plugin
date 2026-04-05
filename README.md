@@ -7,13 +7,13 @@ A modular Software Development Engineering toolkit for **GitHub Copilot** and **
 <!-- docs-sync:start -->
 ## Overview
 
-`specify-sde` keeps reusable engineering guidance in `knowledge/`, workflow skills in `skills/`, and thin runtime adapters in `.github/`, `agents/`, and `plugin.json`. The `docs-sync` workflow keeps `./.specify/docs`, `CLAUDE.md`, and this managed `README.md` block aligned from repository evidence.
+`specify-sde` keeps reusable engineering references in `references/`, workflow skills in `skills/`, and thin runtime adapters in `.github/`, `agents/`, and `plugin.json`. The `docs-sync` workflow keeps `./.specify/docs`, `CLAUDE.md`, and this managed `README.md` block aligned from repository evidence.
 
 ## Getting Started
 
 1. Read [`./.specify/docs/index.md`](./.specify/docs/index.md) for the current architecture and operating model.
 2. Review [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) for shared workspace rules.
-3. Explore [`knowledge/`](./knowledge/) and [`skills/`](./skills/) before changing adapters or docs.
+3. Explore [`references/`](./references/) and [`skills/`](./skills/) before changing adapters or docs.
 4. Use the relevant agent or workflow (`reviewer`, `debugger`, `docs-sync`, `engineer-define`, etc.).
 
 ## Main Workflows
@@ -29,7 +29,7 @@ A modular Software Development Engineering toolkit for **GitHub Copilot** and **
 
 | Path | Purpose |
 |---|---|
-| `knowledge/` | Shared engineering references |
+| `references/` | Shared engineering references |
 | `skills/` | Reusable workflows |
 | `.github/` | GitHub Copilot adapters |
 | `agents/` | Claude compatibility adapters |

@@ -103,24 +103,24 @@ A debug analysis is complete when:
 - Steps are specific enough to execute without clarification
 - Quick, low-cost checks are listed first
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/utilities/error-handling.md` — common error handling bugs and propagation
-- `knowledge/utilities/logging.md` — what to log for traceability and correlation
-- `knowledge/utilities/testing.md` — test isolation to understand expected behavior
-- `knowledge/practices/hexagonal-architecture.md` — layer boundaries to trace the execution path
-- `knowledge/practices/api-design.md` — expected API contract to identify deviations
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
-- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
-- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
-- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
-- `knowledge/frameworks/ionic-react.md` — Ionic lifecycle and routing bugs (load if detected in stack)
-- `knowledge/frameworks/capacitor.md` — Capacitor native bridge and plugin failures (load if detected in stack)
-- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
-- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
-- `knowledge/libs/react-router-dom.md` — React Router v5 navigation bugs (load if detected in stack)
-- `knowledge/libs/vite.md` — Vite build and HMR issues (load if detected in stack)
-- `knowledge/libs/ionicons.md` — Ionicons rendering and tree-shaking bugs (load if detected in stack)
+- `references/utilities/error-handling.md` — common error handling bugs and propagation
+- `references/utilities/logging.md` — what to log for traceability and correlation
+- `references/utilities/testing.md` — test isolation to understand expected behavior
+- `references/practices/hexagonal-architecture.md` — layer boundaries to trace the execution path
+- `references/practices/api-design.md` — expected API contract to identify deviations
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/languages/go.md` — Go patterns (load if detected in stack)
+- `references/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `references/frameworks/react.md` — React patterns (load if detected in stack)
+- `references/frameworks/ionic-react.md` — Ionic lifecycle and routing bugs (load if detected in stack)
+- `references/frameworks/capacitor.md` — Capacitor native bridge and plugin failures (load if detected in stack)
+- `references/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `references/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `references/libs/react-router-dom.md` — React Router v5 navigation bugs (load if detected in stack)
+- `references/libs/vite.md` — Vite build and HMR issues (load if detected in stack)
+- `references/libs/ionicons.md` — Ionicons rendering and tree-shaking bugs (load if detected in stack)
 
 ## Repository Areas to Inspect
 

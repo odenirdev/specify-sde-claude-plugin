@@ -7,7 +7,7 @@ status: accepted
 
 ## Context
 
-`specify-sde` started as a Claude-oriented Markdown toolkit. As the repository evolved, the same workflows and knowledge needed to be reused by **GitHub Copilot** without copying large blocks of content into multiple runtime-specific files.
+`specify-sde` started as a Claude-oriented Markdown toolkit. As the repository evolved, the same workflows and references needed to be reused by **GitHub Copilot** without copying large blocks of content into multiple runtime-specific files.
 
 The main problems were:
 
@@ -19,12 +19,12 @@ The main problems were:
 
 Keep the repository organized as a **shared core + runtime adapters** system:
 
-- `knowledge/` remains the runtime-agnostic engineering knowledge base;
+- `references/` remains the runtime-agnostic engineering references base;
 - `skills/` remains the source of truth for reusable workflows;
 - `.github/` becomes the GitHub Copilot adapter surface (`copilot-instructions.md`, custom agents, skill wrappers);
 - `agents/` and `plugin.json` remain as the Claude compatibility layer during the transition.
 
-Global rules are centralized in `.github/copilot-instructions.md`, and runtime wrappers should **reference** shared knowledge and workflows instead of copying them.
+Global rules are centralized in `.github/copilot-instructions.md`, and runtime wrappers should **reference** shared references and workflows instead of copying them.
 
 ## Consequences
 
@@ -32,7 +32,7 @@ Global rules are centralized in `.github/copilot-instructions.md`, and runtime w
 
 - shared guidance has a single source of truth;
 - Copilot and Claude stay aligned with less maintenance overhead;
-- the repository follows a clearer Clean / Hexagonal ordering: `knowledge -> skills -> adapters`;
+- the repository follows a clearer Clean / Hexagonal ordering: `references -> skills -> adapters`;
 - future extensions can add new adapters without rewriting the shared core.
 
 ### Trade-offs

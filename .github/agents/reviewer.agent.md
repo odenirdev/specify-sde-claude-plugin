@@ -23,9 +23,9 @@ Review changes for correctness, risk, and maintainability while reusing the shar
 - [Legacy reviewer adapter](../../agents/reviewer.md)
 - [engineer-review workflow](../../skills/engineer-review/SKILL.md)
 - [engineer-tradeoff workflow](../../skills/engineer-tradeoff/SKILL.md)
-- [Error handling knowledge](../../knowledge/utilities/error-handling.md)
-- [Testing knowledge](../../knowledge/utilities/testing.md)
-- [Hexagonal architecture knowledge](../../knowledge/practices/hexagonal-architecture.md)
+- [Error handling reference](../../references/utilities/error-handling.md)
+- [Testing reference](../../references/utilities/testing.md)
+- [Hexagonal architecture reference](../../references/practices/hexagonal-architecture.md)
 
 ## Constraints
 

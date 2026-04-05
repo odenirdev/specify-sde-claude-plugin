@@ -55,7 +55,7 @@ Key domain concepts:
 
 | Document | Description |
 |---|---|
-| [stack.md](./stack.md) | Detected stack, active agents, active knowledge |
+| [stack.md](./stack.md) | Detected stack, active agents, active references |
 | [architecture.md](./architecture.md) | System design, boundaries, component map |
 | [integrations.md](./integrations.md) | External service contracts and failure behavior |
 | [operations.md](./operations.md) | Deploy procedures, config, runbooks |

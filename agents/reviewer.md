@@ -43,12 +43,12 @@ Detect bugs, production risks, and architecture violations before code reaches u
 - `engineer-review` — primary review capability
 - `engineer-tradeoff` — when a decision in the code needs evaluation
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/utilities/error-handling.md`
-- `knowledge/utilities/testing.md`
-- `knowledge/practices/hexagonal-architecture.md`
-- Stack-specific knowledge for the language/framework being reviewed
+- `references/utilities/error-handling.md`
+- `references/utilities/testing.md`
+- `references/practices/hexagonal-architecture.md`
+- Stack-specific references for the language/framework being reviewed
 
 ## Constraints
 

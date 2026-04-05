@@ -43,10 +43,10 @@ Convert technical definitions and specs into concrete, executable tasks. Each ta
 - `engineer-define-tasks` — primary task breakdown capability
 - `engineer-define-spec` — if definition is missing or ambiguous before planning
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/practices/task-breakdown.md` — task structure and quality criteria
-- `knowledge/practices/hexagonal-architecture.md` — for correct task ordering (domain → app → infra → API)
+- `references/practices/task-breakdown.md` — task structure and quality criteria
+- `references/practices/hexagonal-architecture.md` — for correct task ordering (domain → app → infra → API)
 
 ## Constraints
 

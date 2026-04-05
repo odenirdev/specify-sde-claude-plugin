@@ -44,11 +44,11 @@ Systematically identify the root cause of failures through hypothesis-driven inv
 - `engineer-debug` — primary debugging capability
 - `engineer-review` — secondary read when reviewing code for potential issues
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/utilities/error-handling.md` — common error handling pitfalls
-- `knowledge/utilities/logging.md` — instrumentation guidance
-- Stack-specific knowledge for the language/framework in the failure path
+- `references/utilities/error-handling.md` — common error handling pitfalls
+- `references/utilities/logging.md` — instrumentation guidance
+- Stack-specific references for the language/framework in the failure path
 
 ## Constraints
 

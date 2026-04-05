@@ -1,6 +1,6 @@
 ---
 name: agent-link
-description: Audits and updates the "Skills Used" and "Knowledge to Prioritize" sections in one or all agent files under agents/. Triggered when the user wants to sync agent references after adding new skills or knowledge files, review which skills an agent uses, or update a specific agent's pointers.
+description: Audits and updates the "Skills Used" and "References to Prioritize" sections in one or all agent files under agents/. Triggered when the user wants to sync agent references after adding new skills or reference files, review which skills an agent uses, or update a specific agent's pointers.
 argument-hint: "[agent-name | all]"
 allowed-tools: Read, Glob, Grep, Write, Edit
 ---
@@ -9,16 +9,16 @@ allowed-tools: Read, Glob, Grep, Write, Edit
 
 ## Objective
 
-Keep the "Skills Used" and "Knowledge to Prioritize" sections of each `agents/*.md` accurate and complete. Read each agent's purpose, scan existing skills and knowledge files, determine relevance, and update the sections in-place.
+Keep the "Skills Used" and "References to Prioritize" sections of each `agents/*.md` accurate and complete. Read each agent's purpose, scan existing skills and reference files, determine relevance, and update the sections in-place.
 
 ---
 
 ## When to Use
 
 Use this skill when the user wants to:
-- Sync agent references after adding new skills via `knowledge-update` or creating new skill files
-- Update a specific agent's "Skills Used" or "Knowledge to Prioritize" sections
-- Audit all agents for missing or stale skill/knowledge links
+- Sync agent references after adding new skills via `references-update` or creating new skill files
+- Update a specific agent's "Skills Used" or "References to Prioritize" sections
+- Audit all agents for missing or stale skill/reference links
 
 ---
 
@@ -26,7 +26,7 @@ Use this skill when the user wants to:
 
 - **Agent name** (e.g., `reviewer`) or `all` to process every agent
 - Existing `agents/*.md` files
-- All files under `skills/` and `knowledge/`
+- All files under `skills/` and `references/`
 
 ---
 
@@ -58,17 +58,17 @@ skills/engineer-debug/SKILL.md        → engineer-debug       — root cause an
 skills/engineer-tradeoff/SKILL.md     → engineer-tradeoff    — option comparison, trade-off analysis
 skills/engineer-delivery/SKILL.md     → engineer-delivery    — delivery tracking, progress, blockers
 skills/docs-sync/SKILL.md             → docs-sync            — documentation sync, stack detection, agent mapping
-skills/knowledge-update/SKILL.md      → knowledge-update     — creating and updating knowledge files
-skills/knowledge-link/SKILL.md        → knowledge-link       — syncing knowledge references in skills
-skills/agent-link/SKILL.md            → agent-link           — syncing skill/knowledge references in agents
+skills/references-update/SKILL.md      → references-update     — creating and updating reference files
+skills/references-link/SKILL.md        → references-link       — syncing references in skills
+skills/agent-link/SKILL.md            → agent-link           — syncing skill/reference pointers in agents
 skills/engineer-discovery/SKILL.md    → engineer-discovery   — codebase exploration, context gathering
 ```
 
-### Phase 2 — Collect Available Knowledge
+### Phase 2 — Collect Available References
 
-1. Glob all files matching `knowledge/**/*.md`.
+1. Glob all files matching `references/**/*.md`.
 2. For each file, read its first heading and first section line to extract what it covers.
-3. Build a knowledge index mirroring what `knowledge-link` uses (see `skills/knowledge-link/SKILL.md` Phase 1).
+3. Build a reference index mirroring what `references-link` uses (see `skills/references-link/SKILL.md` Phase 1).
 
 ### Phase 3 — Resolve Target Agents
 
@@ -86,19 +86,19 @@ For each target agent:
    - **Secondary**: the skill supports the agent in specific sub-tasks but is not its core capability
    - **Not relevant**: no functional overlap between agent purpose and skill domain
 
-4. For each knowledge file in the index, assess relevance:
-   - **Always relevant**: knowledge that applies across all projects for this agent's role (e.g., `error-handling.md` for a reviewer)
-   - **Stack-conditional**: knowledge relevant only when the codebase uses a specific technology — add note `(load if detected in stack)`
+4. For each reference file in the index, assess relevance:
+   - **Always relevant**: references that apply across all projects for this agent's role (e.g., `error-handling.md` for a reviewer)
+   - **Stack-conditional**: references relevant only when the codebase uses a specific technology — add note `(load if detected in stack)`
    - **Not relevant**: no overlap
 
 5. Build updated sections:
    - `## Skills Used`: list primary first, then secondary — one entry per line with a short note
-   - `## Knowledge to Prioritize`: list always-relevant first, then conditional with the `(load if detected in stack)` note
+   - `## References to Prioritize`: list always-relevant first, then conditional with the `(load if detected in stack)` note
 
 ### Phase 5 — Update the Sections
 
 1. Locate the existing `## Skills Used` section in the agent file and replace its content.
-2. Locate the existing `## Knowledge to Prioritize` section and replace its content.
+2. Locate the existing `## References to Prioritize` section and replace its content.
 3. Format:
 
 ```markdown
@@ -107,13 +107,13 @@ For each target agent:
 - `engineer-review` — primary review capability
 - `engineer-tradeoff` — when a decision in the code needs evaluation
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/utilities/error-handling.md` — common error handling pitfalls
-- `knowledge/utilities/testing.md` — test coverage expectations
-- `knowledge/practices/hexagonal-architecture.md` — architecture rules
-- `knowledge/frameworks/nestjs.md` — NestJS patterns (load if detected in stack)
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/utilities/error-handling.md` — common error handling pitfalls
+- `references/utilities/testing.md` — test coverage expectations
+- `references/practices/hexagonal-architecture.md` — architecture rules
+- `references/frameworks/nestjs.md` — NestJS patterns (load if detected in stack)
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
 ```
 
 4. If either section does not exist in the agent file, add it before `## Constraints` or at the end of the file.
@@ -124,7 +124,7 @@ For each target agent:
 After processing all target agents, output a summary table:
 
 ```
-| Agent            | Skills Added | Skills Removed | Knowledge Added | Knowledge Removed |
+| Agent            | Skills Added | Skills Removed | References Added | References Removed |
 |---|---|---|---|---|
 | reviewer         | 0            | 0              | 1               | 0                 |
 | debugger         | 1            | 0              | 0               | 1                 |
@@ -188,7 +188,7 @@ File updated: ./.specify/docs/stack.md
 
 ## Output Location
 
-- **Plugin mode**: in-place edit of `agents/<name>.md` — only the `## Skills Used` and `## Knowledge to Prioritize` sections.
+- **Plugin mode**: in-place edit of `agents/<name>.md` — only the `## Skills Used` and `## References to Prioritize` sections.
 - **Project mode**: in-place edit of `./.specify/docs/stack.md` — only the `## Active Agents` section.
 
 ---
@@ -197,13 +197,13 @@ File updated: ./.specify/docs/stack.md
 
 **Plugin mode:**
 - [ ] No skill listed that does not exist at `skills/<name>/SKILL.md`
-- [ ] No knowledge file listed that does not exist at the path shown
-- [ ] Conditional knowledge references are marked `(load if detected in stack)`
+- [ ] No reference file listed that does not exist at the path shown
+- [ ] Conditional reference entries are marked `(load if detected in stack)`
 - [ ] Primary skills are listed before secondary skills
-- [ ] Universal knowledge (practices, utilities) is always included for applicable agents
+- [ ] Universal references (practices, utilities) are always included for applicable agents
 - [ ] No other section of the agent file was modified
 - [ ] Skill names use the short form (e.g., `engineer-review`, not the full path)
-- [ ] Knowledge paths use the form `knowledge/<category>/<name>.md` — no absolute paths
+- [ ] Reference paths use the form `references/<category>/<name>.md` — no absolute paths
 
 **Project mode:**
 - [ ] Mode was correctly detected (no `plugin.json` in project root)
@@ -218,8 +218,8 @@ File updated: ./.specify/docs/stack.md
 
 - Do NOT rewrite or refactor any other section of the agent file or `stack.md`
 - Do NOT add skills that do not exist in `skills/*/SKILL.md`
-- Do NOT add knowledge files that do not exist on disk
+- Do NOT add reference files that do not exist on disk
 - Do NOT remove a reference without a clear reason (e.g., skill deleted or zero functional overlap)
-- Do NOT create new skills or knowledge files — use `knowledge-update` for knowledge, create skill files manually
+- Do NOT create new skills or reference files — use `references-update` for references, create skill files manually
 - In project mode, do NOT run the plugin-mode phases — they are mutually exclusive
 - In project mode, if `./.specify/docs/stack.md` is missing, stop and instruct the user to run `docs-sync init` first

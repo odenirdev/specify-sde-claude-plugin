@@ -54,15 +54,15 @@ Design and review AI agent systems built on LangGraph. Produce implementable arc
 - `engineer-tradeoff` — compare options (checkpointer strategy, model selection, single vs multi-agent)
 - `engineer-review` — review LangGraph/LangChain code for correctness and anti-patterns
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/frameworks/langgraph.md` — StateGraph, ReAct loop, checkpointers, ToolMessage handling
-- `knowledge/libs/langchain-core.md` — LCEL pipes, DynamicStructuredTool, structured output, message types
-- `knowledge/libs/langchain-groq.md` — ChatGroq initialization, model selection, temperature, limitations
-- `knowledge/platforms/aws-lambda.md` — cold start, memory/timeout, esbuild bundling, module scope initialization
-- `knowledge/frameworks/serverless-framework.md` — serverless.yml config, stage parameters, IAM, secrets
-- `knowledge/languages/typescript.md` — strict typing, async patterns, Zod validation
-- `knowledge/utilities/error-handling.md` — never swallow errors in agent tools or handlers
+- `references/frameworks/langgraph.md` — StateGraph, ReAct loop, checkpointers, ToolMessage handling
+- `references/libs/langchain-core.md` — LCEL pipes, DynamicStructuredTool, structured output, message types
+- `references/libs/langchain-groq.md` — ChatGroq initialization, model selection, temperature, limitations
+- `references/platforms/aws-lambda.md` — cold start, memory/timeout, esbuild bundling, module scope initialization
+- `references/frameworks/serverless-framework.md` — serverless.yml config, stage parameters, IAM, secrets
+- `references/languages/typescript.md` — strict typing, async patterns, Zod validation
+- `references/utilities/error-handling.md` — never swallow errors in agent tools or handlers
 
 ## Constraints
 

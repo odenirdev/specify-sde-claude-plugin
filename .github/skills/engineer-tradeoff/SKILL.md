@@ -19,11 +19,11 @@ GitHub Copilot adapter for [`../../../skills/engineer-tradeoff/SKILL.md`](../../
 
 1. Define the decision and candidate options.
 2. Compare benefits, costs, risk, and operational consequences.
-3. Apply existing repository constraints and shared knowledge.
+3. Apply existing repository constraints and shared references.
 4. Recommend one option and note what would change the recommendation.
 
 ## References
 
 - [Source workflow](../../../skills/engineer-tradeoff/SKILL.md)
-- [Hexagonal architecture knowledge](../../../knowledge/practices/hexagonal-architecture.md)
-- [Documentation derivation knowledge](../../../knowledge/practices/documentation-derivation.md)
+- [Hexagonal architecture reference](../../../references/practices/hexagonal-architecture.md)
+- [Documentation derivation reference](../../../references/practices/documentation-derivation.md)

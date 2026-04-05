@@ -23,8 +23,8 @@ Convert feature scope into concrete, executable tasks that a developer can start
 - [Legacy task planner adapter](../../agents/task-planner.md)
 - [engineer-define-tasks workflow](../../skills/engineer-define-tasks/SKILL.md)
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)
-- [Task breakdown knowledge](../../knowledge/practices/task-breakdown.md)
-- [Hexagonal architecture knowledge](../../knowledge/practices/hexagonal-architecture.md)
+- [Task breakdown reference](../../references/practices/task-breakdown.md)
+- [Hexagonal architecture reference](../../references/practices/hexagonal-architecture.md)
 
 ## Constraints
 

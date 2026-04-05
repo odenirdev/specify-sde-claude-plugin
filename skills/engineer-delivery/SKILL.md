@@ -138,25 +138,25 @@ Delivery is complete when:
 - The delivery report lists files modified and criteria status
 - No task is silently skipped — deferred items are explicitly listed
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/practices/task-breakdown.md` — task structure and acceptance criteria
-- `knowledge/practices/hexagonal-architecture.md` — layer boundaries for dispatching to correct subagents
-- `knowledge/practices/api-design.md` — API contract quality during delivery
-- `knowledge/utilities/error-handling.md` — error patterns in dispatched implementations
-- `knowledge/utilities/testing.md` — test coverage expectations per task
-- `knowledge/utilities/logging.md` — observability requirements per task
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
-- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
-- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
-- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
-- `knowledge/frameworks/ionic-react.md` — Ionic React delivery patterns (load if detected in stack)
-- `knowledge/frameworks/capacitor.md` — Capacitor native delivery tasks (load if detected in stack)
-- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
-- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
-- `knowledge/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
-- `knowledge/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
-- `knowledge/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
+- `references/practices/task-breakdown.md` — task structure and acceptance criteria
+- `references/practices/hexagonal-architecture.md` — layer boundaries for dispatching to correct subagents
+- `references/practices/api-design.md` — API contract quality during delivery
+- `references/utilities/error-handling.md` — error patterns in dispatched implementations
+- `references/utilities/testing.md` — test coverage expectations per task
+- `references/utilities/logging.md` — observability requirements per task
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/languages/go.md` — Go patterns (load if detected in stack)
+- `references/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `references/frameworks/react.md` — React patterns (load if detected in stack)
+- `references/frameworks/ionic-react.md` — Ionic React delivery patterns (load if detected in stack)
+- `references/frameworks/capacitor.md` — Capacitor native delivery tasks (load if detected in stack)
+- `references/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `references/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `references/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
+- `references/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
+- `references/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
 
 ## Guardrails
 

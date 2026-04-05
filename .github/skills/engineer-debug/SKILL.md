@@ -25,5 +25,5 @@ GitHub Copilot adapter for [`../../../skills/engineer-debug/SKILL.md`](../../../
 ## References
 
 - [Source workflow](../../../skills/engineer-debug/SKILL.md)
-- [Error handling knowledge](../../../knowledge/utilities/error-handling.md)
-- [Logging knowledge](../../../knowledge/utilities/logging.md)
+- [Error handling reference](../../../references/utilities/error-handling.md)
+- [Logging reference](../../../references/utilities/logging.md)

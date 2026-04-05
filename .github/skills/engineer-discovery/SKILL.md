@@ -25,5 +25,5 @@ GitHub Copilot adapter for the reusable workflow in [`../../../skills/engineer-d
 ## References
 
 - [Source workflow](../../../skills/engineer-discovery/SKILL.md)
-- [Documentation derivation knowledge](../../../knowledge/practices/documentation-derivation.md)
-- [Task breakdown knowledge](../../../knowledge/practices/task-breakdown.md)
+- [Documentation derivation reference](../../../references/practices/documentation-derivation.md)
+- [Task breakdown reference](../../../references/practices/task-breakdown.md)

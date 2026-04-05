@@ -26,11 +26,11 @@ Design and review AI orchestration systems built with LangGraph and related tool
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)
 - [engineer-tradeoff workflow](../../skills/engineer-tradeoff/SKILL.md)
 - [engineer-review workflow](../../skills/engineer-review/SKILL.md)
-- [LangGraph knowledge](../../knowledge/frameworks/langgraph.md)
-- [LangChain Core knowledge](../../knowledge/libs/langchain-core.md)
-- [LangChain Groq knowledge](../../knowledge/libs/langchain-groq.md)
-- [AWS Lambda knowledge](../../knowledge/platforms/aws-lambda.md)
-- [Serverless Framework knowledge](../../knowledge/frameworks/serverless-framework.md)
+- [LangGraph reference](../../references/frameworks/langgraph.md)
+- [LangChain Core reference](../../references/libs/langchain-core.md)
+- [LangChain Groq reference](../../references/libs/langchain-groq.md)
+- [AWS Lambda reference](../../references/platforms/aws-lambda.md)
+- [Serverless Framework reference](../../references/frameworks/serverless-framework.md)
 
 ## Constraints
 

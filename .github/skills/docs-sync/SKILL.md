@@ -19,11 +19,11 @@ GitHub Copilot adapter for [`../../../skills/docs-sync/SKILL.md`](../../../skill
 ## Procedure
 
 1. Detect stack and repository structure from real files.
-2. Load the relevant knowledge and agent mappings.
+2. Load the relevant reference and agent mappings.
 3. Update the requested `./.specify/docs/*` files plus the derived `CLAUDE.md` and managed `README.md` content with evidence-based data only.
 4. Report updated files, verified sections, skips, and gaps.
 
 ## References
 
 - [Source workflow](../../../skills/docs-sync/SKILL.md)
-- [Documentation derivation knowledge](../../../knowledge/practices/documentation-derivation.md)
+- [Documentation derivation reference](../../../references/practices/documentation-derivation.md)

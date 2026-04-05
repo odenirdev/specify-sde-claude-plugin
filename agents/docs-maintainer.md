@@ -43,9 +43,9 @@ Keep `./.specify/docs` accurate, minimal, and aligned with the current state of 
 
 - `docs-sync` — primary documentation synchronization capability
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/practices/documentation-derivation.md` — derivation rules, what belongs in docs, ADR format
+- `references/practices/documentation-derivation.md` — derivation rules, what belongs in docs, ADR format
 
 ## Constraints
 

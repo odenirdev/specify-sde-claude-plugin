@@ -19,12 +19,12 @@ GitHub Copilot adapter for [`../../../skills/engineer-define-spec/SKILL.md`](../
 
 1. Read the PRD or problem statement.
 2. Translate requirements into scope, constraints, architecture impact, and acceptance criteria.
-3. Keep the solution aligned with current repository patterns and shared knowledge.
+3. Keep the solution aligned with current repository patterns and shared references.
 4. Write `./.specify/specs/<slug>/spec.md`.
 
 ## References
 
 - [Source workflow](../../../skills/engineer-define-spec/SKILL.md)
-- [Hexagonal architecture knowledge](../../../knowledge/practices/hexagonal-architecture.md)
-- [API design knowledge](../../../knowledge/practices/api-design.md)
-- [Error handling knowledge](../../../knowledge/utilities/error-handling.md)
+- [Hexagonal architecture reference](../../../references/practices/hexagonal-architecture.md)
+- [API design reference](../../../references/practices/api-design.md)
+- [Error handling reference](../../../references/utilities/error-handling.md)

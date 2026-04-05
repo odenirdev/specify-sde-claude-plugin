@@ -118,24 +118,24 @@ A task breakdown is complete when:
 - Each phase delivers something verifiable
 - Tasks are small enough that "done" is unambiguous
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/practices/task-breakdown.md` — task breakdown patterns and acceptance criteria
-- `knowledge/practices/hexagonal-architecture.md` — ordering domain → application → infrastructure phases
-- `knowledge/utilities/testing.md` — test task requirements and coverage expectations
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
-- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
-- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
-- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
-- `knowledge/frameworks/ionic-react.md` — Ionic React component tasks and lifecycle (load if detected in stack)
-- `knowledge/frameworks/capacitor.md` — Capacitor plugin and native tasks (load if detected in stack)
-- `knowledge/utilities/error-handling.md` — error handling tasks must be planned explicitly
-- `knowledge/practices/api-design.md` — API contract tasks and versioning considerations
-- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
-- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
-- `knowledge/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
-- `knowledge/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
-- `knowledge/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
+- `references/practices/task-breakdown.md` — task breakdown patterns and acceptance criteria
+- `references/practices/hexagonal-architecture.md` — ordering domain → application → infrastructure phases
+- `references/utilities/testing.md` — test task requirements and coverage expectations
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/languages/go.md` — Go patterns (load if detected in stack)
+- `references/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `references/frameworks/react.md` — React patterns (load if detected in stack)
+- `references/frameworks/ionic-react.md` — Ionic React component tasks and lifecycle (load if detected in stack)
+- `references/frameworks/capacitor.md` — Capacitor plugin and native tasks (load if detected in stack)
+- `references/utilities/error-handling.md` — error handling tasks must be planned explicitly
+- `references/practices/api-design.md` — API contract tasks and versioning considerations
+- `references/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `references/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `references/libs/react-router-dom.md` — React Router v5 routing tasks (load if detected in stack)
+- `references/libs/vite.md` — Vite build configuration tasks (load if detected in stack)
+- `references/libs/ionicons.md` — Ionicons integration tasks (load if detected in stack)
 
 ## Repository Areas to Inspect
 

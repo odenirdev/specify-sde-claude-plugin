@@ -122,23 +122,23 @@ A trade-off analysis is complete when:
 - Conditions that would change the recommendation are stated
 - No option is dismissed without explanation
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/practices/hexagonal-architecture.md` — architectural decisions and boundaries
-- `knowledge/practices/api-design.md` — API design decisions and trade-offs
-- `knowledge/utilities/error-handling.md` — error handling trade-offs between approaches
-- `knowledge/utilities/testing.md` — testability implications of each option
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
-- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
-- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
-- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
-- `knowledge/frameworks/ionic-react.md` — Ionic React vs alternatives trade-offs (load if detected in stack)
-- `knowledge/frameworks/capacitor.md` — Capacitor vs native trade-offs (load if detected in stack)
-- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
-- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
-- `knowledge/libs/react-router-dom.md` — React Router v5 vs v6 trade-offs (load if detected in stack)
-- `knowledge/libs/vite.md` — Vite vs webpack trade-offs (load if detected in stack)
-- `knowledge/libs/ionicons.md` — Ionicons usage trade-offs (load if detected in stack)
+- `references/practices/hexagonal-architecture.md` — architectural decisions and boundaries
+- `references/practices/api-design.md` — API design decisions and trade-offs
+- `references/utilities/error-handling.md` — error handling trade-offs between approaches
+- `references/utilities/testing.md` — testability implications of each option
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/languages/go.md` — Go patterns (load if detected in stack)
+- `references/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `references/frameworks/react.md` — React patterns (load if detected in stack)
+- `references/frameworks/ionic-react.md` — Ionic React vs alternatives trade-offs (load if detected in stack)
+- `references/frameworks/capacitor.md` — Capacitor vs native trade-offs (load if detected in stack)
+- `references/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `references/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `references/libs/react-router-dom.md` — React Router v5 vs v6 trade-offs (load if detected in stack)
+- `references/libs/vite.md` — Vite vs webpack trade-offs (load if detected in stack)
+- `references/libs/ionicons.md` — Ionicons usage trade-offs (load if detected in stack)
 
 ## Repository Areas to Inspect
 

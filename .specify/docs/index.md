@@ -16,7 +16,7 @@ Start here before editing adapters, skills, or repository-level documentation.
 - **Rules and governance**: [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md)
 - **Quick orientation**: [`README.md`](../../README.md)
 - **Agent bridge**: [`CLAUDE.md`](../../CLAUDE.md)
-- **Shared reusable content**: `knowledge/` and `skills/`
+- **Shared reusable content**: `references/` and `skills/`
 
 ---
 
@@ -26,9 +26,9 @@ Start here before editing adapters, skills, or repository-level documentation.
 |---|---|---|
 | Runtime | None | Pure Markdown customization toolkit, no build step |
 | Formats | `.github` workspace customizations + `plugin.json` compatibility | Supports GitHub Copilot and Claude Code |
-| Content | Markdown | Knowledge, skills, agents, docs, and adapter files |
+| Content | Markdown | References, skills, agents, docs, and adapter files |
 
-**Architecture pattern**: Shared core + runtime adapters, aligned with Clean / Hexagonal boundaries (`knowledge -> skills -> adapters`).
+**Architecture pattern**: Shared core + runtime adapters, aligned with Clean / Hexagonal boundaries (`references -> skills -> adapters`).
 
 See [architecture.md](./architecture.md) for the component map and runtime separation.
 
@@ -36,7 +36,7 @@ See [architecture.md](./architecture.md) for the component map and runtime separ
 
 ## Main Features
 
-- **Shared knowledge core**: reusable engineering guidance in `knowledge/`
+- **Shared references core**: reusable engineering guidance in `references/`
 - **Reusable workflows**: `engineer-discovery`, `engineer-define`, `engineer-review`, `docs-sync`, and related skills in `skills/`
 - **GitHub Copilot adapters**: workspace instructions, custom agents, and skill wrappers in `.github/`
 - **Claude compatibility layer**: existing `agents/*.md` and `plugin.json`
@@ -50,7 +50,7 @@ See [architecture.md](./architecture.md) for the component map and runtime separ
 
 1. **Primary engineering context** — `./.specify/docs/index.md`
 2. **Rules and governance** — `.github/copilot-instructions.md`
-3. **Shared core** — `knowledge/` and `skills/`
+3. **Shared core** — `references/` and `skills/`
 4. **Runtime adapters** — `.github/`, `agents/`, and `plugin.json`
 5. **Verification source material** — `./.specify/specs/` and repository files
 
@@ -63,7 +63,7 @@ This document is the operational and architectural entrypoint. It does **not** i
 Key concepts in this toolkit's model:
 
 - **Spec**: Source of truth for a feature — problem, approach, constraints, and tasks. Lives in `./.specify/specs/<slug>/`.
-- **Knowledge**: Shared, runtime-agnostic engineering reference for a technology or practice. Lives in `knowledge/`.
+- **References**: Shared, runtime-agnostic engineering references for a technology or practice. Lives in `references/`.
 - **Skill**: A reusable workflow defined in `skills/<name>/SKILL.md` and exposed to runtimes through thin adapters.
 - **Runtime Adapter**: A Copilot or Claude entrypoint that references the shared core instead of copying it. Lives in `.github/` or `agents/`.
 - **Docs**: Primary engineering context and derived documentation in `./.specify/docs/`. Never invented — always tied to specs or repository evidence.
@@ -89,7 +89,7 @@ Primary agent roles configured for this toolkit:
 
 | Document | Description |
 |---|---|
-| [stack.md](./stack.md) | Detected runtime formats, active agents, active shared knowledge |
+| [stack.md](./stack.md) | Detected runtime formats, active agents, active shared references |
 | [architecture.md](./architecture.md) | Shared-core / adapter structure and component relationships |
 | [operations.md](./operations.md) | Setup, update, and maintenance procedures for both runtimes |
 | [decisions/](./decisions/) | Architectural Decision Records (ADRs) |

@@ -30,11 +30,11 @@ updated_at: 2026-04-05T00:00:00Z
 - `docs-maintainer` — Documentation accuracy and currency
 - `langgraph-architect` — AI orchestration design for LangGraph / LangChain flows
 
-## Active Knowledge
+## Active References
 
-- `knowledge/practices/hexagonal-architecture.md`
-- `knowledge/practices/documentation-derivation.md`
-- `knowledge/practices/task-breakdown.md`
-- `knowledge/utilities/error-handling.md`
-- `knowledge/utilities/testing.md`
-- `knowledge/frameworks/langgraph.md`
+- `references/practices/hexagonal-architecture.md`
+- `references/practices/documentation-derivation.md`
+- `references/practices/task-breakdown.md`
+- `references/utilities/error-handling.md`
+- `references/utilities/testing.md`
+- `references/frameworks/langgraph.md`

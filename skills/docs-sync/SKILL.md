@@ -1,6 +1,6 @@
 ---
 name: docs-sync
-description: Detects the project stack, loads relevant knowledge and agents, then synchronizes `./.specify/docs`, `CLAUDE.md`, and managed `README.md` content with the current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
+description: Detects the project stack, loads relevant references and agents, then synchronizes `./.specify/docs`, `CLAUDE.md`, and managed `README.md` content with the current specs and codebase state. Triggered when the user wants to update documentation, sync docs after code changes, initialize docs for a new project, or audit doc accuracy.
 argument-hint: "[scope: init, index, architecture, integrations, claude, readme, or all]"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 ---
@@ -9,7 +9,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 
 ## Objective
 
-Detect the project stack, activate the appropriate knowledge and agents for that stack, then update `./.specify/docs` and the project's derived entrypoints to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
+Detect the project stack, activate the appropriate references and agents for that stack, then update `./.specify/docs` and the project's derived entrypoints to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
 
 ## Entry Point Convention
 
@@ -51,8 +51,8 @@ updated_at: YYYY-MM-DDTHH:MM:SSZ
 ## Active Agents
 - [List from agent mapping below]
 
-## Active Knowledge
-- [List from knowledge mapping below]
+## Active References
+- [List from references mapping below]
 ```
 
 After writing `stack.md`, if `./.specify/docs/index.md` exists, ensure it has a `[stack.md](stack.md)` entry in the `## Derived Documentation` section. Add if missing — do not duplicate if already present.
@@ -90,11 +90,11 @@ When monorepo mode is active:
 
 ---
 
-## Phase 1 — Knowledge Activation
+## Phase 1 — References Activation
 
-Read `references/knowledge-map.md` for the full stack-to-knowledge-file mapping.
+Read `references/references-map.md` for the full stack-to-references mapping.
 
-Load all matching knowledge files. These inform how you interpret the codebase and what you document about it.
+Load all matching reference files. These inform how you interpret the codebase and what you document about it.
 
 ---
 
@@ -191,7 +191,7 @@ Update or create the root `README.md`:
 
 ### `all`
 
-Run all scopes in order: stack detection → knowledge activation → agent mapping → index → architecture → integrations → claude → readme.
+Run all scopes in order: stack detection → references activation → agent mapping → index → architecture → integrations → claude → readme.
 
 ---
 
@@ -214,8 +214,8 @@ Run all scopes in order: stack detection → knowledge activation → agent mapp
 ### Stack Detected
 [List of detected technologies]
 
-### Knowledge Activated
-[List of knowledge files read]
+### References Activated
+[List of reference files read]
 
 ### Agents Configured
 [List of agents written to docs]
@@ -251,9 +251,9 @@ A docs sync is complete when:
 
 ---
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/practices/documentation-derivation.md` — writing accurate, evidence-based documentation
+- `references/practices/documentation-derivation.md` — writing accurate, evidence-based documentation
 
 ## Guardrails
 
@@ -273,14 +273,14 @@ A docs sync is complete when:
 1. Read `package.json` → detects TypeScript, NestJS, Prisma, Axios
 2. Read `references/stack-signals.md` → confirm dependency signals
 3. Write `./.specify/docs/stack.md` with detected stack
-4. Read `references/knowledge-map.md` → load typescript.md, nestjs.md, prisma.md, axios.md
+4. Read `references/references-map.md` → load typescript.md, nestjs.md, prisma.md, axios.md
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
 6. Update `./.specify/docs/stack.md` with Active Agents list
 7. Update `./.specify/docs/index.md` — stack section + `## Engineering Agents`
 8. Update root `CLAUDE.md` — point to `./.specify/docs/index.md`, governance, and `README.md`
 9. Insert or refresh the managed `README.md` block — overview, getting started, main commands, structure, docs links
 10. Update `./.specify/docs/integrations.md` — add detected Axios instances
-11. Report: stack detected, 4 knowledge files loaded, 5 agents configured, docs + entrypoints updated with manual README content preserved
+11. Report: stack detected, 4 reference files loaded, 5 agents configured, docs + entrypoints updated with manual README content preserved
 </actions>
 </example>
 <example>
@@ -290,14 +290,14 @@ A docs sync is complete when:
 1. Read `go.mod` → detects Go modules and module path
 2. Read `references/stack-signals.md` → confirm Go stack
 3. Write `./.specify/docs/stack.md` with Go runtime
-4. Read `references/knowledge-map.md` → load go.md, hexagonal-architecture.md, error-handling.md, documentation-derivation.md
+4. Read `references/references-map.md` → load go.md, hexagonal-architecture.md, error-handling.md, documentation-derivation.md
 5. Read `references/agent-map.md` → map backend-architect, reviewer, debugger, task-planner, docs-maintainer
 6. Read `references/templates.md` → get template-to-target mapping
 7. Read each template, fill with real data, write to `./.specify/docs/`
 8. Create or normalize root `CLAUDE.md` as a minimal bridge to the derived docs
 9. Create `README.md` or insert the managed `docs-sync` block if the file already exists
 10. Create `./.specify/docs/decisions/` directory
-11. Report: Go stack detected, 4 knowledge files loaded, 5 agents configured, docs + entrypoints created with no duplicated architecture prose
+11. Report: Go stack detected, 4 reference files loaded, 5 agents configured, docs + entrypoints created with no duplicated architecture prose
 </actions>
 </example>
 <example>
@@ -308,7 +308,7 @@ A docs sync is complete when:
 2. Read `package.json` at root → detects TypeScript, turbo
 3. Read `references/stack-signals.md` → confirm Turborepo + monorepo + TypeScript signals
 4. Write `./.specify/docs/stack.md` with detected stack + "### Mode: Monorepo" section listing all packages
-5. Read `references/knowledge-map.md` → load turborepo.md, monorepo.md, typescript.md, hexagonal-architecture.md
+5. Read `references/references-map.md` → load turborepo.md, monorepo.md, typescript.md, hexagonal-architecture.md
 6. Read `references/agent-map.md` → map all relevant agents
 7. Update root `./.specify/docs/index.md` and `./.specify/docs/architecture.md` with monorepo-level data
 8. Update root `CLAUDE.md` and the managed root `README.md` block from the root docs

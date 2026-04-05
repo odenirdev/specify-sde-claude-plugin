@@ -89,24 +89,24 @@ A review is complete when:
 - No false positives from incorrect assumptions about the codebase
 - The reviewer has actually read the referenced code, not summarized from signatures
 
-## Knowledge to Consult
+## References to Consult
 
-- `knowledge/utilities/error-handling.md` — error handling patterns and anti-patterns
-- `knowledge/utilities/testing.md` — test coverage expectations and review criteria
-- `knowledge/utilities/logging.md` — observability and log quality
-- `knowledge/practices/hexagonal-architecture.md` — architecture rules and layer boundaries
-- `knowledge/practices/api-design.md` — API contract quality and REST conventions
-- `knowledge/languages/typescript.md` — TypeScript patterns (load if detected in stack)
-- `knowledge/languages/go.md` — Go patterns (load if detected in stack)
-- `knowledge/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
-- `knowledge/frameworks/react.md` — React patterns (load if detected in stack)
-- `knowledge/frameworks/ionic-react.md` — Ionic React patterns (load if detected in stack)
-- `knowledge/frameworks/capacitor.md` — Capacitor native bridge patterns (load if detected in stack)
-- `knowledge/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
-- `knowledge/libs/axios.md` — HTTP client patterns (load if detected in stack)
-- `knowledge/libs/react-router-dom.md` — React Router v5 patterns (load if detected in stack)
-- `knowledge/libs/vite.md` — Vite build tool patterns (load if detected in stack)
-- `knowledge/libs/ionicons.md` — Ionicons accessibility and tree-shaking (load if detected in stack)
+- `references/utilities/error-handling.md` — error handling patterns and anti-patterns
+- `references/utilities/testing.md` — test coverage expectations and review criteria
+- `references/utilities/logging.md` — observability and log quality
+- `references/practices/hexagonal-architecture.md` — architecture rules and layer boundaries
+- `references/practices/api-design.md` — API contract quality and REST conventions
+- `references/languages/typescript.md` — TypeScript patterns (load if detected in stack)
+- `references/languages/go.md` — Go patterns (load if detected in stack)
+- `references/frameworks/nestjs.md` — NestJS-specific patterns (load if detected in stack)
+- `references/frameworks/react.md` — React patterns (load if detected in stack)
+- `references/frameworks/ionic-react.md` — Ionic React patterns (load if detected in stack)
+- `references/frameworks/capacitor.md` — Capacitor native bridge patterns (load if detected in stack)
+- `references/libs/prisma.md` — Prisma/ORM patterns (load if detected in stack)
+- `references/libs/axios.md` — HTTP client patterns (load if detected in stack)
+- `references/libs/react-router-dom.md` — React Router v5 patterns (load if detected in stack)
+- `references/libs/vite.md` — Vite build tool patterns (load if detected in stack)
+- `references/libs/ionicons.md` — Ionicons accessibility and tree-shaking (load if detected in stack)
 
 ## Repository Areas to Inspect
 

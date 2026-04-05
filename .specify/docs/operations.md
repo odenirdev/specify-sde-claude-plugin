@@ -72,7 +72,7 @@ Restart Claude Code after installation for skills and agents to take effect.
 When changing the toolkit itself:
 
 1. Update shared rules in `.github/copilot-instructions.md` if the change is global.
-2. Update `knowledge/` or `skills/` when the source of truth changes.
+2. Update `references/` or `skills/` when the source of truth changes.
 3. Keep `.github/` and `agents/` aligned so both runtimes keep the same intent.
 4. Refresh `./.specify/docs/` when architecture or usage changes.
 5. If Claude compatibility is in use, reinstall the local plugin cache:

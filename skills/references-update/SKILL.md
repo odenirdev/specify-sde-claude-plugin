@@ -1,24 +1,24 @@
 ---
-name: knowledge-update
-description: Guides the user to create or update a knowledge file in the plugin following the standard template pattern. Triggered when the user wants to add a new framework, library, language, utility, or practice to the plugin's knowledge base.
+name: references-update
+description: Guides the user to create or update a reference file in the plugin following the standard template pattern. Triggered when the user wants to add a new framework, library, language, utility, or practice to the plugin's references.
 argument-hint: "[category: frameworks|languages|libs|utilities|practices] [technology name]"
 allowed-tools: Read, Glob, Grep, Write, Edit
 ---
 
-# Knowledge Update
+# References Update
 
 ## Objective
 
-Guide the creation or update of a `knowledge/<category>/<name>.md` file following the plugin's standard five-section structure. The output is an actionable, opinionated engineering reference — no generic content.
+Guide the creation or update of a `references/<category>/<name>.md` file following the plugin's standard five-section structure. The output is an actionable, opinionated engineering reference — no generic content.
 
 ---
 
 ## When to Use
 
 Use this skill when the user wants to:
-- Add a new framework, library, language, utility, or engineering practice to the knowledge base
-- Update an existing knowledge file that is outdated or incomplete
-- Audit whether an existing knowledge file follows the standard structure
+- Add a new framework, library, language, utility, or engineering practice to the references
+- Update an existing reference file that is outdated or incomplete
+- Audit whether an existing reference file follows the standard structure
 
 ---
 
@@ -26,7 +26,7 @@ Use this skill when the user wants to:
 
 - **Category**: one of `frameworks`, `languages`, `libs`, `utilities`, `practices`
 - **Name**: the technology or practice (e.g., `nestjs`, `prisma`, `go`, `testing`)
-- (Optional) Existing knowledge from the current conversation or user-provided content
+- (Optional) Existing context from the current conversation or user-provided content
 
 ---
 
@@ -48,9 +48,9 @@ Use this skill when the user wants to:
    - `utilities` → `references/utility-template.md`
    - `practices` → `references/practice-template.md`
 
-3. Check if a file already exists at `knowledge/<category>/<name>.md`. If it exists, read it and plan to update rather than overwrite.
+3. Check if a file already exists at `references/<category>/<name>.md`. If it exists, read it and plan to update rather than overwrite.
 
-### Phase 2 — Populate the Knowledge File
+### Phase 2 — Populate the Reference File
 
 Fill every section of the template with content that is:
 - **Specific and actionable** — no generic platitudes
@@ -61,7 +61,7 @@ Follow the five mandatory sections from the template. Do not skip any section. D
 
 ### Phase 3 — Write the File
 
-Write to `knowledge/<category>/<name>.md`.
+Write to `references/<category>/<name>.md`.
 
 Use this header format:
 ```
@@ -70,14 +70,14 @@ Use this header format:
 
 If the file already existed, overwrite it. Never append to an existing file.
 
-### Phase 4 — Update the Knowledge Map
+### Phase 4 — Update the References Map
 
-After writing, check `skills/docs-sync/references/knowledge-map.md`.
+After writing, check `skills/docs-sync/references/references-map.md`.
 
 If the new file is not already listed, add a row:
 
 ```
-| [Stack Signal] | `knowledge/<category>/<name>.md` |
+| [Stack Signal] | `references/<category>/<name>.md` |
 ```
 
 Use the technology name as the stack signal (e.g., `Prisma`, `React`, `Go`).
@@ -87,14 +87,14 @@ Use the technology name as the stack signal (e.g., `Prisma`, `React`, `Go`).
 ## Output Location
 
 ```
-knowledge/<category>/<name>.md
+references/<category>/<name>.md
 ```
 
 ---
 
 ## Output Format
 
-Every knowledge file must follow this exact structure (load category-specific template for details):
+Every reference file must follow this exact structure (load category-specific template for details):
 
 ```markdown
 # [Name] — Engineering Reference
@@ -140,18 +140,18 @@ Every knowledge file must follow this exact structure (load category-specific te
 - [ ] Review criteria checklist has at least 5 items
 - [ ] Trade-offs names a specific decision, not a generic topic
 - [ ] Implementation notes reference real tools, commands, or flags
-- [ ] knowledge-map.md updated if file is new
+- [ ] references-map.md updated if file is new
 
 ---
 
-## Knowledge to Consult
+## References to Consult
 
 - `references/framework-template.md` — for framework files
 - `references/language-template.md` — for language files
 - `references/lib-template.md` — for library files
 - `references/utility-template.md` — for utility files
 - `references/practice-template.md` — for practice files
-- `skills/docs-sync/references/knowledge-map.md` — map to update
+- `skills/docs-sync/references/references-map.md` — map to update
 
 ---
 
@@ -161,4 +161,4 @@ Every knowledge file must follow this exact structure (load category-specific te
 - Do NOT write generic content — every line must be actionable
 - Do NOT add sections beyond the five defined in the template
 - Do NOT leave placeholder text in the output file
-- Do NOT modify knowledge files outside the target category/name
+- Do NOT modify reference files outside the target category/name

@@ -3,7 +3,7 @@
 This repository is a reusable customization base for **GitHub Copilot** and **Claude Code**.
 Treat the content as a layered system:
 
-- `knowledge/` = shared engineering knowledge (**domain**)
+- `references/` = shared engineering references (**domain**)
 - `skills/` = reusable workflows (**use cases**)
 - `.github/` and `agents/` = runtime adapters (**adapters**)
 - `./.specify/docs/` = **primary engineering context** for how the toolkit works today (**derived from specs and code**)
@@ -11,8 +11,8 @@ Treat the content as a layered system:
 ## Working model
 
 1. Start with `./.specify/docs/index.md` for the current engineering context; use `README.md` for quick orientation and this file for governance.
-2. Prefer **referencing** existing `knowledge/` and `skills/` content instead of copying it into new agents or skills.
-3. When a rule is shared across multiple agents or skills, centralize it here or in `knowledge/`, not in repeated blocks.
+2. Prefer **referencing** existing `references/` and `skills/` content instead of copying it into new agents or skills.
+3. When a rule is shared across multiple agents or skills, centralize it here or in `references/`, not in repeated blocks.
 
 ## Shared rules
 
@@ -27,7 +27,7 @@ Treat the content as a layered system:
 
 - **Primary engineering context**: `./.specify/docs/index.md` — current architecture, operating model, and navigation.
 - **Rules and governance**: this file — shared maintenance rules for Copilot and Claude adapters.
-- **Shared knowledge**: `knowledge/**/*.md`
+- **Shared references**: `references/**/*.md`
 - **Reusable workflows**: `skills/*/SKILL.md`
 - **Verification source material**: `./.specify/specs/**/*` and repository files
 - **Runtime adapters**: `.github/agents/*.agent.md`, `.github/skills/*/SKILL.md`, `agents/*.md`, and `plugin.json`

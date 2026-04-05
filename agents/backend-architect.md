@@ -45,13 +45,13 @@ Translate requirements into concrete backend designs. Produce architecture propo
 - `engineer-define` — orchestrate spec + task definition when full define phase is needed
 - `engineer-tradeoff` — compare options when decisions need justification
 
-## Knowledge to Prioritize
+## References to Prioritize
 
-- `knowledge/practices/hexagonal-architecture.md` — dependency structure
-- `knowledge/practices/api-design.md` — API design principles
-- `knowledge/frameworks/nestjs.md` — if NestJS is the stack
-- `knowledge/libs/prisma.md` — if Prisma is the persistence layer
-- `knowledge/utilities/error-handling.md` — failure mode design
+- `references/practices/hexagonal-architecture.md` — dependency structure
+- `references/practices/api-design.md` — API design principles
+- `references/frameworks/nestjs.md` — if NestJS is the stack
+- `references/libs/prisma.md` — if Prisma is the persistence layer
+- `references/utilities/error-handling.md` — failure mode design
 
 ## Constraints
 
