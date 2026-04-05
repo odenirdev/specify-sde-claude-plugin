@@ -11,6 +11,9 @@ Load all matching reference files before writing documentation. These inform how
 | Ionic / @ionic/react | `references/frameworks/ionic-react.md` |
 | Capacitor / @capacitor | `references/frameworks/capacitor.md` |
 | react-router-dom | `references/libs/react-router-dom.md` |
+| `@tanstack/react-query` / `react-query` | `references/libs/tanstack-query.md` |
+| Formik / `formik` | `references/libs/formik.md` |
+| Zod / `zod` | `references/libs/zod.md` |
 | Prisma | `references/libs/prisma.md` |
 | Axios | `references/libs/axios.md` |
 | Vite / vite.config | `references/libs/vite.md` |
