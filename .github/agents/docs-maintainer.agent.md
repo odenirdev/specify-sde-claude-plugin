@@ -20,6 +20,7 @@ Keep documentation accurate, minimal, and aligned with repository facts. Documen
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy docs maintainer adapter](../../agents/docs-maintainer.md)
 - [docs-sync workflow](../../skills/docs-sync/SKILL.md)
 - [Documentation derivation knowledge](../../knowledge/practices/documentation-derivation.md)

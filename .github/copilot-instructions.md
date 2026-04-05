@@ -6,11 +6,11 @@ Treat the content as a layered system:
 - `knowledge/` = shared engineering knowledge (**domain**)
 - `skills/` = reusable workflows (**use cases**)
 - `.github/` and `agents/` = runtime adapters (**adapters**)
-- `./.specify/docs/` = derived documentation for how the toolkit works today
+- `./.specify/docs/` = **primary engineering context** for how the toolkit works today (**derived from specs and code**)
 
 ## Working model
 
-1. Read `README.md` and `./.specify/docs/index.md` before making structural changes.
+1. Start with `./.specify/docs/index.md` for the current engineering context; use `README.md` for quick orientation and this file for governance.
 2. Prefer **referencing** existing `knowledge/` and `skills/` content instead of copying it into new agents or skills.
 3. When a rule is shared across multiple agents or skills, centralize it here or in `knowledge/`, not in repeated blocks.
 
@@ -23,13 +23,14 @@ Treat the content as a layered system:
 - Keep agents and skills **single-purpose**, keyword-rich, and easy to discover.
 - Keep edits minimal, explicit, and maintainable.
 
-## Source of truth
+## Context hierarchy
 
-- Shared knowledge: `knowledge/**/*.md`
-- Reusable workflows: `skills/*/SKILL.md`
-- Derived docs: `./.specify/docs/*`
-- GitHub Copilot adapters: `.github/agents/*.agent.md` and `.github/skills/*/SKILL.md`
-- Claude compatibility layer: `agents/*.md` and `plugin.json`
+- **Primary engineering context**: `./.specify/docs/index.md` — current architecture, operating model, and navigation.
+- **Rules and governance**: this file — shared maintenance rules for Copilot and Claude adapters.
+- **Shared knowledge**: `knowledge/**/*.md`
+- **Reusable workflows**: `skills/*/SKILL.md`
+- **Verification source material**: `./.specify/specs/**/*` and repository files
+- **Runtime adapters**: `.github/agents/*.agent.md`, `.github/skills/*/SKILL.md`, `agents/*.md`, and `plugin.json`
 
 ## Maintenance checklist
 

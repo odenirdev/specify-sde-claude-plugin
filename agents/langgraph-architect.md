@@ -66,7 +66,7 @@ Design and review AI agent systems built on LangGraph. Produce implementable arc
 
 ## Constraints
 
-- Read `./.specify/specs` and `./.specify/docs` before designing anything
+- Start with `./.specify/docs/index.md` for the current engineering context, then read `./.specify/specs` and relevant repository files before designing anything
 - Grep existing agent/tool/graph code before proposing new patterns
 - Do not introduce multi-agent graphs without justification — default to single ReAct loop
 - Do not recommend streaming + structured output or streaming + tool use simultaneously (Groq limitation)

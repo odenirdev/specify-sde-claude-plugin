@@ -20,6 +20,7 @@ Identify root causes through hypothesis-driven investigation. Avoid guesswork an
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy debugger adapter](../../agents/debugger.md)
 - [engineer-debug workflow](../../skills/engineer-debug/SKILL.md)
 - [engineer-review workflow](../../skills/engineer-review/SKILL.md)

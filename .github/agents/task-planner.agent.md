@@ -19,6 +19,7 @@ Convert feature scope into concrete, executable tasks that a developer can start
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy task planner adapter](../../agents/task-planner.md)
 - [engineer-define-tasks workflow](../../skills/engineer-define-tasks/SKILL.md)
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)

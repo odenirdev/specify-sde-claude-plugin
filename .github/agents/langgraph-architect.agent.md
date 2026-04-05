@@ -20,6 +20,7 @@ Design and review AI orchestration systems built with LangGraph and related tool
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy LangGraph architect adapter](../../agents/langgraph-architect.md)
 - [engineer-define workflow](../../skills/engineer-define/SKILL.md)
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)

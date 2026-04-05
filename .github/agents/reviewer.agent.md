@@ -19,6 +19,7 @@ Review changes for correctness, risk, and maintainability while reusing the shar
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy reviewer adapter](../../agents/reviewer.md)
 - [engineer-review workflow](../../skills/engineer-review/SKILL.md)
 - [engineer-tradeoff workflow](../../skills/engineer-tradeoff/SKILL.md)

@@ -20,6 +20,7 @@ Translate requirements into implementable backend designs with clear boundaries,
 
 ## Primary references
 
+- [Primary engineering context](../../.specify/docs/index.md)
 - [Legacy backend architect adapter](../../agents/backend-architect.md)
 - [engineer-define-spec workflow](../../skills/engineer-define-spec/SKILL.md)
 - [engineer-define workflow](../../skills/engineer-define/SKILL.md)

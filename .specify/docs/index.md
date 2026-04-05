@@ -4,7 +4,18 @@ updated_at: 2026-04-05T00:00:00Z
 
 # specify-sde
 
-A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. The shared core lives in `knowledge/` and `skills/`, while `.github/` and `agents/` expose that core to different agent runtimes.
+A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. This `index.md` file is the **primary engineering context** for how the toolkit works today: architecture, runtime layout, and the reading order for the shared core. It reflects repository facts and should be verified against specs and code whenever deeper evidence is needed.
+
+---
+
+## Primary Engineering Context
+
+Start here before editing adapters, skills, or repository-level documentation.
+
+- **Current architecture and operating model**: this file
+- **Rules and governance**: [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md)
+- **Quick orientation**: [`README.md`](../../README.md)
+- **Shared reusable content**: `knowledge/` and `skills/`
 
 ---
 
@@ -28,7 +39,20 @@ See [architecture.md](./architecture.md) for the component map and runtime separ
 - **Reusable workflows**: `engineer-discovery`, `engineer-define`, `engineer-review`, `docs-sync`, and related skills in `skills/`
 - **GitHub Copilot adapters**: workspace instructions, custom agents, and skill wrappers in `.github/`
 - **Claude compatibility layer**: existing `agents/*.md` and `plugin.json`
+- **Primary engineering context**: `./.specify/docs/index.md` provides the canonical architecture and operational entrypoint for both Claude and GitHub Copilot
 - **Derived documentation**: `./.specify/docs` stays synchronized with the repository architecture and usage model
+
+---
+
+## Context Hierarchy
+
+1. **Primary engineering context** — `./.specify/docs/index.md`
+2. **Rules and governance** — `.github/copilot-instructions.md`
+3. **Shared core** — `knowledge/` and `skills/`
+4. **Runtime adapters** — `.github/`, `agents/`, and `plugin.json`
+5. **Verification source material** — `./.specify/specs/` and repository files
+
+This document is the operational and architectural entrypoint. It does **not** invent behavior — confirm feature-level truth against specs and code.
 
 ---
 
@@ -40,7 +64,7 @@ Key concepts in this toolkit's model:
 - **Knowledge**: Shared, runtime-agnostic engineering reference for a technology or practice. Lives in `knowledge/`.
 - **Skill**: A reusable workflow defined in `skills/<name>/SKILL.md` and exposed to runtimes through thin adapters.
 - **Runtime Adapter**: A Copilot or Claude entrypoint that references the shared core instead of copying it. Lives in `.github/` or `agents/`.
-- **Docs**: Derived documentation in `./.specify/docs/`. Never invented — always tied to specs or repository evidence.
+- **Docs**: Primary engineering context and derived documentation in `./.specify/docs/`. Never invented — always tied to specs or repository evidence.
 
 ---
 

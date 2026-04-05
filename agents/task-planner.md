@@ -50,7 +50,7 @@ Convert technical definitions and specs into concrete, executable tasks. Each ta
 
 ## Constraints
 
-- Read `./.specify/specs` for the target spec before writing tasks
+- Start with `./.specify/docs/index.md` for the current engineering context, then read `./.specify/specs` for the target spec before writing tasks
 - Grep the codebase for what already exists — never create tasks for done work
 - Tasks must have acceptance criteria — reject vague tasks
 - Respect hexagonal architecture ordering: domain model before use cases before adapters

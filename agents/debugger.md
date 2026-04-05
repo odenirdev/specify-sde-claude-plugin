@@ -53,6 +53,7 @@ Systematically identify the root cause of failures through hypothesis-driven inv
 ## Constraints
 
 - Read the full execution path before forming hypotheses
+- Start with `./.specify/docs/index.md` to understand the current engineering context before tracing the failure
 - Never suggest "try X and see what happens" — be specific about what evidence X produces
 - Do not suggest fixes before confirming root cause
 - Do not add instrumentation that logs sensitive data

@@ -50,6 +50,7 @@ Keep `./.specify/docs` accurate, minimal, and aligned with the current state of 
 ## Constraints
 
 - Always read the target doc before writing to it
+- Treat `./.specify/docs/index.md` as the primary context map and keep related docs aligned to it
 - Verify every claim against `./.specify/specs` or the codebase before writing
 - Never write speculative content — hypotheses belong in the "Hypotheses & Pending Items" section of `index.md`
 - Never reorganize docs structure without explicit instruction
