@@ -1,12 +1,12 @@
 ---
-updated_at: 2026-04-03T00:00:00Z
+updated_at: 2026-04-05T00:00:00Z
 ---
 
 # Detected Stack
 
 ## Runtime
 
-- None — Claude Code plugin (pure Markdown, no build step, no process to run)
+- None — Markdown-first customization toolkit with GitHub Copilot and Claude Code adapters
 
 ## Languages
 
@@ -14,7 +14,8 @@ updated_at: 2026-04-03T00:00:00Z
 
 ## Frameworks
 
-- Claude Code plugin system (plugin.json manifest)
+- GitHub Copilot workspace customizations (`.github/copilot-instructions.md`, `.github/agents/*.agent.md`, `.github/skills/*/SKILL.md`)
+- Claude Code compatibility layer (`plugin.json`, `agents/*.md`)
 
 ## Libraries
 
@@ -22,13 +23,18 @@ updated_at: 2026-04-03T00:00:00Z
 
 ## Active Agents
 
-- `specify-sde:debugger` — Root cause analysis and failure investigation
-- `specify-sde:task-planner` — Spec-to-task breakdown and delivery planning
-- `specify-sde:docs-maintainer` — Documentation accuracy and currency
-- `specify-sde:reviewer` — Code review and production risk assessment
+- `reviewer` — Code review and production risk assessment
+- `backend-architect` — Backend design, persistence, and integration planning
+- `debugger` — Root-cause analysis and failure investigation
+- `task-planner` — Spec-to-task breakdown and delivery planning
+- `docs-maintainer` — Documentation accuracy and currency
+- `langgraph-architect` — AI orchestration design for LangGraph / LangChain flows
 
 ## Active Knowledge
 
 - `knowledge/practices/hexagonal-architecture.md`
-- `knowledge/utilities/error-handling.md`
 - `knowledge/practices/documentation-derivation.md`
+- `knowledge/practices/task-breakdown.md`
+- `knowledge/utilities/error-handling.md`
+- `knowledge/utilities/testing.md`
+- `knowledge/frameworks/langgraph.md`

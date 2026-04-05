@@ -1,7 +1,7 @@
 {
   "name": "specify-sde",
   "version": "0.1.0",
-  "description": "Modular Software Development Engineering toolkit for Claude Code — specs-driven, skills-based, composable engineering workflows.",
+  "description": "Modular Software Development Engineering toolkit for GitHub Copilot and Claude Code — specs-driven, skills-based, composable engineering workflows.",
   "author": {
     "name": "odenirdev",
     "email": ""

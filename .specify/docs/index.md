@@ -1,10 +1,10 @@
 ---
-updated_at: 2026-04-03T00:00:00Z
+updated_at: 2026-04-05T00:00:00Z
 ---
 
 # specify-sde
 
-A modular Software Development Engineering toolkit for Claude Code. Gives Claude a structured engineering system — reusable skills, domain knowledge, and specialized agent roles — to raise the quality floor for every engineering task in any project that installs this plugin.
+A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. The shared core lives in `knowledge/` and `skills/`, while `.github/` and `agents/` expose that core to different agent runtimes.
 
 ---
 
@@ -12,52 +12,50 @@ A modular Software Development Engineering toolkit for Claude Code. Gives Claude
 
 | Layer | Technology | Notes |
 |---|---|---|
-| Runtime | None | Pure Markdown plugin, no build step |
-| Format | Claude Code plugin system | Declared via `plugin.json` |
-| Content | Markdown | Skills, agents, knowledge, templates |
+| Runtime | None | Pure Markdown customization toolkit, no build step |
+| Formats | `.github` workspace customizations + `plugin.json` compatibility | Supports GitHub Copilot and Claude Code |
+| Content | Markdown | Knowledge, skills, agents, docs, and adapter files |
 
-**Architecture pattern**: Composable skill system — skills loaded on trigger, agents compose skills, knowledge informs both.
+**Architecture pattern**: Shared core + runtime adapters, aligned with Clean / Hexagonal boundaries (`knowledge -> skills -> adapters`).
 
-See [architecture.md](./architecture.md) for full plugin structure and component relationships.
+See [architecture.md](./architecture.md) for the component map and runtime separation.
 
 ---
 
 ## Main Features
 
-- **engineer-discovery**: Requirements interview + `prd.md` generation
-- **engineer-define**: Full define phase orchestrator (spec + tasks in one step)
-- **engineer-define-spec**: Technical spec from `prd.md`
-- **engineer-define-tasks**: Phased task breakdown from spec
-- **engineer-delivery**: Execute task plan via specialized subagents
-- **engineer-review**: Structured code and diff review
-- **engineer-debug**: Root cause analysis and debugging strategy
-- **engineer-tradeoff**: Option comparison with recommendation
-- **docs-sync**: Synchronize `./.specify/docs` from specs and code
+- **Shared knowledge core**: reusable engineering guidance in `knowledge/`
+- **Reusable workflows**: `engineer-discovery`, `engineer-define`, `engineer-review`, `docs-sync`, and related skills in `skills/`
+- **GitHub Copilot adapters**: workspace instructions, custom agents, and skill wrappers in `.github/`
+- **Claude compatibility layer**: existing `agents/*.md` and `plugin.json`
+- **Derived documentation**: `./.specify/docs` stays synchronized with the repository architecture and usage model
 
 ---
 
 ## Domain
 
-Key concepts in this plugin's model:
+Key concepts in this toolkit's model:
 
-- **Spec**: Source of truth for a feature — problem, approach, constraints, tasks. Lives in `./.specify/specs/<slug>/`.
-- **Skill**: A reusable Claude capability loaded from `skills/<name>/SKILL.md` on trigger. Produces a defined output.
-- **Agent**: A specialized role that composes one or more skills. Declared in `agents/<name>.md`.
-- **Knowledge**: Stack-aware engineering reference for a technology or practice. Lives in `knowledge/`.
-- **Docs**: Derived documentation in `./.specify/docs/`. Never invented — always derived from specs or code.
+- **Spec**: Source of truth for a feature — problem, approach, constraints, and tasks. Lives in `./.specify/specs/<slug>/`.
+- **Knowledge**: Shared, runtime-agnostic engineering reference for a technology or practice. Lives in `knowledge/`.
+- **Skill**: A reusable workflow defined in `skills/<name>/SKILL.md` and exposed to runtimes through thin adapters.
+- **Runtime Adapter**: A Copilot or Claude entrypoint that references the shared core instead of copying it. Lives in `.github/` or `agents/`.
+- **Docs**: Derived documentation in `./.specify/docs/`. Never invented — always tied to specs or repository evidence.
 
 ---
 
 ## Engineering Agents
 
-Agents configured for this project's stack:
+Primary agent roles configured for this toolkit:
 
 | Agent | Role |
 |---|---|
-| `specify-sde:debugger` | Root cause analysis and failure investigation |
-| `specify-sde:task-planner` | Spec-to-task breakdown and delivery planning |
-| `specify-sde:docs-maintainer` | Documentation accuracy and currency |
-| `specify-sde:reviewer` | Skill/agent authoring review and quality assessment |
+| `reviewer` | Code review, production risk assessment, architecture alignment |
+| `backend-architect` | Backend design, persistence, and integration planning |
+| `debugger` | Root-cause analysis and failure investigation |
+| `task-planner` | Spec-to-task breakdown and delivery planning |
+| `docs-maintainer` | Documentation accuracy and currency |
+| `langgraph-architect` | AI orchestration design for LangGraph / LangChain workloads |
 
 ---
 
@@ -65,9 +63,9 @@ Agents configured for this project's stack:
 
 | Document | Description |
 |---|---|
-| [stack.md](./stack.md) | Detected stack, active agents, active knowledge |
-| [architecture.md](./architecture.md) | Plugin structure, component map, skill/agent relationships |
-| [operations.md](./operations.md) | Install, update, and maintenance procedures |
+| [stack.md](./stack.md) | Detected runtime formats, active agents, active shared knowledge |
+| [architecture.md](./architecture.md) | Shared-core / adapter structure and component relationships |
+| [operations.md](./operations.md) | Setup, update, and maintenance procedures for both runtimes |
 | [decisions/](./decisions/) | Architectural Decision Records (ADRs) |
 
 ---
@@ -76,4 +74,4 @@ Agents configured for this project's stack:
 
 > Unresolved questions and unvalidated assumptions. Remove items when confirmed or refuted.
 
-- [ ] `integrations.md` skipped — no external service integrations detected in current codebase.
+- [ ] Validate the minimal GitHub Copilot flow in a real consuming workspace and capture any discovery quirks as follow-up guidance.

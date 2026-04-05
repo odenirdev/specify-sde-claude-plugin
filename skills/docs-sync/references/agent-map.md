@@ -1,14 +1,14 @@
 # Agent Mapping
 
-Record the recommended agents in `./.specify/docs/stack.md` under `## Active Agents`.
+Record the recommended **runtime-neutral agent roles** in `./.specify/docs/stack.md` under `## Active Agents`.
 
 | Stack Signal | Agent |
 |---|---|
-| NestJS / Express / Fastify / Go backend | `specify-sde:backend-architect` |
-| `@langchain/langgraph` / `@langchain/core` | `specify-sde:langgraph-architect` |
-| Any backend | `specify-sde:reviewer` |
-| Any | `specify-sde:debugger` |
-| Any | `specify-sde:task-planner` |
-| Any with `./.specify/docs` | `specify-sde:docs-maintainer` |
+| NestJS / Express / Fastify / Go backend | `backend-architect` |
+| `@langchain/langgraph` / `@langchain/core` | `langgraph-architect` |
+| Any backend | `reviewer` |
+| Any | `debugger` |
+| Any | `task-planner` |
+| Any with `./.specify/docs` | `docs-maintainer` |
 
-Include only agents relevant to the detected stack.
+Use the generic role names in documentation even if a specific runtime prefixes or wraps them differently.

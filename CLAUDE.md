@@ -1,7 +1,9 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file keeps the **Claude Code compatibility bridge** for this repository.
 
-For full project documentation, see [./.specify/docs/index.md](./.specify/docs/index.md).
+- For shared workspace rules, see [`.github/copilot-instructions.md`](./.github/copilot-instructions.md).
+- For full project documentation, see [`./.specify/docs/index.md`](./.specify/docs/index.md).
+- For the runtime adapter layout, start with [`README.md`](./README.md).
 
 ---

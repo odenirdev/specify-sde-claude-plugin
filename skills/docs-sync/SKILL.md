@@ -91,23 +91,23 @@ Load all matching knowledge files. These inform how you interpret the codebase a
 
 Read `references/agent-map.md` for the full stack-to-agent mapping.
 
-Write the relevant agents to `./.specify/docs/stack.md` under `## Active Agents`. Also write or update the `## Engineering Agents` section in `./.specify/docs/index.md`:
+Write the relevant **runtime-neutral** agent roles to `./.specify/docs/stack.md` under `## Active Agents`. Also write or update the `## Engineering Agents` section in `./.specify/docs/index.md`:
 
 ```markdown
 ## Engineering Agents
 
-Agents configured for this project's stack:
+Primary agent roles configured for this project's stack:
 
 | Agent | Role |
 |---|---|
-| `specify-sde:backend-architect` | Backend design — APIs, persistence, integrations |
-| `specify-sde:reviewer` | Code review and production risk assessment |
-| `specify-sde:debugger` | Root cause analysis and failure investigation |
-| `specify-sde:task-planner` | Spec-to-task breakdown and delivery planning |
-| `specify-sde:docs-maintainer` | Documentation accuracy and currency |
+| `backend-architect` | Backend design — APIs, persistence, integrations |
+| `reviewer` | Code review and production risk assessment |
+| `debugger` | Root cause analysis and failure investigation |
+| `task-planner` | Spec-to-task breakdown and delivery planning |
+| `docs-maintainer` | Documentation accuracy and currency |
 ```
 
-Include only agents relevant to the detected stack.
+Use the generic role names in docs even if a particular runtime adapter prefixes them differently. Include only agents relevant to the detected stack.
 
 ---
 

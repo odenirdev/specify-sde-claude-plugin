@@ -1,73 +1,90 @@
 ---
-updated_at: 2026-04-03T00:00:00Z
+updated_at: 2026-04-05T00:00:00Z
 ---
 
 # Architecture — specify-sde
 
-> High-level plugin structure. Updated when significant structural changes are made.
+> High-level toolkit structure for shared engineering content and runtime adapters.
 
 ---
 
 ## System Overview
 
-`specify-sde` is a Claude Code plugin composed entirely of Markdown files. There is no runtime, no build system, and no compiled output. Claude loads skills on trigger, agents compose skills into specialized roles, and knowledge files inform engineering decisions for specific stacks. The plugin operates on the consuming project's `./.specify/` directory as its working area.
+`specify-sde` is a Markdown-first customization toolkit. There is no runtime process, build system, or compiled output. The repository now follows a **shared core + runtime adapters** model: `knowledge/` holds reusable engineering guidance, `skills/` holds workflows, and `.github/` plus `agents/` expose that shared core to GitHub Copilot and Claude Code. When workflows write artifacts, they operate on the consuming project's `./.specify/` directory.
+
+---
+
+## Layered View
+
+| Layer | Responsibility | Repository paths |
+|---|---|---|
+| **Domain** | Stable shared knowledge and engineering conventions | `knowledge/` |
+| **Use Cases** | Reusable workflows for discovery, definition, review, debug, and docs sync | `skills/*/SKILL.md` |
+| **Adapters** | Runtime-specific entrypoints for GitHub Copilot and Claude Code | `.github/`, `agents/`, `plugin.json` |
+| **Derived Docs** | Architecture and operations notes generated from repository evidence | `./.specify/docs/` |
+
+This keeps the dependency direction aligned with Clean / Hexagonal Architecture: **shared core first, runtime adapters last**.
 
 ---
 
 ## Component Map
 
-```
+```text
 specify-sde/
-  plugin.json              ─── Plugin manifest (name, version, description)
-  
-  skills/<name>/SKILL.md   ─── Reusable capabilities
-  │  Loaded by Claude when trigger phrases are matched.
-  │  Each skill defines: objective, phases, output location, quality bar.
-  │  Output → consuming project's ./.specify/specs/<slug>/<type>.md
-  
-  agents/<name>.md         ─── Specialized roles
-  │  Each agent composes one or more skills.
-  │  Triggered by Claude Agent SDK subagent dispatch.
-  
-  knowledge/<category>/    ─── Stack-aware engineering references
-  │  Loaded by skills and agents based on detected stack.
-  │  Informs interpretation and documentation — never speculative.
-  
-  skills/docs-sync/
-    references/            ─── Docs sync operating data
-      stack-signals.md     ─── Files to inspect for stack detection
-      knowledge-map.md     ─── Stack → knowledge file mapping
-      agent-map.md         ─── Stack → agent mapping
-      templates.md         ─── Template → target file mapping
-      template-*.md        ─── Templates for each docs/ file
+  knowledge/<category>/      ─── Shared engineering references (domain)
+  │  Languages, frameworks, libraries, utilities, and practices.
+  │  Runtime-agnostic and reused across every adapter.
+
+  skills/<name>/SKILL.md     ─── Reusable workflows (use cases)
+  │  Discovery, define, review, debug, docs-sync, and maintenance flows.
+  │  These are the behavior source of truth.
+
+  .github/                   ─── GitHub Copilot adapters
+  │  copilot-instructions.md ─── Shared workspace rules for Copilot
+  │  agents/*.agent.md       ─── Thin role adapters with minimal tool sets
+  │  skills/*/SKILL.md       ─── Thin skill adapters that point back to `skills/`
+
+  agents/<name>.md           ─── Claude compatibility adapters
+  │  Existing role definitions kept for transition and backward compatibility.
+
+  plugin.json                ─── Legacy metadata for Claude-oriented installation
+
+  .specify/docs/             ─── Derived docs for this repository
+  │  stack.md, architecture.md, operations.md, decisions/
 ```
 
 ---
 
 ## Components
 
-### Skills (`skills/*/SKILL.md`)
-- **Responsibility**: Define a reusable engineering capability with explicit inputs, phases, and output format.
-- **Interfaces**: Triggered by Claude via natural language; writes output to `./.specify/specs/<slug>/` in consuming project.
-- **Dependencies**: May reference knowledge files and invoke subagents.
-- **Location**: [skills/](../../skills/)
-
-### Agents (`agents/*.md`)
-- **Responsibility**: Define a specialized Claude role that composes skills for a specific job type (review, debug, architect, plan).
-- **Interfaces**: Triggered via Claude Agent SDK subagent dispatch or directly by the user.
-- **Dependencies**: Compose one or more skills; reference knowledge files.
-- **Location**: [agents/](../../agents/)
-
 ### Knowledge (`knowledge/**/*.md`)
-- **Responsibility**: Provide stack-aware, actionable engineering guidance (best practices, anti-patterns, review criteria, trade-offs).
-- **Interfaces**: Referenced by skills and agents under "Knowledge to Consult" / "Knowledge to Prioritize".
+- **Responsibility**: Provide stack-aware, actionable engineering guidance and shared principles.
+- **Interfaces**: Referenced by skills and adapters rather than copied into them.
 - **Dependencies**: None.
 - **Location**: [knowledge/](../../knowledge/)
 
+### Skills (`skills/*/SKILL.md`)
+- **Responsibility**: Define reusable workflows with explicit inputs, phases, outputs, and quality bars.
+- **Interfaces**: Consumed through Copilot wrappers in `.github/skills/` and through Claude-compatible flows.
+- **Dependencies**: May reference shared knowledge and supporting references.
+- **Location**: [skills/](../../skills/)
+
+### GitHub Copilot Adapters (`.github/`)
+- **Responsibility**: Provide discoverable workspace instructions, custom agents, and slash-invocable skills for Copilot.
+- **Interfaces**: `copilot-instructions.md`, `.github/agents/*.agent.md`, `.github/skills/*/SKILL.md`.
+- **Dependencies**: Must reference the shared `knowledge/` and `skills/` core instead of duplicating it.
+- **Location**: [../../.github/](../../.github/)
+
+### Claude Compatibility Layer (`agents/*.md`, `plugin.json`)
+- **Responsibility**: Preserve the existing adapter surface for Claude-oriented workflows during the transition.
+- **Interfaces**: `agents/*.md` and `plugin.json`.
+- **Dependencies**: Same shared core as Copilot.
+- **Location**: [agents/](../../agents/), [plugin.json](../../plugin.json)
+
 ### Docs Sync (`skills/docs-sync/`)
-- **Responsibility**: Detect consuming project's stack, activate matching knowledge and agents, and synchronize `./.specify/docs/` with current specs and code.
-- **Interfaces**: Accepts scope arguments: `init`, `index`, `architecture`, `integrations`, `all`.
-- **Dependencies**: References stack-signals, knowledge-map, agent-map, and templates from its `references/` directory.
+- **Responsibility**: Detect project structure, activate relevant knowledge, and keep `./.specify/docs/` aligned with real repository state.
+- **Interfaces**: `init`, `index`, `architecture`, `integrations`, `all` scopes.
+- **Dependencies**: Uses stack maps, agent maps, and templates from `skills/docs-sync/references/`.
 - **Location**: [skills/docs-sync/](../../skills/docs-sync/)
 
 ---
@@ -76,20 +93,22 @@ specify-sde/
 
 | From | To | Contract |
 |---|---|---|
-| Agent | Skill | Agent declares which skills it composes in "Skills Used" section |
-| Skill | Knowledge | Skill declares files to load in "Knowledge to Consult" section |
-| docs-sync | templates | Reads templates from `references/`, fills with codebase data, writes to `./.specify/docs/` |
-| Any skill | `./.specify/specs/` | Skills write output with `updated_at` frontmatter; overwrite if exists |
+| Copilot agent | Shared skill | Agent wrapper points to the reusable workflow in `skills/` |
+| Copilot skill | Shared knowledge | Skill adapter links to the relevant knowledge files instead of embedding them |
+| Claude adapter | Shared core | Legacy adapters remain aligned with the same `knowledge/` and `skills/` source |
+| `docs-sync` | `./.specify/docs/` | Updates derived docs from real code/spec evidence only |
+| Any workflow | `./.specify/specs/` | Writes artifacts with `updated_at` frontmatter in the consuming project |
 
 ---
 
 ## Authoring Constraints
 
-- Skills must include YAML frontmatter with `name`, `description`, `argument-hint`, `allowed-tools`.
-- Agents must include YAML frontmatter with `name`, `description`, `tools`, `model`, `color`.
-- Knowledge files must cover: Best Practices, Anti-Patterns, Review Criteria, Trade-offs, Implementation Notes.
-- All spec artifacts written by skills must include `updated_at: YYYY-MM-DDTHH:MM:SSZ` frontmatter.
-- Templates in `docs-sync/references/` must be filled with real data — placeholders must not appear in output.
+- Shared runtime rules belong in [`.github/copilot-instructions.md`](../../.github/copilot-instructions.md).
+- Shared workflow behavior belongs in `skills/*/SKILL.md`; Copilot wrappers stay intentionally thin.
+- Copilot skills must keep `name` aligned with the folder name and use keyword-rich `description` fields.
+- Copilot agents must stay single-purpose with the minimum tool set required for the role.
+- Knowledge files should remain the primary place for reusable engineering guidance.
+- Derived docs must stay evidence-based and must not introduce speculation.
 
 ---
 
@@ -97,4 +116,4 @@ specify-sde/
 
 | ADR | Decision | Status |
 |---|---|---|
-| — | No ADRs recorded yet | — |
+| [ADR-001](./decisions/ADR-001-dual-runtime-customization.md) | Keep the shared core runtime-agnostic and expose thin adapters for GitHub Copilot and Claude Code | Accepted |

@@ -1,101 +1,103 @@
 # specify-sde
 
-A modular Software Development Engineering toolkit for Claude Code. Designed to help Claude act like a strong software engineer working inside real repositories — reading specs, producing concrete designs, reviewing code rigorously, and keeping documentation aligned with reality.
+A modular Software Development Engineering toolkit for **GitHub Copilot** and **Claude Code**. It provides a reusable engineering system for real repositories: shared knowledge, repeatable workflows, specialized agents, and derived documentation that stays tied to specs and code.
 
 ---
 
 ## Why It Exists
 
-Most AI coding assistants produce generic, shallow outputs when asked to do real engineering work. `specify-sde` gives Claude Code a structured engineering system — a set of reusable capabilities, domain knowledge, and specialized roles — that raises the quality floor for every engineering task.
+Most AI coding assistants produce generic, shallow outputs when asked to do real engineering work. `specify-sde` raises the quality floor with a composable toolkit built around reusable skills, stack-aware knowledge, and runtime-specific adapters.
 
-It is not a rigid framework. It is a composable toolkit. Use the pieces that are useful. Ignore the rest.
+It is not a rigid framework. It is a reusable base you can adapt, extend, and keep aligned across multiple agent runtimes.
 
 ---
 
 ## Mental Model
 
-```
+```text
 Specs  ──────────────────────────────────────▶  Source of truth
   │                                              (./.specify/specs)
   │
-  ├── Skills ──────────────────────────────────▶  Reusable capabilities
-  │     │                                         (define, review, debug, plan)
-  │     │
-  │     └── Agents ──────────────────────────▶   Specialized roles
-  │           (reviewer, architect, debugger)     that compose skills
+  ├── Knowledge ─────────────────────────────▶  Shared engineering guidance
+  │     (languages, frameworks, libs, practices)  reused across runtimes
   │
-  ├── Knowledge ───────────────────────────────▶  Stack-aware guidance
-  │     (TypeScript, Go, NestJS, Prisma, ...)     for engineering decisions
+  ├── Skills ────────────────────────────────▶  Reusable workflows
+  │     (define, review, debug, plan, docs-sync)
   │
-  └── Docs ─────────────────────────────────────▶  Derived documentation
-        (./.specify/docs)                           maintained by docs-sync
+  ├── Runtime Adapters ──────────────────────▶  GitHub Copilot / Claude Code entrypoints
+  │     (.github/, agents/, plugin.json)
+  │
+  └── Docs ──────────────────────────────────▶  Derived documentation
+        (./.specify/docs)                        maintained from specs and code
 ```
 
 | Layer | Purpose |
 |---|---|
 | **Specs** | Source of truth. Requirements, definitions, plans, decisions. |
+| **Knowledge** | Shared engineering references — practices, patterns, anti-patterns. |
+| **Skills** | Reusable workflows that can be loaded by different runtimes. |
+| **Runtime Adapters** | Thin Copilot/Claude entrypoints that reference the shared core. |
 | **Docs** | Derived documentation. Synced from specs and code. Never invented. |
-| **Skills** | Reusable engineering capabilities — loaded into any conversation. |
-| **Agents** | Specialized roles that compose skills for specific job types. |
-| **Knowledge** | Stack-aware engineering references — practices, patterns, anti-patterns. |
-| **Templates** | Starting structures for `./.specify/docs` and project conventions. |
 
 ---
 
 ## Directory Structure
 
-```
+```text
 specify-sde/
-  .claude-plugin/
-    plugin.json               # Plugin manifest
+  .github/
+    copilot-instructions.md   # Shared GitHub Copilot rules for the workspace
+    agents/                   # Copilot agent adapters (*.agent.md)
+    skills/                   # Copilot skill adapters (SKILL.md)
 
   knowledge/
-    languages/
-      typescript.md           # TypeScript best practices + review criteria
-      go.md                   # Go idioms, error handling, concurrency
-    frameworks/
-      react.md                # React patterns, state management, data fetching
-      nestjs.md               # NestJS modules, DI, DTOs, exceptions
-    libs/
-      prisma.md               # Prisma client, migrations, query patterns
-      axios.md                # HTTP client setup, interceptors, error handling
-    utilities/
-      error-handling.md       # Error wrapping, domain errors, boundary mapping
-      logging.md              # Structured logging, levels, what not to log
-      testing.md              # Test layers, AAA, fakes vs mocks, coverage
-    practices/
-      api-design.md           # REST conventions, status codes, versioning
-      task-breakdown.md       # Phased tasks, acceptance criteria, dependencies
-      hexagonal-architecture.md  # Ports & adapters, dependency flow, examples
-      documentation-derivation.md  # What to document, derivation rules, ADRs
+    languages/                # Language guidance (TypeScript, Go, ...)
+    frameworks/               # Framework guidance (React, NestJS, LangGraph, ...)
+    libs/                     # Library guidance (Prisma, Axios, Vite, ...)
+    utilities/                # Cross-cutting guidance (errors, logging, testing)
+    practices/                # Engineering practices (hexagonal, docs, tasks)
+    platforms/                # Platform/runtime notes (AWS Lambda, ...)
 
-  skills/
-    engineer-discovery/       # Requirements interview + prd.md generation
-    engineer-define/          # Define phase orchestrator (spec + tasks)
-    engineer-define-spec/     # Spec generation from prd.md
-    engineer-define-tasks/    # Task breakdown from spec.md
-    engineer-delivery/        # Execute task plan via subagents
-    engineer-review/          # Code and diff review
-    engineer-debug/           # Root cause analysis and debugging strategy
-    engineer-tradeoff/        # Option comparison and recommendation
-    docs-sync/                # Sync ./.specify/docs from specs and code
+  skills/                     # Shared workflow source of truth
+    engineer-discovery/
+    engineer-define/
+    engineer-define-spec/
+    engineer-define-tasks/
+    engineer-delivery/
+    engineer-review/
+    engineer-debug/
+    engineer-tradeoff/
+    docs-sync/
+    knowledge-update/
+    knowledge-link/
+    agent-link/
 
-  agents/
-    reviewer.md               # Senior reviewer — production risk, architecture
-    backend-architect.md      # Backend design — APIs, persistence, integrations
-    debugger.md               # Failure investigator — root cause analysis
-    task-planner.md           # Spec-to-task converter — phased delivery plans
-    docs-maintainer.md        # Documentation engineer — accuracy and currency
+  agents/                     # Legacy Claude-oriented agent adapters
+    reviewer.md
+    backend-architect.md
+    debugger.md
+    task-planner.md
+    docs-maintainer.md
+    langgraph-architect.md
 
-  templates/
-    specify-docs-index-template.md      # Template for ./.specify/docs/index.md
-    specify-architecture-template.md    # Template for architecture.md
-    specify-integrations-template.md    # Template for integrations.md
-    specify-operations-template.md      # Template for operations.md
-    project-conventions-template.md     # Template for project conventions
+  .specify/docs/              # Derived documentation for this toolkit
+  plugin.json                 # Legacy plugin metadata / compatibility layer
+  CLAUDE.md                   # Bridge guidance for Claude-oriented workflows
 ```
 
-> Full documentation is maintained in [./.specify/docs/index.md](./.specify/docs/index.md) — architecture, stack, operations, and decision records.
+> Full documentation is maintained in [./.specify/docs/index.md](./.specify/docs/index.md).
+
+---
+
+## Shared Source of Truth
+
+- **Global runtime rules**: [`.github/copilot-instructions.md`](./.github/copilot-instructions.md)
+- **Shared engineering knowledge**: [`knowledge/`](./knowledge/)
+- **Reusable workflows**: [`skills/`](./skills/)
+- **Copilot adapters**: [`.github/agents/`](./.github/agents/) and [`.github/skills/`](./.github/skills/)
+- **Claude compatibility layer**: [`agents/`](./agents/) and [`plugin.json`](./plugin.json)
+
+The repository favors **reference over copy**: shared rules and workflow logic live once, while runtime adapters stay thin and discoverable.
 
 ---
 
@@ -105,13 +107,13 @@ specify-sde/
 |---|---|---|
 | `engineer-discovery` | Start a new feature, capture requirements | `prd.md` with problem, goals, requirements, acceptance criteria |
 | `engineer-define` | Run full define phase end-to-end | `spec.md` + `tasks.md` in one step |
-| `engineer-define-spec` | Generate spec from prd.md | `spec.md` with scope, approach, constraints |
+| `engineer-define-spec` | Generate spec from `prd.md` | `spec.md` with scope, approach, constraints |
 | `engineer-define-tasks` | Break spec into executable tasks | `tasks.md` with phased tasks and acceptance criteria |
-| `engineer-delivery` | Execute the task plan | Implementation via subagents + `delivery.md` report |
-| `engineer-review` | Review code, diff, or module | Structured review: critical issues, improvements, strengths |
-| `engineer-debug` | Investigate a bug or failure | Root cause hypotheses, debugging steps, evidence to collect |
+| `engineer-delivery` | Execute the task plan | Implementation progress + delivery report |
+| `engineer-review` | Review code, diff, or module | Structured review with risks and recommendations |
+| `engineer-debug` | Investigate a bug or failure | Root-cause hypotheses, evidence, and steps |
 | `engineer-tradeoff` | Compare implementation options | Comparison matrix, pros/cons, recommendation |
-| `docs-sync` | Update ./.specify/docs | Sync report: updated, verified, gaps found |
+| `docs-sync` | Update `./.specify/docs` | Sync report: updated, verified, gaps found |
 
 ---
 
@@ -119,51 +121,59 @@ specify-sde/
 
 | Agent | Role | Use When |
 |---|---|---|
-| `specify-sde:reviewer` | Senior reviewer | Reviewing code or diffs before merge/deploy |
-| `specify-sde:backend-architect` | Backend architect | Designing APIs, persistence, or integrations |
-| `specify-sde:debugger` | Failure investigator | Diagnosing bugs or production failures |
-| `specify-sde:task-planner` | Implementation planner | Converting specs into executable task plans |
-| `specify-sde:docs-maintainer` | Documentation engineer | Keeping docs aligned with specs and code |
+| `reviewer` | Senior reviewer | Reviewing code or diffs before merge/deploy |
+| `backend-architect` | Backend architect | Designing APIs, persistence, or integrations |
+| `debugger` | Failure investigator | Diagnosing bugs or production failures |
+| `task-planner` | Implementation planner | Converting specs into executable task plans |
+| `docs-maintainer` | Documentation engineer | Keeping docs aligned with specs and code |
+| `langgraph-architect` | AI orchestration architect | Designing LangGraph / LangChain / Lambda flows |
 
 ---
 
-## Installation
+## Usage
 
-This plugin lives in the `local` marketplace. Make sure the marketplace is registered before installing.
+### GitHub Copilot in VS Code
 
-### 1. Register the local marketplace (once)
+1. Open the repository in VS Code with **GitHub Copilot Chat** enabled.
+2. Keep the workspace customization files under [`.github/`](./.github/) checked in.
+3. Use:
+   - `copilot-instructions.md` for global guidance,
+   - the agent picker for `reviewer`, `debugger`, `task-planner`, etc.,
+   - slash commands such as `/engineer-review` or `/docs-sync`.
+4. Prefer the shared `knowledge/` and `skills/` content as the source of truth when extending the system.
+
+### Claude Code compatibility
+
+This repository still supports the existing Claude-oriented adapter flow.
+
+#### 1. Register the local marketplace (once)
 
 ```bash
 claude plugin marketplace add /Users/odenirgomes/.claude/plugins/marketplaces/local
 ```
 
-> Skip this step if the `local` marketplace is already listed in `known_marketplaces.json`.
-
-### 2. Install the plugin
+#### 2. Install the plugin
 
 ```bash
 claude plugin install specify-sde@local
 ```
 
-### 3. Verify
+#### 3. Verify
 
 ```bash
 claude plugin list
 ```
 
 Expected output:
-```
+
+```text
 ❯ specify-sde@local
   Version: 0.1.0
   Scope: user
   Status: ✔ enabled
 ```
 
-Restart Claude Code after installation for skills and agents to take effect.
-
-### Update after source changes
-
-If you modify files inside this directory, reinstall to sync the cache:
+If you change files under this repository and want to refresh the Claude cache:
 
 ```bash
 claude plugin uninstall specify-sde@local && claude plugin install specify-sde@local
@@ -171,20 +181,23 @@ claude plugin uninstall specify-sde@local && claude plugin install specify-sde@l
 
 ---
 
-## Extending
+## Extending and Maintaining
 
-Authoring rules for skills, agents, knowledge files, and templates are documented in [CLAUDE.md](./CLAUDE.md).
+When adding or changing behavior:
 
-After adding or modifying content, run `docs-sync` to update [./.specify/docs/](./.specify/docs/).
+1. Update shared rules in [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) if the rule is global.
+2. Update the shared source of truth in [`knowledge/`](./knowledge/) or [`skills/`](./skills/).
+3. Keep the Copilot adapters in [`.github/`](./.github/) and the Claude adapters in [`agents/`](./agents/) aligned.
+4. Run `docs-sync` to refresh [`.specify/docs/`](./.specify/docs/) when architecture or usage changes.
 
 ---
 
 ## Core Principles
 
 1. **Specs are the source of truth** — read `./.specify/specs` before acting
-2. **Docs are derived** — never invented from memory or speculation
-3. **Skills are reusable** — compose them for any task
-4. **Agents are roles** — specialized for specific job types
-5. **Knowledge is practical** — real patterns, real anti-patterns, real trade-offs
+2. **Docs are derived** — never invent content from memory or speculation
+3. **Knowledge is shared** — reuse `knowledge/` instead of copying guidance around
+4. **Skills are reusable** — keep workflows generic and composable
+5. **Adapters stay thin** — `.github/` and `agents/` should reference the shared core
 6. **Everything is actionable** — vague guidance has no place here
-7. **Minimal ceremony** — use what helps, ignore what doesn't
+7. **Minimal ceremony** — use what helps, ignore what does not
