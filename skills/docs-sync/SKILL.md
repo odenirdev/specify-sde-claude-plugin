@@ -9,7 +9,7 @@ allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 
 ## Objective
 
-Detect the project stack, activate the appropriate references and agents for that stack, then update `./.specify/docs` and the project's derived entrypoints to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented.
+Detect the project stack, activate the appropriate references and agents for that stack, then update `./.specify/docs` and the project's derived entrypoints to accurately reflect the current state of specs and code. Documentation must be derived from what exists — not invented. When adapters or docs were reorganized, also verify that the thin runtime wrappers still point to the correct canonical sources.
 
 ## Entry Point Convention
 
@@ -205,6 +205,7 @@ Run all scopes in order: stack detection → references activation → agent map
 - In `README.md`, edit only the content inside `<!-- docs-sync:start -->` and `<!-- docs-sync:end -->`; preserve all manual content outside the block
 - Keep `CLAUDE.md` minimal and link-oriented — no duplicated rules, architecture walkthroughs, or stack tables
 - Minimal change: update only what has changed or is missing
+- When wrappers or docs were cleaned up, verify that `.github/skills/*/SKILL.md` and `.github/agents/*.agent.md` still point to the current canonical sources and report any stale links
 
 ---
 
@@ -243,6 +244,7 @@ A docs sync is complete when:
 - `./.specify/docs/index.md` `## Derived Documentation` section links to every file present in `./.specify/docs/` (including `stack.md` and `architecture.md`)
 - Root `CLAUDE.md` exists, stays minimal, and points to the derived docs
 - Root `README.md` contains a short managed block that points readers to `./.specify/docs`
+- Copilot skill wrappers still point to `skills/*/SKILL.md`, and Copilot agent wrappers still point to the matching `agents/*.md` plus shared core references
 - In monorepo mode, only packages with local `./.specify/docs/` receive package-level `CLAUDE.md`
 - Manual README content outside the managed block is preserved
 - All updated content is traceable to specs or code

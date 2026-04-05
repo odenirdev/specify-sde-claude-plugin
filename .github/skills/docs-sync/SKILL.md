@@ -14,14 +14,14 @@ GitHub Copilot adapter for [`../../../skills/docs-sync/SKILL.md`](../../../skill
 - Updating derived docs after code or architecture changes
 - Initializing `./.specify/docs` for a repository
 - Refreshing the `CLAUDE.md` bridge or managed `README.md` overview
-- Auditing docs for drift or missing sections
+- Auditing docs for drift, missing sections, or stale ownership links after cleanup
 
 ## Procedure
 
 1. Detect stack and repository structure from real files.
 2. Load the relevant reference and agent mappings.
 3. Update the requested `./.specify/docs/*` files plus the derived `CLAUDE.md` and managed `README.md` content with evidence-based data only.
-4. Report updated files, verified sections, skips, and gaps.
+4. Report updated files, verified sections, skips, gaps, and any stale wrapper links that should be cleaned up.
 
 ## References
 

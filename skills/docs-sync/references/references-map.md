@@ -28,12 +28,12 @@ Load all matching reference files before writing documentation. These inform how
 
 ## References Authoring
 
-To add or update a reference file, use the `references-update` skill. Templates for each category live in:
+To add or update a reference file, edit `references/<category>/<name>.md` directly and follow the established structure already used across the repository:
 
-| Category | Template |
-|---|---|
-| frameworks | `skills/references-update/references/framework-template.md` |
-| languages | `skills/references-update/references/language-template.md` |
-| libs | `skills/references-update/references/lib-template.md` |
-| utilities | `skills/references-update/references/utility-template.md` |
-| practices | `skills/references-update/references/practice-template.md` |
+1. `## Best Practices`
+2. `## Anti-Patterns`
+3. `## Review Criteria`
+4. `## Trade-offs`
+5. `## Implementation Notes`
+
+Use a nearby file in the same category as the concrete pattern, keep the content opinionated and reusable, and update the mapping table above when the new reference should be auto-loaded by `docs-sync`.

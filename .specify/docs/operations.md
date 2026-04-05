@@ -69,17 +69,44 @@ Restart Claude Code after installation for skills and agents to take effect.
 
 ## Update After Source Changes
 
-When changing the toolkit itself:
+When changing the toolkit itself, edit the canonical layer first and sync outward:
 
-1. Update shared rules in `.github/copilot-instructions.md` if the change is global.
-2. Update `references/` or `skills/` when the source of truth changes.
-3. Keep `.github/` and `agents/` aligned so both runtimes keep the same intent.
-4. Refresh `./.specify/docs/` when architecture or usage changes.
-5. If Claude compatibility is in use, reinstall the local plugin cache:
+1. Update `references/**/*.md` when the shared engineering guidance changes.
+2. Update `skills/*/SKILL.md` when workflow behavior changes.
+3. Update `agents/*.md` when a role's detailed contract or examples change.
+4. Keep `.github/skills/*/SKILL.md` and `.github/agents/*.agent.md` thin and aligned with the canonical files above.
+5. Update `.github/copilot-instructions.md` only for shared governance changes.
+6. Refresh `./.specify/docs/` when architecture, ownership, or maintenance flow changes.
+7. If Claude compatibility is in use, reinstall the local plugin cache:
 
 ```bash
 claude plugin uninstall specify-sde@local && claude plugin install specify-sde@local
 ```
+
+## Source-of-Truth Maintenance Checklist
+
+Before merging a customization change, verify:
+
+- [ ] The change was made in the canonical layer first, not only in a Copilot wrapper
+- [ ] `README.md` and `CLAUDE.md` still defer to `./.specify/docs`
+- [ ] `.github/skills/*/SKILL.md` still points to `skills/*/SKILL.md`
+- [ ] `.github/agents/*.agent.md` stays link-oriented and points back to `agents/*.md`
+- [ ] Deleted skills, references, or adapters were removed from docs and wrappers in the same change
+
+## Drift Checks
+
+Run a quick repository-wide search after any cleanup or deletion:
+
+```bash
+rg -n "Source workflow|Legacy .* adapter|Primary engineering context|docs-sync:start" \
+  .github agents .specify/docs README.md CLAUDE.md
+```
+
+Use the result to confirm that:
+- Copilot skill adapters still reference the correct source workflow;
+- Copilot agent adapters still link to the detailed role file;
+- root entrypoints still point back to the canonical docs;
+- no stale references remain after deleting or renaming a skill.
 
 ---
 
