@@ -1,10 +1,50 @@
 version: "1"
 
 references:
-  active: []
+  active:
+    - references/frameworks/capacitor.md
+    - references/frameworks/ionic-react.md
+    - references/frameworks/langgraph.md
+    - references/frameworks/nestjs.md
+    - references/frameworks/react.md
+    - references/frameworks/serverless-framework.md
+    - references/languages/go.md
+    - references/languages/typescript.md
+    - references/libs/axios.md
+    - references/libs/formik.md
+    - references/libs/ionicons.md
+    - references/libs/langchain-core.md
+    - references/libs/langchain-groq.md
+    - references/libs/prisma.md
+    - references/libs/react-router-dom.md
+    - references/libs/tanstack-query.md
+    - references/libs/turborepo.md
+    - references/libs/vite.md
+    - references/libs/zod.md
+    - references/platforms/aws-lambda.md
+    - references/practices/api-design.md
+    - references/practices/documentation-derivation.md
+    - references/practices/hexagonal-architecture.md
+    - references/practices/monorepo.md
+    - references/practices/task-breakdown.md
+    - references/utilities/error-handling.md
+    - references/utilities/logging.md
+    - references/utilities/testing.md
 
 skills:
-  active: []
+  active:
+    - stack-init
+    - stack-enable
+    - stack-disable
+    - stack-list
+    - review-triage
+    - review-topic-triage
 
 agents:
-  active: []
+  active:
+    - backend-architect
+    - debugger
+    - docs-maintainer
+    - langgraph-architect
+    - reviewer
+    - task-planner
