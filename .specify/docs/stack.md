@@ -21,20 +21,3 @@ updated_at: 2026-04-05T00:00:00Z
 
 - None
 
-## Active Agents
-
-- `reviewer` — Code review and production risk assessment
-- `backend-architect` — Backend design, persistence, and integration planning
-- `debugger` — Root-cause analysis and failure investigation
-- `task-planner` — Spec-to-task breakdown and delivery planning
-- `docs-maintainer` — Documentation accuracy and currency
-- `langgraph-architect` — AI orchestration design for LangGraph / LangChain flows
-
-## Active References
-
-- `references/practices/hexagonal-architecture.md`
-- `references/practices/documentation-derivation.md`
-- `references/practices/task-breakdown.md`
-- `references/utilities/error-handling.md`
-- `references/utilities/testing.md`
-- `references/frameworks/langgraph.md`

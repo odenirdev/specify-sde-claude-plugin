@@ -1,6 +1,6 @@
 ---
 name: stack-list
-description: List active and disabled `references`, `skills`, or `agents` from the canonical stack source of truth (`.specify/stack.yml` when present, `.specify/docs/stack.md` as legacy fallback), with optional type, state, and global-scope filters.
+description: List active `references`, `skills`, or `agents` from the canonical `.specify/stack.yml` source of truth, with optional type and scope filters.
 argument-hint: "[type?] [state?] [scope?]"
 ---
 
@@ -8,65 +8,56 @@ argument-hint: "[type?] [state?] [scope?]"
 
 ## Objective
 
-List AI artifacts declared in `stack.md`, grouped by active and disabled state, while respecting single-repo and monorepo root precedence.
+List AI artifacts declared as active in `.specify/stack.yml`, while respecting single-repo and monorepo root precedence. Artifacts absent from `active` are implicitly inactive and not shown by default.
 
 ## When to Use
 
 Use this skill when you need to:
-- list all declared artifacts in the current project;
-- inspect global defaults in `~/.specify/stack.md`;
+- list all active artifacts in the current project;
+- inspect plugin defaults in `config/index.yml`;
 - filter by `reference`, `skill`, or `agent`;
-- list only `active` or only `disabled` items;
 - inspect one package scope in a monorepo while still resolving from the root file.
 
 ## Inputs
 
 Optional filters:
 - `type` — `reference`, `skill`, or `agent`
-- `state` — `active`, `disabled`, or `all` (default: `all`)
 - `scope` — `global`, `root`, or a package path such as `packages/app`
 
 Plural aliases (`references`, `skills`, `agents`) may be accepted as input, but they must be normalized internally to the singular form.
 
 ## Responsibilities
 
-### 1. Resolve the canonical stack source
+### 1. Resolve the canonical `stack.yml`
 
-**Resolution order (YAML-first):**
+**Resolution order:**
 
-1. If `scope=global` → `~/.specify/stack.yml`; fallback to `~/.specify/stack.md` if YAML does not exist
-2. If `.specify/stack.yml` exists in the project → use it (YAML is the source of truth)
-3. If only `.specify/docs/stack.md` exists → use it (legacy behavior preserved)
-4. If neither exists → fallback to `~/.specify/stack.yml` → `~/.specify/stack.md`
+1. If `scope=global` → `<plugin-root>/config/index.yml`
+   - If file does not exist → return: "Plugin config not found at `config/index.yml`. Run stack-init to configure."
+2. If no scope → `.specify/stack.yml` in the project root
+   - If file does not exist → return: "Project stack not configured. Run stack-init to initialize `.specify/stack.yml`."
+
+No fallback between scopes. Each scope resolves independently.
 
 **Monorepo detection:**
 - Detect the monorepo root from signals such as `pnpm-workspace.yaml`, `turbo.json`, or `package.json.workspaces`
-- In a monorepo, use `<root>/.specify/stack.yml` (or `<root>/.specify/docs/stack.md` as fallback)
+- In a monorepo, use `<root>/.specify/stack.yml`
 - Report the resolved file as the `source`
 
-### 2. Parse the resolved source
+### 2. Parse the resolved `stack.yml`
 
-**If the source is `.specify/stack.yml`** — read the YAML structure:
-- `references.active` and `references.disabled`
-- `skills.active` and `skills.disabled`
-- `agents.active` and `agents.disabled`
+Read the YAML structure:
+- `references.active`
+- `skills.active`
+- `agents.active`
 - For scoped entries (`{ id, scope }`), extract both fields
 
-**If the source is `stack.md`** — read the following Markdown sections:
-- `## Active References`
-- `## Disabled References`
-- `## Active Skills`
-- `## Disabled Skills`
-- `## Active Agents`
-- `## Disabled Agents`
-
-Only explicitly declared items are listed. Undeclared artifacts remain implicit and are not returned by default.
+Only items explicitly declared in `active` are listed. Absence implies inactive.
 
 ### 3. Apply filters
 
 - `type` narrows results to `reference`, `skill`, or `agent`
-- `state` narrows results to `active`, `disabled`, or both
-- `scope=global` lists entries from `~/.specify/stack.md`
+- `scope=global` lists entries from `<plugin-root>/config/index.yml`
 - `scope` as a package path narrows results to matching scoped entries, while still resolving from the root file in monorepos
 
 ### 4. Return grouped results with counts
@@ -76,14 +67,17 @@ The result must be easy to scan and include the resolved source file.
 ## Output Format
 
 ```md
-Source: `<resolved-stack-md-path>`
+Source: `<resolved-stack-yml-path>`
 Mode: global | single-repo | monorepo
-Filters: `type=<value>`, `state=<value>`, `scope=<value>`
+Filters: `type=<value>`, `scope=<value>`
 
-## Active References (N)
+## References (N)
 - `...`
 
-## Disabled References (N)
+## Skills (N)
+- `...`
+
+## Agents (N)
 - `...`
 ```
 
@@ -91,12 +85,12 @@ When a filter removes all results, return an explicit empty-state message instea
 
 ## Guardrails
 
-- Always resolve from the canonical stack source using the YAML-first precedence rule
-- `~/.specify/stack.yml` stores global user defaults; repository-local files override it within a project
+- Always resolve from `.specify/stack.yml` as the single source of truth
+- `config/index.yml` stores plugin defaults; `.specify/stack.yml` in the project is the project-level source of truth — they are independent and do not override each other
 - In monorepos, the root stack file overrides package-level files
 - Never use the legacy term `knowledge`; use `references`
+- Only `active` exists — do not infer or display a `disabled` list
 - If a package-level file conflicts with the root, mention that the derived view is out of sync
-- If both `stack.yml` and `stack.md` exist in a project, read only from `stack.yml` and note that `stack.md` is a legacy artifact
 
 ## Spec Reference
 
