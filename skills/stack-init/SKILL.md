@@ -36,8 +36,10 @@ Resolve the target **before** checking for existing configuration. All subsequen
 ### 0. Resolve target file
 
 Check for `plugin.json` at the project root:
-- Present → `TARGET = config/index.yml`
-- Absent → `TARGET = .specify/stack.yml`
+- Present → `TARGET = config/index.yml`, set `PLUGIN_CONTEXT = true`
+- Absent → `TARGET = .specify/stack.yml`, set `PLUGIN_CONTEXT = false`
+
+If `PLUGIN_CONTEXT = true`: skip steps 2.2 and 2.3 entirely — the project is the plugin itself, so all discovered artifacts are relevant by definition. Treat this as implicit `--scope=global`.
 
 ### 1. Check for existing configuration
 
@@ -114,8 +116,8 @@ Include matched references in `active`. Unmatched references are omitted — abs
 
 **2.5 — Classify agents**
 
-- Agents whose name matches detected stack (e.g. `backend-architect` if NestJS detected, `langgraph-architect` if LangGraph detected) → `active`
-- All other agents → omit (absence implies inactive)
+- If `PLUGIN_CONTEXT = true`: all discovered agents → `active`
+- Otherwise: agents whose name matches detected stack (e.g. `backend-architect` if NestJS detected, `langgraph-architect` if LangGraph detected) → `active`; all other agents → omit (absence implies inactive)
 - If no agents directory exists → set `agents.active: []`
 
 ### 3. Write `{TARGET}`
