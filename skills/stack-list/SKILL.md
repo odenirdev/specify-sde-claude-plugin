@@ -1,6 +1,6 @@
 ---
 name: stack-list
-description: List active and disabled `references`, `skills`, or `agents` from the canonical `stack.md` source of truth, with optional type, state, and global-scope filters.
+description: List active and disabled `references`, `skills`, or `agents` from the canonical stack source of truth (`.specify/stack.yml` when present, `.specify/docs/stack.md` as legacy fallback), with optional type, state, and global-scope filters.
 argument-hint: "[type?] [state?] [scope?]"
 ---
 
@@ -30,17 +30,29 @@ Plural aliases (`references`, `skills`, `agents`) may be accepted as input, but 
 
 ## Responsibilities
 
-### 1. Resolve the canonical `stack.md`
+### 1. Resolve the canonical stack source
 
-- If `scope=global`, use `~/.specify/stack.md`
-- If no repository-local `stack.md` exists, fall back to `~/.specify/stack.md`
-- In a single repo, use `./.specify/docs/stack.md`
-- In a monorepo, detect the root from signals such as `pnpm-workspace.yaml`, `turbo.json`, or `package.json.workspaces`, then use `<root>/.specify/docs/stack.md`
+**Resolution order (YAML-first):**
+
+1. If `scope=global` → `~/.specify/stack.yml`; fallback to `~/.specify/stack.md` if YAML does not exist
+2. If `.specify/stack.yml` exists in the project → use it (YAML is the source of truth)
+3. If only `.specify/docs/stack.md` exists → use it (legacy behavior preserved)
+4. If neither exists → fallback to `~/.specify/stack.yml` → `~/.specify/stack.md`
+
+**Monorepo detection:**
+- Detect the monorepo root from signals such as `pnpm-workspace.yaml`, `turbo.json`, or `package.json.workspaces`
+- In a monorepo, use `<root>/.specify/stack.yml` (or `<root>/.specify/docs/stack.md` as fallback)
 - Report the resolved file as the `source`
 
-### 2. Parse the managed sections
+### 2. Parse the resolved source
 
-Read the following sections when present:
+**If the source is `.specify/stack.yml`** — read the YAML structure:
+- `references.active` and `references.disabled`
+- `skills.active` and `skills.disabled`
+- `agents.active` and `agents.disabled`
+- For scoped entries (`{ id, scope }`), extract both fields
+
+**If the source is `stack.md`** — read the following Markdown sections:
 - `## Active References`
 - `## Disabled References`
 - `## Active Skills`
@@ -79,11 +91,12 @@ When a filter removes all results, return an explicit empty-state message instea
 
 ## Guardrails
 
-- Always resolve from the canonical `stack.md`
-- `~/.specify/stack.md` stores global user defaults; repository-local files override it within a project
-- In monorepos, root `stack.md` overrides package-level files
+- Always resolve from the canonical stack source using the YAML-first precedence rule
+- `~/.specify/stack.yml` stores global user defaults; repository-local files override it within a project
+- In monorepos, the root stack file overrides package-level files
 - Never use the legacy term `knowledge`; use `references`
 - If a package-level file conflicts with the root, mention that the derived view is out of sync
+- If both `stack.yml` and `stack.md` exist in a project, read only from `stack.yml` and note that `stack.md` is a legacy artifact
 
 ## Spec Reference
 

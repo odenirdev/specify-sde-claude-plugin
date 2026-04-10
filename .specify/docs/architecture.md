@@ -1,5 +1,5 @@
 ---
-updated_at: 2026-04-05T00:00:00Z
+updated_at: 2026-04-10T00:00:00Z
 ---
 
 # Architecture — specify-sde
@@ -38,7 +38,8 @@ specify-sde/
   │  Runtime-agnostic and reused across every adapter.
 
   skills/<name>/SKILL.md     ─── Reusable workflows (use cases)
-  │  Discovery, define, review, debug, docs-sync, and maintenance flows.
+  │  Review triage (review-triage, review-topic-triage) and stack management
+  │  (stack-list, stack-enable, stack-disable) flows.
   │  These are the behavior source of truth.
 
   .github/                   ─── GitHub Copilot adapters
@@ -70,6 +71,9 @@ specify-sde/
 - **Interfaces**: Consumed through Copilot wrappers in `.github/skills/` and through Claude-compatible flows.
 - **Dependencies**: May reference shared references and supporting references.
 - **Location**: [skills/](../../skills/)
+- **Active skills**: `review-triage`, `review-topic-triage`, `stack-list`, `stack-enable`, `stack-disable`
+
+> Engineering workflow skills (discovery, define, delivery, debug, review, docs-sync) live in [`specify-engineer`](https://github.com/ogs-tech/specify-engineer).
 
 ### GitHub Copilot Adapters (`.github/`)
 - **Responsibility**: Provide discoverable workspace instructions, custom agents, and slash-invocable skills for Copilot.
@@ -82,12 +86,6 @@ specify-sde/
 - **Interfaces**: `agents/*.md` and `plugin.json`.
 - **Dependencies**: Same shared core as Copilot.
 - **Location**: [agents/](../../agents/), [plugin.json](../../plugin.json)
-
-### Docs Sync (`skills/docs-sync/`)
-- **Responsibility**: Detect project structure, activate relevant references, and keep `./.specify/docs/`, root `CLAUDE.md`, and the managed `README.md` block aligned with real repository state.
-- **Interfaces**: `init`, `index`, `architecture`, `integrations`, `claude`, `readme`, `all` scopes.
-- **Dependencies**: Uses stack maps, agent maps, and templates from `skills/docs-sync/references/`.
-- **Location**: [skills/docs-sync/](../../skills/docs-sync/)
 
 ---
 

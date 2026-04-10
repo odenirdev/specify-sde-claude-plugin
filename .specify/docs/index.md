@@ -1,5 +1,5 @@
 ---
-updated_at: 2026-04-05T00:00:00Z
+updated_at: 2026-04-10T00:00:00Z
 ---
 
 # specify-sde
@@ -37,12 +37,14 @@ See [architecture.md](./architecture.md) for the component map and runtime separ
 ## Main Features
 
 - **Shared references core**: reusable engineering guidance in `references/`
-- **Reusable workflows**: `engineer-discovery`, `engineer-define`, `engineer-review`, `docs-sync`, and related skills in `skills/`
+- **Review triage skills**: `review-triage` and `review-topic-triage` for structured code and topic reviews in `skills/`
+- **Stack management skills**: `stack-list`, `stack-enable`, `stack-disable` for managing active references and adapters in `skills/`
 - **GitHub Copilot adapters**: workspace instructions, custom agents, and skill wrappers in `.github/`
 - **Claude compatibility layer**: existing `agents/*.md` and `plugin.json`
 - **Primary engineering context**: `./.specify/docs/index.md` provides the canonical architecture and operational entrypoint for both Claude and GitHub Copilot
-- **Derived entrypoints**: `docs-sync` can keep `README.md` and `CLAUDE.md` aligned without turning them into competing sources of truth
 - **Derived documentation**: `./.specify/docs` stays synchronized with the repository architecture and usage model
+
+> Engineering workflow skills (discovery, define, delivery, debug, review, docs-sync) live in the companion plugin [`specify-engineer`](https://github.com/ogs-tech/specify-engineer).
 
 ---
 
@@ -72,7 +74,7 @@ Key concepts in this toolkit's model:
 
 ## Engineering Agents
 
-Primary agent roles configured for this toolkit:
+Primary agent roles defined in `agents/` for this toolkit:
 
 | Agent | Role |
 |---|---|

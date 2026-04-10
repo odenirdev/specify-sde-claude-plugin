@@ -7,6 +7,7 @@ Edit the canonical layer for the type of change you are making and keep runtime 
 
 - `./.specify/docs/index.md` = primary engineering context and navigation
 - `.github/copilot-instructions.md` = shared governance for both runtimes
+- `.specify/stack.yml` = declarative stack configuration (active references, skills, and agents)
 - `references/` = shared engineering references
 - `skills/*/SKILL.md` = workflow source of truth
 - `agents/*.md` = full role-specific agent guidance
@@ -16,9 +17,10 @@ Edit the canonical layer for the type of change you are making and keep runtime 
 ## Working model
 
 1. Start with `./.specify/docs/index.md` for the current engineering context; use `README.md` for quick orientation and this file for governance.
-2. Update `references/`, `skills/`, or `agents/` before touching `.github/` wrappers whenever the source behavior changes.
-3. Prefer **referencing** existing `references/` and `skills/` content instead of copying it into new agents or skills.
-4. When a rule is shared across multiple agents or skills, centralize it here or in `references/`, not in repeated blocks.
+2. **At the start of each task**, check if `.specify/stack.yml` exists. If it does, read it and load every path listed under `references.active` as active engineering context. If it does not exist, fall back to `.specify/docs/stack.md` and read the `## Active References` section instead.
+3. Update `references/`, `skills/`, or `agents/` before touching `.github/` wrappers whenever the source behavior changes.
+4. Prefer **referencing** existing `references/` and `skills/` content instead of copying it into new agents or skills.
+5. When a rule is shared across multiple agents or skills, centralize it here or in `references/`, not in repeated blocks.
 
 ## Shared rules
 

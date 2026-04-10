@@ -1,0 +1,31 @@
+version: "1"
+
+references:
+  active:
+    - references/practices/hexagonal-architecture.md
+    - references/practices/documentation-derivation.md
+    - references/practices/task-breakdown.md
+    - references/utilities/error-handling.md
+    - references/utilities/testing.md
+    - references/frameworks/langgraph.md
+  disabled: []
+
+skills:
+  active:
+    - stack-init
+    - stack-list
+    - stack-enable
+    - stack-disable
+    - review-triage
+    - review-topic-triage
+  disabled: []
+
+agents:
+  active:
+    - reviewer
+    - backend-architect
+    - debugger
+    - task-planner
+    - docs-maintainer
+    - langgraph-architect
+  disabled: []

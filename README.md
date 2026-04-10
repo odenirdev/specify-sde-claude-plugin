@@ -7,30 +7,31 @@ A modular Software Development Engineering toolkit for **GitHub Copilot** and **
 <!-- docs-sync:start -->
 ## Overview
 
-`specify-sde` keeps reusable engineering references in `references/`, workflow skills in `skills/`, and thin runtime adapters in `.github/`, `agents/`, and `plugin.json`. The `docs-sync` workflow keeps `./.specify/docs`, `CLAUDE.md`, and this managed `README.md` block aligned from repository evidence.
+`specify-sde` keeps reusable engineering references in `references/`, utility skills in `skills/`, and thin runtime adapters in `.github/`, `agents/`, and `plugin.json`. Engineering workflow skills (discovery, define, delivery, debug, review, docs-sync) live in the companion plugin [`specify-engineer`](https://github.com/ogs-tech/specify-engineer).
 
 ## Getting Started
 
 1. Read [`./.specify/docs/index.md`](./.specify/docs/index.md) for the current architecture and operating model.
 2. Review [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) for shared workspace rules.
 3. Explore [`references/`](./references/) and [`skills/`](./skills/) before changing adapters or docs.
-4. Use the relevant agent or workflow (`reviewer`, `debugger`, `docs-sync`, `engineer-define`, etc.).
+4. Use the relevant agent (`reviewer`, `debugger`, `backend-architect`, etc.) or skill (`review-triage`, `stack-list`, etc.).
 
-## Main Workflows
+## Main Skills
 
-| Workflow | Use when |
+| Skill | Use when |
 |---|---|
-| `docs-sync` | Refresh `./.specify/docs`, `CLAUDE.md`, and the managed `README.md` block |
-| `engineer-discovery` | Capture requirements into `prd.md` |
-| `engineer-define` | Generate `spec.md` and `tasks.md` |
-| `engineer-review` | Review diffs, modules, or architecture changes |
+| `review-triage` | Triage and prioritize review findings |
+| `review-topic-triage` | Triage review findings by topic |
+| `stack-list` | List active references and adapters |
+| `stack-enable` | Enable a reference or adapter |
+| `stack-disable` | Disable a reference or adapter |
 
 ## Structure
 
 | Path | Purpose |
 |---|---|
 | `references/` | Shared engineering references |
-| `skills/` | Reusable workflows |
+| `skills/` | Utility workflow skills |
 | `.github/` | GitHub Copilot adapters |
 | `agents/` | Claude compatibility adapters |
 | `./.specify/docs/` | Canonical derived engineering context |
