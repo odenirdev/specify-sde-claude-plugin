@@ -26,6 +26,5 @@ GitHub Copilot adapter for [`../../../skills/review-topic-triage/SKILL.md`](../.
 ## References
 
 - [Source workflow](../../../skills/review-topic-triage/SKILL.md)
-- [Engineering review reference](../../../skills/engineer-review/SKILL.md)
 - [Error handling reference](../../../references/utilities/error-handling.md)
 - [Hexagonal architecture reference](../../../references/practices/hexagonal-architecture.md)

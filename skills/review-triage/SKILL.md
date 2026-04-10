@@ -32,14 +32,16 @@ Read the review comment carefully. If it references a file or line, read that fi
 ### Step 2 — Root cause analysis
 
 Identify the underlying cause of the issue. Ask:
+- Is the reviewer correct, or is there a misunderstanding of intent?
 - Is this a logic error, missing guard, incorrect assumption, or design problem?
 - Is the root cause in the flagged location or upstream?
+- Is this introduced by this change or pre-existing?
 - Is this a symptom of a broader pattern?
 
 ### Step 3 — Impact assessment
 
 Determine the blast radius:
-- **Severity**: Critical / High / Medium / Low
+- **Severity**: Critical / High / Medium / Low / Style
 - **Scope**: isolated change vs. cascading risk
 - **User-facing**: does this affect end users or is it internal?
 - **Data risk**: can this cause data loss, corruption, or security exposure?
@@ -73,7 +75,7 @@ Do NOT implement until the user explicitly confirms. If the user wants to post t
 [Specific explanation of why this exists. File:line if applicable.]
 
 ### Impact
-- **Severity**: Critical / High / Medium / Low
+- **Severity**: Critical / High / Medium / Low / Style
 - **Scope**: [what is affected]
 - **Risk**: [data, security, UX, or correctness concern]
 

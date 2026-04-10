@@ -1,6 +1,6 @@
 ---
 name: stack-disable
-description: Disable a `reference`, `skill`, or `agent` by updating the canonical `stack.md` source of truth, including global `~/.specify/stack.md`.
+description: Disable a `reference`, `skill`, or `agent` by updating the canonical `stack.yml` source of truth.
 argument-hint: "[type] [artifact] [scope?]"
 user-invocable: true
 ---
@@ -9,4 +9,4 @@ user-invocable: true
 
 GitHub Copilot adapter for [`../../../skills/stack-disable/SKILL.md`](../../../skills/stack-disable/SKILL.md).
 
-Use this skill to deactivate one supported artifact in `stack.md`, with root-first precedence in monorepos.
+Use this skill to deactivate one supported artifact in `stack.yml`, with root-first precedence in monorepos.

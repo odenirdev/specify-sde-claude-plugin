@@ -25,9 +25,7 @@ Optional flags:
 
 ## Target Resolution
 
-The target file depends on the context where the skill runs:
-- If `plugin.json` exists at the project root → target is `config/index.yml` (plugin-level config)
-- Otherwise → target is `.specify/stack.yml` (project-level config)
+The target file is always `.specify/stack.yml`, regardless of whether `plugin.json` exists.
 
 Resolve the target **before** checking for existing configuration. All subsequent steps use this resolved path.
 
@@ -35,11 +33,13 @@ Resolve the target **before** checking for existing configuration. All subsequen
 
 ### 0. Resolve target file
 
-Check for `plugin.json` at the project root:
-- Present → `TARGET = config/index.yml`, set `PLUGIN_CONTEXT = true`
-- Absent → `TARGET = .specify/stack.yml`, set `PLUGIN_CONTEXT = false`
+Set `TARGET = .specify/stack.yml`.
 
-If `PLUGIN_CONTEXT = true`: skip steps 2.2 and 2.3 entirely — the project is the plugin itself, so all discovered artifacts are relevant by definition. Treat this as implicit `--scope=global`.
+Check for `plugin.json` at the project root:
+- Present → set `PLUGIN_CONTEXT = true`
+- Absent → set `PLUGIN_CONTEXT = false`
+
+`PLUGIN_CONTEXT` is an auxiliary signal used only in step 2.5. It does not change the target or skip any steps.
 
 ### 1. Check for existing configuration
 
@@ -116,9 +116,20 @@ Include matched references in `active`. Unmatched references are omitted — abs
 
 **2.5 — Classify agents**
 
-- If `PLUGIN_CONTEXT = true`: all discovered agents → `active`
-- Otherwise: agents whose name matches detected stack (e.g. `backend-architect` if NestJS detected, `langgraph-architect` if LangGraph detected) → `active`; all other agents → omit (absence implies inactive)
-- If no agents directory exists → set `agents.active: []`
+Apply the matching rules below. Include matched agents in `active`. Unmatched agents are omitted.
+
+| Agent name | Match signal |
+|---|---|
+| `reviewer` | always active — universally applicable |
+| `debugger` | always active — universally applicable |
+| `docs-maintainer` | always active — universally applicable |
+| `task-planner` | always active — universally applicable |
+| `backend-architect` | `@nestjs/core` in deps |
+| `langgraph-architect` | `langgraph` or `@langchain/core` in deps |
+
+If `PLUGIN_CONTEXT = true`: all discovered agents → `active` (the project is the plugin itself, so all agents are relevant by definition).
+
+If no agents directory exists → set `agents.active: []`.
 
 ### 3. Write `{TARGET}`
 

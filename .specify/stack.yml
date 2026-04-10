@@ -1,10 +1,32 @@
 version: "1"
 
 references:
-  active: []
+  active:
+    - references/practices/task-breakdown.md
+    - references/practices/documentation-derivation.md
+    - references/utilities/error-handling.md
+    - references/utilities/logging.md
+    - references/practices/hexagonal-architecture.md
+    - references/practices/api-design.md
+    - references/practices/prompt-engineering.md
+    - references/practices/skill-authoring.md
+    - references/practices/agent-authoring.md
+    - references/practices/spec-driven-development.md
+    - references/practices/dual-runtime-compatibility.md
 
 skills:
-  active: []
+  active:
+    - stack-init
+    - stack-enable
+    - stack-disable
+    - stack-list
+    - review-triage
 
 agents:
-  active: []
+  active:
+    - reviewer
+    - debugger
+    - docs-maintainer
+    - task-planner
+    - backend-architect
+    - langgraph-architect

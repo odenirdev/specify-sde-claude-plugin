@@ -105,6 +105,12 @@ A triage is complete when:
 - Do not mark a finding as "style only" without verifying there is no semantic effect
 - If the reviewer's comment appears to be based on a misunderstanding, say so explicitly and politely
 
+## References
+
+- [Error handling reference](../../references/utilities/error-handling.md)
+- [Testing reference](../../references/utilities/testing.md)
+- [Hexagonal architecture reference](../../references/practices/hexagonal-architecture.md)
+
 ## Example
 
 User: "Triage this review comment: `getUser` may return undefined but it's used without null check on line 42"
