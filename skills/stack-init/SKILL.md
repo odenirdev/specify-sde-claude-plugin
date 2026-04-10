@@ -1,7 +1,7 @@
 ---
 name: stack-init
 description: Initialize `.specify/stack.yml` for a project. Creates a minimal declarative YAML as the stack source of truth consumed by stack-enable, stack-disable, and stack-list.
-argument-hint: "[--force]"
+argument-hint: "[--force] [--scope=global | --global]"
 ---
 
 # Stack Init
@@ -20,14 +20,28 @@ Use this skill when you need to:
 ## Inputs
 
 Optional flags:
-- `--force` — overwrite `.specify/stack.yml` without asking for confirmation
-- `--scope=global` — activate all references available in the plugin, skipping project-stack matching
+- `--force` — overwrite the target file without asking for confirmation
+- `--scope=global` / `--global` — activate all references available in the plugin, skipping project-stack matching
+
+## Target Resolution
+
+The target file depends on the context where the skill runs:
+- If `plugin.json` exists at the project root → target is `config/index.yml` (plugin-level config)
+- Otherwise → target is `.specify/stack.yml` (project-level config)
+
+Resolve the target **before** checking for existing configuration. All subsequent steps use this resolved path.
 
 ## Responsibilities
 
+### 0. Resolve target file
+
+Check for `plugin.json` at the project root:
+- Present → `TARGET = config/index.yml`
+- Absent → `TARGET = .specify/stack.yml`
+
 ### 1. Check for existing configuration
 
-- If `.specify/stack.yml` already exists and `--force` was not provided:
+- If `{TARGET}` already exists and `--force` was not provided:
   - Warn the user that the file exists
   - Ask for explicit confirmation before overwriting
   - If the user declines, abort and report no-op
@@ -104,7 +118,7 @@ Include matched references in `active`. Unmatched references are omitted — abs
 - All other agents → omit (absence implies inactive)
 - If no agents directory exists → set `agents.active: []`
 
-### 3. Create `.specify/stack.yml`
+### 3. Write `{TARGET}`
 
 Write the file using the discovered context. Use the canonical format below.
 
@@ -146,7 +160,7 @@ agents:
 
 ```md
 Result: created | no-op
-Target: `.specify/stack.yml`
+Target: `{TARGET}`
 
 ## References
 Active: N
@@ -160,7 +174,7 @@ Active: N
 
 ## Guardrails
 
-- Never write outside `.specify/stack.yml` without explicit user confirmation
+- Never write outside `{TARGET}` without explicit user confirmation
 - Follow the canonical YAML format exactly; do not add extra keys or sections
 
 ## Spec Reference
